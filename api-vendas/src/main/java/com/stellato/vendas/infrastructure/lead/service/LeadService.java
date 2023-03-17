@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,7 +81,19 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 	
 		return listaLeadEntity;
 	}
+	
+	public List<LeadEntity> findAllActives(){
+		
+		List<LeadEntity> listaLeadEntity =  leadRepository.listarAtivos();
+		
+		if (listaLeadEntity.isEmpty()) {
+			throw new StellatoException("Não foi encontrado nenhum lead ativo"); 
+		}
+	
+		return listaLeadEntity;
+	}
 
+	
 	public void deleteLead(BigDecimal id) {
 		LeadEntity leadEntityBanco = findById(id);
 		

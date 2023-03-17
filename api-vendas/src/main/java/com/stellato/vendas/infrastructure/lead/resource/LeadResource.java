@@ -47,6 +47,10 @@ public class LeadResource {
 		return leadService.findAll();
 	}
 	
+	@GetMapping("/ativos")
+	public List<LeadEntity> findAllLeadsActives() throws Exception {
+		return leadService.findAllActives();
+	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteLead(@PathVariable BigDecimal id) throws Exception {
