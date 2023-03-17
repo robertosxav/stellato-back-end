@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stellato.vendas.domain.lead.entity.LeadEntity;
-import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
 import com.stellato.vendas.domain.shared.repository.RepositoryInterface;
 import com.stellato.vendas.exceptions.StellatoException;
 import com.stellato.vendas.infrastructure.lead.LeadModel;
 import com.stellato.vendas.infrastructure.lead.repository.LeadRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class LeadService implements RepositoryInterface<LeadEntity>{
@@ -22,6 +23,7 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 	private LeadRepository leadRepository;
 	
 	@Override
+	@Transactional
 	public LeadEntity create(LeadEntity leadEntityFront){
 	
 		if (leadEntityFront.validar()) {
@@ -31,7 +33,7 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 			leadRepository.save(leadModel);
 			
 			LeadEntity leadEntity	= new LeadEntity(leadModel.getId(),leadModel.getNome(), leadModel.getEmail(), leadModel.getTelefone(), 
-					leadModel.getConsumo(), leadModel.getCidade(), leadModel.getTipoTelha(), leadModel.getOrigem(), StatusEnum.toEnum(leadModel.getStatus()));
+					leadModel.getConsumo(), leadModel.getCidade(), leadModel.getTipoTelha(), leadModel.getOrigem(), leadModel.getStatus());
 			
 			return leadEntity;
 		}
@@ -39,20 +41,22 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 	}
 
 	@Override
+	@Transactional
 	public LeadEntity update(BigDecimal id, LeadEntity leadEntityFront){
 			LeadEntity leadEntityBanco = findById(id);
 		
-			BeanUtils.copyProperties(leadEntityFront, leadEntityBanco,"id","status");
+			//BeanUtils.copyProperties(leadEntityFront, leadEntityBanco,"id","status");
 			
-			LeadModel leadModel = new LeadModel(leadEntityBanco.getId(),leadEntityBanco.getNome(), leadEntityBanco.getEmail(), leadEntityBanco.getTelefone(), 
-					leadEntityBanco.getConsumo(), leadEntityBanco.getCidade(), leadEntityBanco.getTipoTelha(), leadEntityBanco.getOrigem(), leadEntityBanco.getStatus().getNumero());
+			LeadModel leadModel = new LeadModel(leadEntityFront.getId(),leadEntityFront.getNome(), leadEntityFront.getEmail(), leadEntityFront.getTelefone(), 
+					leadEntityFront.getConsumo(), leadEntityFront.getCidade(), leadEntityFront.getTipoTelha(), leadEntityFront.getOrigem(), 
+					leadEntityBanco.getStatus().getNumero());
 			leadRepository.save(leadModel);
 			
 			LeadEntity leadEntity	= new LeadEntity(leadModel.getId(),leadModel.getNome(), leadModel.getEmail(), leadModel.getTelefone(), 
-					leadModel.getConsumo(), leadModel.getCidade(), leadModel.getTipoTelha(), leadModel.getOrigem(), StatusEnum.toEnum(leadModel.getStatus()));
+					leadModel.getConsumo(), leadModel.getCidade(), leadModel.getTipoTelha(), leadModel.getOrigem(), leadModel.getStatus());
 			
 			return leadEntity;
-			
+
 	}
 
 	@Override

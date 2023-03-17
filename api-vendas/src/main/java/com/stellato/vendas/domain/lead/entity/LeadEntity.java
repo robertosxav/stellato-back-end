@@ -91,7 +91,7 @@ public class LeadEntity implements LeadInterface{
 	}
 	
 	public LeadEntity(BigDecimal id, String nome, String email, String telefone, BigDecimal consumo, String cidade,
-			BigDecimal tipoTelha, BigDecimal origem,StatusEnum status) {
+			BigDecimal tipoTelha, BigDecimal origem,Integer statusNumero) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -101,7 +101,7 @@ public class LeadEntity implements LeadInterface{
 		this.cidade = cidade;
 		this.tipoTelha = tipoTelha;
 		this.origem = origem;
-		this.status = status;
+		this.status = StatusEnum.toEnum(statusNumero);
 	}
 	
 	public LeadEntity(BigDecimal id, String nome, String email, String telefone, BigDecimal consumo, String cidade,
