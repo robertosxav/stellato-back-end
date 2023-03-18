@@ -2,6 +2,8 @@ package com.stellato.vendas.domain.lead.entity;
 
 import java.math.BigDecimal;
 
+import com.stellato.vendas.domain.lead.entity.enumerated.OrigemEnum;
+import com.stellato.vendas.domain.lead.entity.enumerated.TipoTelhaEnum;
 import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
 import com.stellato.vendas.exceptions.StellatoException;
 
@@ -19,9 +21,9 @@ public class LeadEntity implements LeadInterface{
 	
 	private String cidade;
 	
-	private BigDecimal tipoTelha;
+	private TipoTelhaEnum tipoTelha;
 	
-	private BigDecimal origem;
+	private OrigemEnum origem;
 	
 	private StatusEnum status;
 	
@@ -29,12 +31,22 @@ public class LeadEntity implements LeadInterface{
 	public BigDecimal getId() {
 		return this.id;
 	}
+	
+	@Override
+	public void SetId(BigDecimal id) {
+		this.id	=	id;
+	}	
 
 	@Override
 	public StatusEnum getStatus() {
 		return this.status;
 	}
 	
+	@Override
+	public void setStatus(StatusEnum status) {
+		this.status = status;
+		
+	}
 	
 	public void Ativar() {
 		this.status =StatusEnum.ATIVO;
@@ -61,11 +73,11 @@ public class LeadEntity implements LeadInterface{
 		return cidade;
 	}
 
-	public BigDecimal getTipoTelha() {
+	public TipoTelhaEnum getTipoTelha() {
 		return tipoTelha;
 	}
 
-	public BigDecimal getOrigem() {
+	public OrigemEnum getOrigem() {
 		return origem;
 	}
 
@@ -91,7 +103,7 @@ public class LeadEntity implements LeadInterface{
 	}
 	
 	public LeadEntity(BigDecimal id, String nome, String email, String telefone, BigDecimal consumo, String cidade,
-			BigDecimal tipoTelha, BigDecimal origem,Integer statusNumero) {
+			Integer tipoTelhaNumero,Integer origemNumero,Integer statusNumero) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -99,13 +111,13 @@ public class LeadEntity implements LeadInterface{
 		this.telefone = telefone;
 		this.consumo = consumo;
 		this.cidade = cidade;
-		this.tipoTelha = tipoTelha;
-		this.origem = origem;
+		this.tipoTelha = TipoTelhaEnum.toEnum(tipoTelhaNumero);
+		this.origem = OrigemEnum.toEnum(origemNumero);
 		this.status = StatusEnum.toEnum(statusNumero);
 	}
 	
 	public LeadEntity(BigDecimal id, String nome, String email, String telefone, BigDecimal consumo, String cidade,
-			BigDecimal tipoTelha, BigDecimal origem) {
+			Integer tipoTelhaNumero, Integer origemNumero) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -113,12 +125,12 @@ public class LeadEntity implements LeadInterface{
 		this.telefone = telefone;
 		this.consumo = consumo;
 		this.cidade = cidade;
-		this.tipoTelha = tipoTelha;
-		this.origem = origem;
+		this.tipoTelha = TipoTelhaEnum.toEnum(tipoTelhaNumero);
+		this.origem = OrigemEnum.toEnum(origemNumero);
 	}
 
 	public LeadEntity() {
 		super();
-	}	
+	}
 	
 }

@@ -35,9 +35,9 @@ public class LeadModel implements Serializable{
 	
 	private String cidade;
 	
-	private BigDecimal tipoTelha;
+	private Integer tipoTelha;
 	
-	private BigDecimal origem;
+	private Integer origem;
 	
 	private Integer status;
 
@@ -89,19 +89,19 @@ public class LeadModel implements Serializable{
 		this.cidade = cidade;
 	}
 
-	public BigDecimal getTipoTelha() {
+	public Integer getTipoTelha() {
 		return tipoTelha;
 	}
 
-	public void setTipoTelha(BigDecimal tipoTelha) {
+	public void setTipoTelha(Integer tipoTelha) {
 		this.tipoTelha = tipoTelha;
 	}
 
-	public BigDecimal getOrigem() {
+	public Integer getOrigem() {
 		return origem;
 	}
 
-	public void setOrigem(BigDecimal origem) {
+	public void setOrigem(Integer origem) {
 		this.origem = origem;
 	}
 
@@ -117,8 +117,8 @@ public class LeadModel implements Serializable{
 		return serialVersionUID;
 	}
 
-	public LeadModel(BigDecimal id, String nome, String email, String telefone, BigDecimal consumo, String cidade,
-			BigDecimal tipoTelha, BigDecimal origem, Integer status) {
+	public LeadModel(BigDecimal id, String nome, String email, String telefone, BigDecimal consumo,
+			String cidade,Integer tipoTelha, Integer origem, Integer status) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -132,8 +132,8 @@ public class LeadModel implements Serializable{
 	}
 	
 	
-	public LeadModel(String nome, String email, String telefone, BigDecimal consumo, String cidade,
-			BigDecimal tipoTelha, BigDecimal origem, Integer status) {
+	public LeadModel(String nome, String email, String telefone, BigDecimal consumo
+			,String cidade,Integer tipoTelha, Integer origem, Integer status) {
 		super();
 		this.nome = nome;
 		this.email = email;

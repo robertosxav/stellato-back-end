@@ -1,14 +1,18 @@
-package com.stellato.vendas.domain.shared.enumerated;
+package com.stellato.vendas.domain.lead.entity.enumerated;
 
 import com.stellato.vendas.exceptions.StellatoException;
 
-public enum StatusEnum {
-	INATIVO(0,"INATIVO"),
-	ATIVO(1,"ATIVO");
+public enum TipoTelhaEnum {
+	
+	CERAMICA(0,"TELHA DE CERÂMICA"),
+	PVC(1,"TELHA DE PVC"),
+	CONCRETO(2,"TELHA DE CONCRETO"),
+	ECOLOGICAS(2,"TELHAS ECOLÓGICAS");
 	
 	private Integer numero;
 	private String descricao;
-	StatusEnum(Integer numero, String descricao) {
+	
+	TipoTelhaEnum(Integer numero, String descricao) {
 		this.numero	=	numero;
 		this.descricao	=	descricao;
 	}
@@ -25,12 +29,12 @@ public enum StatusEnum {
 		this.descricao = descricao;
 	}
 	
-	public static StatusEnum toEnum(Integer numero) {
+	public static TipoTelhaEnum toEnum(Integer numero) {
 		if (numero == null) {
 			return null;
 		}
 		
-		for(StatusEnum s : StatusEnum.values()) {
+		for(TipoTelhaEnum s : TipoTelhaEnum.values()) {
 			if(numero.equals(s.getNumero())){
 				return s;
 			}
@@ -39,12 +43,12 @@ public enum StatusEnum {
 		throw new StellatoException("Código de Status inválido: "+numero);
 	}
 	
-	public static StatusEnum toEnumDesc(String descricao) {
+	public static TipoTelhaEnum toEnumDesc(String descricao) {
 		if (descricao == null || descricao.isEmpty()) {
 			throw new StellatoException("Enum inválido: "+descricao);
 		}
 		
-		for(StatusEnum s : StatusEnum.values()) {
+		for(TipoTelhaEnum s : TipoTelhaEnum.values()) {
 			if(descricao.equals(s.name())){
 				return s;
 			}

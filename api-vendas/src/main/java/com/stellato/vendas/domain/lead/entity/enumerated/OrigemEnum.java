@@ -1,14 +1,16 @@
-package com.stellato.vendas.domain.shared.enumerated;
+package com.stellato.vendas.domain.lead.entity.enumerated;
 
 import com.stellato.vendas.exceptions.StellatoException;
 
-public enum StatusEnum {
-	INATIVO(0,"INATIVO"),
-	ATIVO(1,"ATIVO");
+public enum OrigemEnum {
+	WHATSAPP(0,"WHATSAPP"),
+	FACEBOOK(1,"FACEBOOK"),
+	INSTAGRAM(2,"INSTAGRAM");
 	
 	private Integer numero;
 	private String descricao;
-	StatusEnum(Integer numero, String descricao) {
+	
+	OrigemEnum(Integer numero, String descricao) {
 		this.numero	=	numero;
 		this.descricao	=	descricao;
 	}
@@ -25,12 +27,12 @@ public enum StatusEnum {
 		this.descricao = descricao;
 	}
 	
-	public static StatusEnum toEnum(Integer numero) {
+	public static OrigemEnum toEnum(Integer numero) {
 		if (numero == null) {
 			return null;
 		}
 		
-		for(StatusEnum s : StatusEnum.values()) {
+		for(OrigemEnum s : OrigemEnum.values()) {
 			if(numero.equals(s.getNumero())){
 				return s;
 			}
@@ -39,12 +41,12 @@ public enum StatusEnum {
 		throw new StellatoException("Código de Status inválido: "+numero);
 	}
 	
-	public static StatusEnum toEnumDesc(String descricao) {
+	public static OrigemEnum toEnumDesc(String descricao) {
 		if (descricao == null || descricao.isEmpty()) {
 			throw new StellatoException("Enum inválido: "+descricao);
 		}
 		
-		for(StatusEnum s : StatusEnum.values()) {
+		for(OrigemEnum s : OrigemEnum.values()) {
 			if(descricao.equals(s.name())){
 				return s;
 			}
