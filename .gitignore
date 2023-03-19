@@ -1,2 +1,3 @@
 /.metadata/
-/.docker/Docker-Compose
+/docker/Docker-Compose/
+/.gitignore
