@@ -1,32 +1,25 @@
 package com.stellato.vendas.infrastructure.lead.repository;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-  
-import com.stellato.vendas.domain.lead.entity.LeadEntity;
+
 import com.stellato.vendas.infrastructure.lead.LeadModel;
 
 @Repository
-public interface LeadRepository extends JpaRepository<LeadModel, BigDecimal>{
+public interface LeadRepository extends JpaRepository<LeadModel, Long>{
 
-	@Query("select new com.stellato.vendas.domain.lead.entity.LeadEntity(l.id,l.nome,l.email,l.telefone,l.consumo,"
-			+ " l.cidade,l.tipoTelha,l.origem,l.status)"
-			+ " from LeadModel l where l.id = :id")
-	public Optional<LeadEntity> buscarPorId(BigDecimal id);
+	@Query("select l from LeadModel l where l.id = :id")
+	public Optional<LeadModel> buscarPorId(Long id);
+
 	
-	@Query("select new com.stellato.vendas.domain.lead.entity.LeadEntity(l.id,l.nome,l.email,l.telefone,l.consumo,"
-			+ " l.cidade,l.tipoTelha,l.origem,l.status)"
-			+ " from LeadModel l")
-	public List<LeadEntity> listarTodos();
+	@Query("select l from LeadModel l")
+	public List<LeadModel> listarTodos();
 	
-	@Query("select new com.stellato.vendas.domain.lead.entity.LeadEntity(l.id,l.nome,l.email,l.telefone,l.consumo,"
-			+ " l.cidade,l.tipoTelha,l.origem,l.status)"
-			+ " from LeadModel l"
-			+ " where l.status =1")
-	public List<LeadEntity> listarAtivos();
+	@Query("select l from LeadModel l where l.status =1")
+	public List<LeadModel> listarAtivos();
+	
 }

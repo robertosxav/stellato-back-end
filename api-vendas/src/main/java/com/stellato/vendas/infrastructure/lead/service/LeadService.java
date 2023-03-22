@@ -1,17 +1,18 @@
 package com.stellato.vendas.infrastructure.lead.service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stellato.vendas.domain.lead.entity.LeadEntity;
-import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
+import com.stellato.vendas.domain.lead.factory.LeadEntityFactory;
 import com.stellato.vendas.domain.shared.repository.RepositoryInterface;
 import com.stellato.vendas.exceptions.StellatoException;
 import com.stellato.vendas.infrastructure.lead.LeadModel;
+import com.stellato.vendas.infrastructure.lead.factory.LeadFactory;
 import com.stellato.vendas.infrastructure.lead.repository.LeadRepository;
 
 import jakarta.transaction.Transactional;
@@ -22,14 +23,20 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 	@Autowired
 	private LeadRepository leadRepository;
 	
+	@Autowired
+	private LeadFactory factory; 
+	
+	@Autowired
+	private LeadEntityFactory entityFactory;
+	
 	@Override
 	@Transactional
 	public LeadEntity create(LeadEntity leadEntityFront){
 	
 		if (leadEntityFront.validar()) {
 			leadEntityFront.Ativar();
-			LeadModel leadModel = new LeadModel(leadEntityFront.getNome(), leadEntityFront.getEmail(), leadEntityFront.getTelefone(), 
-					leadEntityFront.getConsumo(), leadEntityFront.getCidade(), leadEntityFront.getTipoTelha().getNumero(), leadEntityFront.getOrigem().getNumero(), leadEntityFront.getStatus().getNumero());
+			LeadModel leadModel = factory.create(leadEntityFront);
+			
 			leadRepository.save(leadModel);
 			
 			leadEntityFront.SetId(leadModel.getId());
@@ -41,64 +48,75 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 
 	@Override
 	@Transactional
-	public LeadEntity update(BigDecimal id, LeadEntity leadEntityFront){
-			LeadEntity leadEntityBanco = findById(id);
+	public LeadEntity update(Long id, LeadEntity leadEntityFront){
 			
-			LeadModel leadModel = new LeadModel(leadEntityFront.getId(),leadEntityFront.getNome(), leadEntityFront.getEmail(), leadEntityFront.getTelefone(), 
-					leadEntityFront.getConsumo(), leadEntityFront.getCidade(), leadEntityFront.getTipoTelha().getNumero(), leadEntityFront.getOrigem().getNumero(), 
-					leadEntityBanco.getStatus().getNumero());
-			leadRepository.save(leadModel);
+			leadEntityFront.Alterar(null);
 			
-			leadEntityFront.SetId(id);
-			leadEntityFront.setStatus(StatusEnum.ATIVO);
+			Optional<LeadModel> leadModelBanco = leadRepository.buscarPorId(id);
 			
-			return leadEntityFront;
+			leadModelBanco.get().setNome(leadEntityFront.getNome());
+			leadModelBanco.get().setTelefone(leadEntityFront.getNome());
+			leadModelBanco.get().setwhatsapp(leadEntityFront.getWhatsApp());
+			leadModelBanco.get().setCidade(leadEntityFront.getCidade());
+			leadModelBanco.get().setOrigem(leadEntityFront.getOrigem());
+			leadModelBanco.get().setTipoLead(leadEntityFront.getTipoLead());
+			leadModelBanco.get().setidPessoa(leadEntityFront.getidPessoa());
+			leadModelBanco.get().setStatus(leadEntityFront.getStatus().getNumero());
+			leadModelBanco.get().setCriadoEm(leadEntityFront.getCriadoEm());
+			leadModelBanco.get().setCriadoPor(leadEntityFront.getCriadoPor());
+			leadModelBanco.get().setAlteradoEm(leadEntityFront.getAlteradoEm());
+			leadModelBanco.get().setAlteradoPor(leadEntityFront.getAlteradoPor());
+			leadRepository.save(leadModelBanco.get());
+			
+		return leadEntityFront;
+
 
 	}
 
 	@Override
-	public LeadEntity findById(BigDecimal id) {
-		Optional<LeadEntity> leadEntitySave= leadRepository.buscarPorId(id);
+	public LeadEntity findById(Long id) {
+		Optional<LeadModel> leadModelSave = leadRepository.buscarPorId(id);
 		
-		 if (!leadEntitySave.isPresent()) {
-			 throw new StellatoException("Não foi encontrado nenhum lead com o código: " + id.toBigInteger());
+		 if (!leadModelSave.isPresent()) {
+			 throw new StellatoException("Não foi encontrado nenhum lead com o código: " + id);
 		 }
-		 
-		return leadEntitySave.get();
+		LeadEntity leadEntity	=	entityFactory.create(leadModelSave.get());
+		return leadEntity;
 
 	}
 
 	@Override
 	public List<LeadEntity> findAll(){
 		
-		List<LeadEntity> listaLeadEntity =  leadRepository.listarTodos();
+		List<LeadModel> listaLeaModel = leadRepository.listarTodos();
 		
-		if (listaLeadEntity.isEmpty()) {
+		if (listaLeaModel.isEmpty()) {
 			throw new StellatoException("Não foi encontrado nenhum lead cadastrado"); 
 		}
-	
-		return listaLeadEntity;
+		
+		return listaLeaModel.stream().map(e->(entityFactory.create(e))).collect(Collectors.toList());
+		
 	}
 	
 	public List<LeadEntity> findAllActives(){
 		
-		List<LeadEntity> listaLeadEntity =  leadRepository.listarAtivos();
+		List<LeadModel> listaLeadModel =  leadRepository.listarAtivos();
 		
-		if (listaLeadEntity.isEmpty()) {
+		if (listaLeadModel.isEmpty()) {
 			throw new StellatoException("Não foi encontrado nenhum lead ativo"); 
 		}
 	
-		return listaLeadEntity;
+		return listaLeadModel.stream().map(e->(entityFactory.create(e))).collect(Collectors.toList());
 	}
 
 	
-	public void deleteLead(BigDecimal id) {
+	public void deleteLead(Long id) {
 		LeadEntity leadEntityBanco = findById(id);
 		
 		leadEntityBanco.Inativar();
+
 		
-		LeadModel leadModel = new LeadModel(leadEntityBanco.getId(),leadEntityBanco.getNome(), leadEntityBanco.getEmail(), leadEntityBanco.getTelefone(), 
-				leadEntityBanco.getConsumo(), leadEntityBanco.getCidade(), leadEntityBanco.getTipoTelha().getNumero(), leadEntityBanco.getOrigem().getNumero(), leadEntityBanco.getStatus().getNumero());
+		LeadModel leadModel	= factory.create(leadEntityBanco);
 		leadRepository.save(leadModel);
 		
 	}

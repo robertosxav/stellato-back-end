@@ -1,6 +1,5 @@
 package com.stellato.vendas.infrastructure.lead.resource;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +31,13 @@ public class LeadResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<LeadEntity> updateLead(@PathVariable BigDecimal id,@RequestBody LeadEntity leadEntity) throws Exception {
+	public ResponseEntity<LeadEntity> updateLead(@PathVariable Long id,@RequestBody LeadEntity leadEntity) throws Exception {
 		LeadEntity leadEntityUpdated = leadService.update(id,leadEntity);
 		return ResponseEntity.ok(leadEntityUpdated);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<LeadEntity> findLead(@PathVariable BigDecimal id) {
+	public ResponseEntity<LeadEntity> findLead(@PathVariable Long id) {
 		return ResponseEntity.ok(leadService.findById(id));
 	}
 	
@@ -53,7 +52,7 @@ public class LeadResource {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deleteLead(@PathVariable BigDecimal id) throws Exception {
+	public ResponseEntity<String> deleteLead(@PathVariable Long id) throws Exception {
 		leadService.deleteLead(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Registro deletado com sucesso");
 	}

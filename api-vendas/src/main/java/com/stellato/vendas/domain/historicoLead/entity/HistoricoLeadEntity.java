@@ -1,6 +1,5 @@
 package com.stellato.vendas.domain.historicoLead.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -11,7 +10,7 @@ import com.stellato.vendas.exceptions.StellatoException;
 
 public class HistoricoLeadEntity implements LeadInterface{
 	
-	private BigDecimal id;
+	private Long id; 
 	
 	private String decricao;
 	
@@ -23,12 +22,12 @@ public class HistoricoLeadEntity implements LeadInterface{
 	private LeadEntity lead;
 	
 	@Override
-	public BigDecimal getId() {
+	public Long getId() {
 		return this.id;
 	}
 
 	@Override
-	public void SetId(BigDecimal id) {
+	public void SetId(Long id) {
 		this.id	= id;
 		
 	}
@@ -58,7 +57,18 @@ public class HistoricoLeadEntity implements LeadInterface{
 		this.status	=	status;
 	}
 	
+	public LeadEntity getLead() {
+		return lead;
+	}
+
+	public void setLead(LeadEntity lead) {
+		this.lead = lead;
+	}
+
 	public void Ativar() {
+		this.status = StatusEnum.ATIVO;
+	}
+	public void Inativar() {
 		this.status = StatusEnum.ATIVO;
 	}
 	
@@ -79,12 +89,13 @@ public class HistoricoLeadEntity implements LeadInterface{
 		super();
 	}
 
-	public HistoricoLeadEntity(BigDecimal id, String decricao, LocalDate data, StatusEnum status) {
+	public HistoricoLeadEntity(Long id, String decricao, LocalDate data, StatusEnum status, LeadEntity lead) {
 		super();
 		this.id = id;
 		this.decricao = decricao;
 		this.data = data;
 		this.status = status;
+		this.lead	= lead;
 	}
 	
 }
