@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.stellato.vendas.infrastructure.lead.shared.BaseModel;
 
 import jakarta.persistence.Column;
@@ -45,20 +44,6 @@ public class LeadModel extends BaseModel implements Serializable {
 	
 	private Long idPessoa;
 	
-	private Integer status;
-	
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate criadoEm;
-	
-	private Long criadoPor;
-	
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate alteradoEm;
-	
-	private Long alteradoPor;
-
-	
-
 	public Long getId() {
 		return id;
 	}
@@ -148,56 +133,6 @@ public class LeadModel extends BaseModel implements Serializable {
 		this.idPessoa = idPessoa;
 	}
 
-
-	public Integer getStatus() {
-		return status;
-	}
-
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-
-	public LocalDate getCriadoEm() {
-		return criadoEm;
-	}
-
-
-	public void setCriadoEm(LocalDate criadoEm) {
-		this.criadoEm = criadoEm;
-	}
-
-
-	public Long getCriadoPor() {
-		return criadoPor;
-	}
-
-
-	public void setCriadoPor(Long criadoPor) {
-		this.criadoPor = criadoPor;
-	}
-
-
-	public LocalDate getAlteradoEm() {
-		return alteradoEm;
-	}
-
-
-	public void setAlteradoEm(LocalDate alteradoEm) {
-		this.alteradoEm = alteradoEm;
-	}
-
-
-	public Long getAlteradoPor() {
-		return alteradoPor;
-	}
-
-
-	public void setAlteradoPor(Long alteradoPor) {
-		this.alteradoPor = alteradoPor;
-	}
-	
 	public LeadModel() {
 		super();
 	
@@ -207,7 +142,7 @@ public class LeadModel extends BaseModel implements Serializable {
 	public LeadModel(Long id, String nome, String telefone, String whatsapp, String email, String cidade,
 			Integer origem, Integer tipoLead, Long idPessoa, Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
-		super();
+		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -217,17 +152,12 @@ public class LeadModel extends BaseModel implements Serializable {
 		this.origem = origem;
 		this.tipoLead = tipoLead;
 		this.idPessoa = idPessoa;
-		this.status = status;
-		this.criadoEm = criadoEm;
-		this.criadoPor = criadoPor;
-		this.alteradoEm = alteradoEm;
-		this.alteradoPor = alteradoPor;
 	}
 	
 	public LeadModel(String nome, String telefone, String whatsapp, String email, String cidade,
 			Integer origem, Integer tipoLead, Long idPessoa, Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
-		super();
+		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.nome = nome;
 		this.telefone = telefone;
 		this.whatsapp = whatsapp;
@@ -236,11 +166,7 @@ public class LeadModel extends BaseModel implements Serializable {
 		this.origem = origem;
 		this.tipoLead = tipoLead;
 		this.idPessoa = idPessoa;
-		this.status = status;
-		this.criadoEm = criadoEm;
-		this.criadoPor = criadoPor;
-		this.alteradoEm = alteradoEm;
-		this.alteradoPor = alteradoPor;
+		
 	}
 
 
@@ -248,8 +174,7 @@ public class LeadModel extends BaseModel implements Serializable {
 	public String toString() {
 		return "LeadModel [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", whatsapp=" + whatsapp
 				+ ", email=" + email + ", cidade=" + cidade + ", origem=" + origem + ", tipoLead=" + tipoLead
-				+ ", idPessoa=" + idPessoa + ", status=" + status + ", criadoEm=" + criadoEm + ", criadoPor="
-				+ criadoPor + ", alteradoEm=" + alteradoEm + ", alteradoPor=" + alteradoPor + "]";
+				+ ", idPessoa=" + idPessoa + "]";
 	}
 
 

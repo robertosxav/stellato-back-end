@@ -97,5 +97,11 @@ public class HistoricoLeadEntity implements LeadInterface{
 		this.status = status;
 		this.lead	= lead;
 	}
+
+	@Override
+	public void Alterar(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

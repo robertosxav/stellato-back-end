@@ -3,6 +3,8 @@ package com.stellato.vendas.domain.lead.entity;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.vendas.domain.lead.entity.enumerated.OrigemEnum;
+import com.stellato.vendas.domain.lead.entity.enumerated.TipoLead;
 import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
 import com.stellato.vendas.exceptions.StellatoException;
 
@@ -20,9 +22,9 @@ public class LeadEntity implements LeadInterface {
 
 	private String cidade;
 
-	private Integer origem;
+	private OrigemEnum origem;
 
-	private Integer tipoLead;
+	private TipoLead tipoLead;
 
 	private Long idPessoa;
 
@@ -99,19 +101,19 @@ public class LeadEntity implements LeadInterface {
 		this.cidade = cidade;
 	}
 
-	public Integer getOrigem() {
+	public OrigemEnum getOrigem() {
 		return origem;
 	}
 
-	public void setOrigem(Integer origem) {
+	public void setOrigem(OrigemEnum origem) {
 		this.origem = origem;
 	}
 
-	public Integer getTipoLead() {
+	public TipoLead getTipoLead() {
 		return tipoLead;
 	}
 
-	public void setTipoLead(Integer tipoLead) {
+	public void setTipoLead(TipoLead tipoLead) {
 		this.tipoLead = tipoLead;
 	}
 
@@ -155,21 +157,25 @@ public class LeadEntity implements LeadInterface {
 		this.alteradoPor = alteradoPor;
 	}
 
+	@Override
 	public void Ativar() {
 		this.status 	=	StatusEnum.ATIVO;
 		this.criadoEm	=	LocalDate.now();		
 	}
 	
+	@Override
 	public void Alterar(Long id) {
 		this.status 	=	StatusEnum.ATIVO;
 		this.alteradoEm	 =	LocalDate.now();	
 		this.alteradoPor = id;
 	}
 
+	@Override
 	public void Inativar() {
 		this.status = StatusEnum.INATIVO;
 	}
 
+	@Override
 	public Boolean validar() {
 		if (this.nome.isEmpty()) {
 			throw new StellatoException("Nome é obrigatório");
@@ -195,7 +201,7 @@ public class LeadEntity implements LeadInterface {
 	}
 
 	public LeadEntity(Long id, String nome, String telefone, String whatsApp, String email, String cidade,
-			Integer origem, Integer tipoLead, Long idPessoa, Integer statusNumero, LocalDate criadoEm, Long criadoPor,
+			Integer origemNumero, Integer tipoLeadNumero, Long idPessoa, Integer statusNumero, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
@@ -204,8 +210,8 @@ public class LeadEntity implements LeadInterface {
 		this.whatsApp = whatsApp;
 		this.email = email;
 		this.cidade = cidade;
-		this.origem = origem;
-		this.tipoLead = tipoLead;
+		this.origem = OrigemEnum.toEnum(origemNumero);
+		this.tipoLead = TipoLead.toEnum(tipoLeadNumero);
 		this.idPessoa = idPessoa;
 		this.status = StatusEnum.toEnum(statusNumero);
 		this.criadoEm = criadoEm;
@@ -215,7 +221,7 @@ public class LeadEntity implements LeadInterface {
 	}
 
 	public LeadEntity(Long id, String nome, String telefone, String whatsApp, String email, String cidade,
-			Integer origem, Integer tipoLead, Long idPessoa, LocalDate criadoEm, Long criadoPor, LocalDate alteradoEm,
+			Integer origemNumero, Integer tipoLeadNumero, Long idPessoa, LocalDate criadoEm, Long criadoPor, LocalDate alteradoEm,
 			Long alteradoPor) {
 		super();
 		this.id = id;
@@ -224,8 +230,8 @@ public class LeadEntity implements LeadInterface {
 		this.whatsApp = whatsApp;
 		this.email = email;
 		this.cidade = cidade;
-		this.origem = origem;
-		this.tipoLead = tipoLead;
+		this.origem = OrigemEnum.toEnum(origemNumero);
+		this.tipoLead = TipoLead.toEnum(tipoLeadNumero);
 		this.idPessoa = idPessoa;
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;

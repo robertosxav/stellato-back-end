@@ -1,18 +1,15 @@
-package com.stellato.vendas.domain.lead.entity.enumerated;
+package com.stellato.administrador.domain.material.entity.enumerated;
 
-import com.stellato.vendas.exceptions.StellatoException;
+import com.stellato.administrador.exceptions.StellatoException;
 
-public enum TipoTelhaEnum {
-	
-	CERAMICA(0,"TELHA DE CERÂMICA"),
-	PVC(1,"TELHA DE PVC"),
-	CONCRETO(2,"TELHA DE CONCRETO"),
-	ECOLOGICAS(2,"TELHAS ECOLÓGICAS");
+public enum TipoMaterialEnum {
+	INDIVIUAL(0,"INDIVIUAL"),
+	KIT(1,"KIT");
 	
 	private Integer numero;
 	private String descricao;
 	
-	TipoTelhaEnum(Integer numero, String descricao) {
+	TipoMaterialEnum(Integer numero, String descricao) {
 		this.numero	=	numero;
 		this.descricao	=	descricao;
 	}
@@ -29,12 +26,12 @@ public enum TipoTelhaEnum {
 		this.descricao = descricao;
 	}
 	
-	public static TipoTelhaEnum toEnum(Integer numero) {
+	public static TipoMaterialEnum toEnum(Integer numero) {
 		if (numero == null) {
 			return null;
 		}
 		
-		for(TipoTelhaEnum s : TipoTelhaEnum.values()) {
+		for(TipoMaterialEnum s : TipoMaterialEnum.values()) {
 			if(numero.equals(s.getNumero())){
 				return s;
 			}
@@ -43,12 +40,12 @@ public enum TipoTelhaEnum {
 		throw new StellatoException("Código de Status inválido: "+numero);
 	}
 	
-	public static TipoTelhaEnum toEnumDesc(String descricao) {
+	public static TipoMaterialEnum toEnumDesc(String descricao) {
 		if (descricao == null || descricao.isEmpty()) {
 			throw new StellatoException("Enum inválido: "+descricao);
 		}
 		
-		for(TipoTelhaEnum s : TipoTelhaEnum.values()) {
+		for(TipoMaterialEnum s : TipoMaterialEnum.values()) {
 			if(descricao.equals(s.name())){
 				return s;
 			}

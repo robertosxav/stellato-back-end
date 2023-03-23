@@ -56,11 +56,11 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 			Optional<LeadModel> leadModelBanco = leadRepository.findById(id);
 			
 			leadModelBanco.get().setNome(leadEntityFront.getNome());
-			leadModelBanco.get().setTelefone(leadEntityFront.getNome());
+			leadModelBanco.get().setTelefone(leadEntityFront.getTelefone());
 			leadModelBanco.get().setwhatsapp(leadEntityFront.getWhatsApp());
 			leadModelBanco.get().setCidade(leadEntityFront.getCidade());
-			leadModelBanco.get().setOrigem(leadEntityFront.getOrigem());
-			leadModelBanco.get().setTipoLead(leadEntityFront.getTipoLead());
+			leadModelBanco.get().setOrigem(leadEntityFront.getOrigem().getNumero());
+			leadModelBanco.get().setTipoLead(leadEntityFront.getTipoLead().getNumero());
 			leadModelBanco.get().setidPessoa(leadEntityFront.getidPessoa());
 			leadModelBanco.get().setStatus(leadEntityFront.getStatus().getNumero());
 			leadModelBanco.get().setCriadoEm(leadEntityFront.getCriadoEm());
@@ -103,7 +103,7 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 	@Override
 	public List<LeadEntity> findAllActives(){
 		
-		List<LeadEntity> listaLeadEntity =  leadRepository.listarAtivos();
+		List<LeadEntity> listaLeadEntity = leadRepository.listarAtivos();
 		
 		if (listaLeadEntity.isEmpty()) {
 			throw new StellatoException("Não foi encontrado nenhum lead ativo"); 
@@ -115,13 +115,13 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 	
 	@Override
 	public Page<LeadEntity> findAllActivesPage(Pageable pageable) {
-		Page<LeadEntity> listaLeadEntity =  leadRepository.listarAtivos(pageable);
+		Page<LeadEntity> listaLeadEntity = leadRepository.listarAtivos(pageable);
 		return listaLeadEntity;
 	}
 	
 	public Page<LeadEntity> findByName(String nome, Pageable pageable) {
 		String nomeAux = "%"+nome.toUpperCase() +"%";
-		Page<LeadEntity> listaLeadEntity =  leadRepository.listarPorNome(nomeAux, pageable);
+		Page<LeadEntity> listaLeadEntity =leadRepository.listarPorNome(nomeAux, pageable);
 		return listaLeadEntity;
 	}
 	

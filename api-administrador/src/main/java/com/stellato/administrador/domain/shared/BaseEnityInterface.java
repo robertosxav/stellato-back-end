@@ -1,8 +1,8 @@
-package com.stellato.vendas.domain.lead.entity;
+package com.stellato.administrador.domain.shared;
 
-import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
+import com.stellato.administrador.domain.shared.enumerated.StatusEnum;
 
-public interface LeadInterface {
+public interface BaseEnityInterface {
 	public Long getId();
 	public void SetId(Long id);
 	public StatusEnum getStatus();

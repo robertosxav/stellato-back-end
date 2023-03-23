@@ -1,4 +1,4 @@
-package com.stellato.vendas.infrastructure.lead.shared;
+package com.stellato.administrador.infrastructure.material.shared;
 
 import java.time.LocalDate;
 
@@ -53,13 +53,6 @@ public class BaseModel {
 	public void setAlteradoPor(Long alteradoPor) {
 		this.alteradoPor = alteradoPor;
 	}
-	
-	
-
-	public BaseModel() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	public BaseModel(Integer status, LocalDate criadoEm, Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
 		super();
@@ -69,6 +62,12 @@ public class BaseModel {
 		this.alteradoEm = alteradoEm;
 		this.alteradoPor = alteradoPor;
 	}
+
+	public BaseModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	
 	
