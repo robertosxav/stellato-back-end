@@ -3,6 +3,8 @@ package com.stellato.vendas.infrastructure.lead.resource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,6 +51,16 @@ public class LeadResource {
 	@GetMapping("/ativos")
 	public List<LeadEntity> findAllLeadsActives() throws Exception {
 		return leadService.findAllActives();
+	}
+	
+	@GetMapping("/ativos/paginado")
+	public Page<LeadEntity> findAllActivesPage(Pageable pageable) throws Exception {
+		return leadService.findAllActivesPage(pageable);
+	}
+	
+	@GetMapping("/nome/{nome}")
+	public Page<LeadEntity> findByName(@PathVariable String nome, Pageable pageable) throws Exception {
+		return leadService.findByName(nome,pageable);
 	}
 	
 	@DeleteMapping("/{id}")

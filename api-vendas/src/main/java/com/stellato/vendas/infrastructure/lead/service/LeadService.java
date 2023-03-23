@@ -2,9 +2,10 @@ package com.stellato.vendas.infrastructure.lead.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.stellato.vendas.domain.lead.entity.LeadEntity;
@@ -52,7 +53,7 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 			
 			leadEntityFront.Alterar(null);
 			
-			Optional<LeadModel> leadModelBanco = leadRepository.buscarPorId(id);
+			Optional<LeadModel> leadModelBanco = leadRepository.findById(id);
 			
 			leadModelBanco.get().setNome(leadEntityFront.getNome());
 			leadModelBanco.get().setTelefone(leadEntityFront.getNome());
@@ -75,7 +76,7 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 
 	@Override
 	public LeadEntity findById(Long id) {
-		Optional<LeadModel> leadModelSave = leadRepository.buscarPorId(id);
+		Optional<LeadModel> leadModelSave = leadRepository.findById(id);
 		
 		 if (!leadModelSave.isPresent()) {
 			 throw new StellatoException("Não foi encontrado nenhum lead com o código: " + id);
@@ -88,34 +89,46 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 	@Override
 	public List<LeadEntity> findAll(){
 		
-		List<LeadModel> listaLeaModel = leadRepository.listarTodos();
+		List<LeadEntity> listaLeadEntity = leadRepository.listarTodos();
 		
-		if (listaLeaModel.isEmpty()) {
+		if (listaLeadEntity.isEmpty()) {
 			throw new StellatoException("Não foi encontrado nenhum lead cadastrado"); 
 		}
 		
-		return listaLeaModel.stream().map(e->(entityFactory.create(e))).collect(Collectors.toList());
+		return listaLeadEntity;
+				//listaLeaModel.stream().map(e->(entityFactory.create(e))).collect(Collectors.toList());
 		
 	}
 	
+	@Override
 	public List<LeadEntity> findAllActives(){
 		
-		List<LeadModel> listaLeadModel =  leadRepository.listarAtivos();
+		List<LeadEntity> listaLeadEntity =  leadRepository.listarAtivos();
 		
-		if (listaLeadModel.isEmpty()) {
+		if (listaLeadEntity.isEmpty()) {
 			throw new StellatoException("Não foi encontrado nenhum lead ativo"); 
 		}
 	
-		return listaLeadModel.stream().map(e->(entityFactory.create(e))).collect(Collectors.toList());
+		return listaLeadEntity;
+				//listaLeadModel.stream().map(e->(entityFactory.create(e))).collect(Collectors.toList());
 	}
-
+	
+	@Override
+	public Page<LeadEntity> findAllActivesPage(Pageable pageable) {
+		Page<LeadEntity> listaLeadEntity =  leadRepository.listarAtivos(pageable);
+		return listaLeadEntity;
+	}
+	
+	public Page<LeadEntity> findByName(String nome, Pageable pageable) {
+		String nomeAux = "%"+nome.toUpperCase() +"%";
+		Page<LeadEntity> listaLeadEntity =  leadRepository.listarPorNome(nomeAux, pageable);
+		return listaLeadEntity;
+	}
+	
 	
 	public void deleteLead(Long id) {
 		LeadEntity leadEntityBanco = findById(id);
-		
-		leadEntityBanco.Inativar();
-
-		
+		leadEntityBanco.Inativar();	
 		LeadModel leadModel	= factory.create(leadEntityBanco);
 		leadRepository.save(leadModel);
 		
