@@ -20,8 +20,13 @@ CREATE INDEX "tb_pessoa_id_index" ON
     "administrador"."tb_pessoa"("id");
 ALTER TABLE
     "administrador"."tb_pessoa" ADD PRIMARY KEY("id");
-	
-	
+    
+CREATE SEQUENCE "administrador"."tb_pessoa_seq"
+START 1
+INCREMENT 1
+MINVALUE 1
+OWNED BY "administrador"."tb_pessoa".id;
+		
 CREATE TABLE "administrador"."tb_fornecedor"(
     "id" BIGINT NOT NULL,
     "razao_social" VARCHAR(200) NOT NULL,
@@ -33,6 +38,11 @@ CREATE INDEX "tb_fornecedor_id_index" ON
 ALTER TABLE
     "administrador"."tb_fornecedor" ADD PRIMARY KEY("id");
 	
+CREATE SEQUENCE "administrador"."tb_fornecedor_seq"
+START 1
+INCREMENT 1
+MINVALUE 1
+OWNED BY "administrador"."tb_fornecedor".id;
 
 CREATE TABLE "vendas"."tb_lead"(
     "id" BIGINT NOT NULL,
@@ -86,6 +96,12 @@ COMMENT
 ON COLUMN
     "administrador"."tb_material"."tipo" IS 'enum - kit, individual';
 
+CREATE SEQUENCE "administrador"."tb_material_seq"
+START 1
+INCREMENT 1
+MINVALUE 1
+OWNED BY "administrador"."tb_material".id;
+
 CREATE TABLE "vendas"."tb_material_cotado"(
     "id" BIGINT NOT NULL,
     "observacao" VARCHAR(100) NULL,
@@ -108,7 +124,13 @@ ON COLUMN
 COMMENT
 ON COLUMN
     "vendas"."tb_material_cotado"."id_material" IS 'fk para tabela de material';
-
+    
+CREATE SEQUENCE "vendas"."tb_material_cotado_seq"
+START 1
+INCREMENT 1
+MINVALUE 1
+OWNED BY "vendas"."tb_material_cotado".id;    
+    
 CREATE TABLE "vendas"."tb_orcamento_eletrico"(
     "id" BIGINT NOT NULL,
     "titulo" VARCHAR(100) NOT NULL,
@@ -166,6 +188,12 @@ COMMENT
 ON COLUMN
     "vendas"."tb_orcamento_eletrico"."id_lead" IS 'FK para tabela de lead';
 
+CREATE SEQUENCE "vendas"."tb_orcamento_eletrico_seq"
+START 1
+INCREMENT 1
+MINVALUE 1
+OWNED BY "vendas"."tb_orcamento_eletrico".id; 
+
 CREATE TABLE "vendas"."tb_orcamento_material"(
     "id" BIGINT NOT NULL,
     "id_material_cotado" BIGINT NOT NULL,
@@ -206,3 +234,9 @@ ALTER TABLE
     "administrador"."tb_fornecedor" ADD CONSTRAINT "tb_fornecedor_id_foreign" FOREIGN KEY("id") REFERENCES "administrador"."tb_pessoa"("id");
 ALTER TABLE
     "vendas"."tb_orcamento_material" ADD CONSTRAINT "tb_orcamento_material_id_orcamento_foreign" FOREIGN KEY("id_orcamento") REFERENCES "vendas"."tb_orcamento_eletrico"("id");
+    
+CREATE SEQUENCE "vendas"."tb_orcamento_material_seq"
+START 1
+INCREMENT 1
+MINVALUE 1
+OWNED BY "vendas"."tb_orcamento_material".id; 
