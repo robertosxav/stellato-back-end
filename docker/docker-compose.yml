@@ -4,7 +4,7 @@ services:
   teste-postgres-compose:
     image: postgres
     environment:
-      POSTGRES_DB: "stellatoVendas"
+      POSTGRES_DB: "stellatoTech"
       POSTGRES_PASSWORD: "postgres"
     ports:
       - "5432:5432"
