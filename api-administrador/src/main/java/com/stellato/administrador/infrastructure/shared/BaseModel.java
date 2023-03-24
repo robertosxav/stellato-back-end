@@ -1,4 +1,4 @@
-package com.stellato.administrador.infrastructure.material.shared;
+package com.stellato.administrador.infrastructure.shared;
 
 import java.time.LocalDate;
 

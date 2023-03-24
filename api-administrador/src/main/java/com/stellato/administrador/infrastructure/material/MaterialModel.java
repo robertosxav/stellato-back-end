@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import com.stellato.administrador.infrastructure.material.shared.BaseModel;
+import com.stellato.administrador.infrastructure.shared.BaseModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
