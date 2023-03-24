@@ -61,7 +61,7 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 			leadModelBanco.get().setNome(pessoaEntityFront.getCnpj());
 			leadModelBanco.get().setTelefone(pessoaEntityFront.getTelefone());
 			leadModelBanco.get().setwhatsapp(pessoaEntityFront.getWhatsApp());
-			leadModelBanco.get().setCidade(pessoaEntityFront.getCidade());
+		//	leadModelBanco.get().setCidade(pessoaEntityFront.getCidade());
 			leadModelBanco.get().setStatus(pessoaEntityFront.getStatus().getNumero());
 			leadModelBanco.get().setCriadoEm(pessoaEntityFront.getCriadoEm());
 			leadModelBanco.get().setCriadoPor(pessoaEntityFront.getCriadoPor());

@@ -26,7 +26,7 @@ public class PessoaEntity implements  BaseEnityInterface{
 
 	private String email;
 
-	private String cidade;
+	//private String cidade;
 
 	private StatusEnum status;
 
@@ -121,14 +121,14 @@ public class PessoaEntity implements  BaseEnityInterface{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+/*
 	public String getCidade() {
 		return cidade;
 	}
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
-	}
+	}*/
 
 	public LocalDate getCriadoEm() {
 		return criadoEm;
@@ -194,8 +194,8 @@ public class PessoaEntity implements  BaseEnityInterface{
 			throw new StellatoException("whatsApp é obrigatório");
 		}
 
-		if (this.cidade.isEmpty()) {
-			throw new StellatoException("Cidade é obrigatório");
+		if (this.cpf.isEmpty()) {
+			throw new StellatoException("CPF é obrigatório");
 		}
 
 		return true;
@@ -206,7 +206,7 @@ public class PessoaEntity implements  BaseEnityInterface{
 	}
 
 	public PessoaEntity(Long id, String nome,  String cpf, String nomeFantasia, String cnpj,
-			String telefone, String whatsApp, String email,String cidade,Integer statusNumero,
+			String telefone, String whatsApp, String email/*,String cidade*/,Integer statusNumero,
 			LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
@@ -217,7 +217,7 @@ public class PessoaEntity implements  BaseEnityInterface{
 		this.telefone = telefone;
 		this.whatsApp = whatsApp;
 		this.email = email;
-		this.cidade = cidade;
+	//	this.cidade = cidade;
 		this.status = StatusEnum.toEnum(statusNumero);
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;
@@ -226,7 +226,7 @@ public class PessoaEntity implements  BaseEnityInterface{
 	}
 
 	public PessoaEntity(Long id, String nome,  String cpf, String nomeFantasia, String cnpj,
-			String telefone, String whatsApp, String email,String cidade,LocalDate criadoEm,
+			String telefone, String whatsApp, String email/*,String cidade*/,LocalDate criadoEm,
 			Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
@@ -237,7 +237,7 @@ public class PessoaEntity implements  BaseEnityInterface{
 		this.telefone = telefone;
 		this.whatsApp = whatsApp;
 		this.email = email;
-		this.cidade = cidade;
+		//this.cidade = cidade;
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;
 		this.alteradoEm = alteradoEm;

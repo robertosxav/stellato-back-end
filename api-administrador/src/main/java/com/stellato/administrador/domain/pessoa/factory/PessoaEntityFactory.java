@@ -10,12 +10,12 @@ public class PessoaEntityFactory {
 	
 	public PessoaEntity create (PessoaModel pessoaModel) {		
 		
-		PessoaEntity leadEntity = new PessoaEntity(pessoaModel.getId(),pessoaModel.getNome(),
+		PessoaEntity pessoaEntity = new PessoaEntity(pessoaModel.getId(),pessoaModel.getNome(),
 				pessoaModel.getCpf(),pessoaModel.getNomeFantasia(),pessoaModel.getCnpj(),
 				pessoaModel.getTelefone(),pessoaModel.getwhatsapp(), pessoaModel.getEmail(),
-				pessoaModel.getCidade(),pessoaModel.getStatus(), pessoaModel.getCriadoEm(),
+				/*pessoaModel.getCidade(),*/pessoaModel.getStatus(), pessoaModel.getCriadoEm(),
 				pessoaModel.getCriadoPor(), pessoaModel.getAlteradoEm(),pessoaModel.getAlteradoPor());
 		
-		return leadEntity;
+		return pessoaEntity;
 	}
 }

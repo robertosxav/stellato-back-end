@@ -23,8 +23,8 @@ public class PessoaModel extends BaseModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_LEAD")
-	@SequenceGenerator(name = "SEQUENCE_LEAD",sequenceName = "vendas.tb_lead_seq",allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_PESSOA")
+	@SequenceGenerator(name = "SEQUENCE_PESSOA",sequenceName = "administrador.tb_pessoa_seq",allocationSize = 1)
 	@Column(name = "ID")
 	private Long id;
 	
@@ -42,7 +42,7 @@ public class PessoaModel extends BaseModel implements Serializable {
 	
 	private String email;
 	
-	private String cidade;
+	//private String cidade;
 	
 	public Long getId() {
 		return id;
@@ -135,14 +135,14 @@ public class PessoaModel extends BaseModel implements Serializable {
 	}
 
 
-	public String getCidade() {
+/*	public String getCidade() {
 		return cidade;
 	}
 
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
-	}
+	}*/
 
 	public PessoaModel() {
 		super();
@@ -151,7 +151,7 @@ public class PessoaModel extends BaseModel implements Serializable {
 
 
 	public PessoaModel(Long id, String nome,String cpf,String nomeFantasia,String cnpj,String telefone, String whatsapp,
-			String email, String cidade,Integer status, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
+			String email/*, String cidade*/,Integer status, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.nome = nome;
@@ -161,11 +161,11 @@ public class PessoaModel extends BaseModel implements Serializable {
 		this.telefone = telefone;
 		this.whatsapp = whatsapp;
 		this.email = email;
-		this.cidade = cidade;
+		//this.cidade = cidade;
 	}
 	
 	public PessoaModel(String nome,String cpf,String nomeFantasia,String cnpj,String telefone, String whatsapp, 
-			String email, String cidade,Integer status, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
+			String email/*, String cidade*/,Integer status, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.nome = nome;
 		this.cpf = cpf;
@@ -174,14 +174,15 @@ public class PessoaModel extends BaseModel implements Serializable {
 		this.telefone = telefone;
 		this.whatsapp = whatsapp;
 		this.email = email;
-		this.cidade = cidade;
+	//	this.cidade = cidade;
 	}
 
+	
 
 	@Override
 	public String toString() {
-		return "PessoaModel [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", whatsapp=" + whatsapp
-				+ ", email=" + email + ", cidade=" + cidade + "]";
+		return "PessoaModel [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", nomeFantasia=" + nomeFantasia
+				+ ", cnpj=" + cnpj + ", telefone=" + telefone + ", whatsapp=" + whatsapp + ", email=" + email + "]";
 	}
 
 
