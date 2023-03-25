@@ -2,6 +2,9 @@ package com.stellato.administrador.infrastructure.shared;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class BaseModel {
 	
 	private Integer status;
