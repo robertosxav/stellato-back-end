@@ -3,8 +3,16 @@ package com.stellato.administrador.infrastructure.shared;
 import java.time.LocalDate;
 
 import jakarta.persistence.MappedSuperclass;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @MappedSuperclass
+@Getter
+@Setter
+@NoArgsConstructor()
+@AllArgsConstructor
 public class BaseModel {
 	
 	private Integer status;
@@ -55,23 +63,5 @@ public class BaseModel {
 
 	public void setAlteradoPor(Long alteradoPor) {
 		this.alteradoPor = alteradoPor;
-	}
-
-	public BaseModel(Integer status, LocalDate criadoEm, Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
-		super();
-		this.status = status;
-		this.criadoEm = criadoEm;
-		this.criadoPor = criadoPor;
-		this.alteradoEm = alteradoEm;
-		this.alteradoPor = alteradoPor;
-	}
-
-	public BaseModel() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	
-	
+	}	
 }

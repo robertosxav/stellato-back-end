@@ -2,7 +2,6 @@ package com.stellato.administrador.infrastructure.material;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 import com.stellato.administrador.infrastructure.shared.BaseModel;
 
@@ -13,10 +12,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Table(name = "TB_MATERIAL",schema = "ADMINISTRADOR")
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MaterialModel extends BaseModel implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -31,34 +36,6 @@ public class MaterialModel extends BaseModel implements Serializable {
 	
 	private Integer tipo;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Integer getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
-	}
-
-	public MaterialModel() {
-		super();
-	
-	}
 
 	public MaterialModel(Long id, String descricao, Integer tipo, Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
@@ -74,29 +51,5 @@ public class MaterialModel extends BaseModel implements Serializable {
 		this.descricao = descricao;
 		this.tipo = tipo;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		MaterialModel other = (MaterialModel) obj;
-		return Objects.equals(id, other.id);
-	}
-
-	@Override
-	public String toString() {
-		return "MaterialModel [id=" + id + ", descricao=" + descricao + ", tipo=" + tipo + "]";
-	}
-	
-	
 
 }

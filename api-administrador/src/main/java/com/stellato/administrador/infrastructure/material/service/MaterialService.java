@@ -54,7 +54,7 @@ public class MaterialService implements RepositoryInterface<MaterialEntity>{
 			MaterialEntityFront.Alterar(null);
 			
 			Optional<MaterialModel> MaterialModelBanco = materialRepository.findById(id);
-			
+			MaterialEntityFront.SetId(id);
 			MaterialModelBanco.get().setDescricao(MaterialEntityFront.getDescricao());
 			MaterialModelBanco.get().setTipo(MaterialEntityFront.getTipo().getNumero());
 			MaterialModelBanco.get().setStatus(MaterialEntityFront.getStatus().getNumero());
