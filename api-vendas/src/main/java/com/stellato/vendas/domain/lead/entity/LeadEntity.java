@@ -8,6 +8,11 @@ import com.stellato.vendas.domain.lead.entity.enumerated.TipoLead;
 import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
 import com.stellato.vendas.exceptions.StellatoException;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
 public class LeadEntity implements LeadInterface {
 
 	private Long id;
@@ -61,102 +66,6 @@ public class LeadEntity implements LeadInterface {
 
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public String getWhatsApp() {
-		return whatsApp;
-	}
-
-	public void setWhatsApp(String whatsApp) {
-		this.whatsApp = whatsApp;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public OrigemEnum getOrigem() {
-		return origem;
-	}
-
-	public void setOrigem(OrigemEnum origem) {
-		this.origem = origem;
-	}
-
-	public TipoLead getTipoLead() {
-		return tipoLead;
-	}
-
-	public void setTipoLead(TipoLead tipoLead) {
-		this.tipoLead = tipoLead;
-	}
-
-	public Long getidPessoa() {
-		return idPessoa;
-	}
-
-	public void setidPessoa(Long idPessoa) {
-		this.idPessoa = idPessoa;
-	}
-
-	public LocalDate getCriadoEm() {
-		return criadoEm;
-	}
-
-	public void setCriadoEm(LocalDate criadoEm) {
-		this.criadoEm = criadoEm;
-	}
-
-	public Long getCriadoPor() {
-		return criadoPor;
-	}
-
-	public void setCriadoPor(Long criadoPor) {
-		this.criadoPor = criadoPor;
-	}
-
-	public LocalDate getAlteradoEm() {
-		return alteradoEm;
-	}
-
-	public void setAlteradoEm(LocalDate alteradoEm) {
-		this.alteradoEm = alteradoEm;
-	}
-
-	public Long getAlteradoPor() {
-		return alteradoPor;
-	}
-
-	public void setAlteradoPor(Long alteradoPor) {
-		this.alteradoPor = alteradoPor;
-	}
-
 	@Override
 	public void Ativar() {
 		this.status 	=	StatusEnum.ATIVO;
@@ -196,9 +105,6 @@ public class LeadEntity implements LeadInterface {
 		return true;
 	}
 
-	public LeadEntity() {
-		super();
-	}
 
 	public LeadEntity(Long id, String nome, String telefone, String whatsApp, String email, String cidade,
 			Integer origemNumero, Integer tipoLeadNumero, Long idPessoa, Integer statusNumero, LocalDate criadoEm, Long criadoPor,

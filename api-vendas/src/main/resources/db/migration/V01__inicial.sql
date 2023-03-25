@@ -31,7 +31,11 @@ CREATE TABLE "administrador"."tb_fornecedor"(
     "id" BIGINT NOT NULL,
     "razao_social" VARCHAR(200) NOT NULL,
     "cnpj" VARCHAR(14) NOT NULL,
-    "status" NUMERIC(1) NOT NULL DEFAULT '1'
+    "status" NUMERIC(1) NOT NULL DEFAULT '1',
+    "criado_em" DATE NULL,
+    "criado_por" BIGINT NULL,
+    "alterado_em" DATE NULL,
+    "alterado_por" BIGINT NULL
 );
 CREATE INDEX "tb_fornecedor_id_index" ON
     "administrador"."tb_fornecedor"("id");

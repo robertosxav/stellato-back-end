@@ -64,7 +64,7 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 			leadModelBanco.get().setCidade(leadEntityFront.getCidade());
 			leadModelBanco.get().setOrigem(leadEntityFront.getOrigem().getNumero());
 			leadModelBanco.get().setTipoLead(leadEntityFront.getTipoLead().getNumero());
-			leadModelBanco.get().setIdPessoa(leadEntityFront.getidPessoa());
+			leadModelBanco.get().setIdPessoa(leadEntityFront.getIdPessoa());
 			leadModelBanco.get().setStatus(leadEntityFront.getStatus().getNumero());
 			leadModelBanco.get().setCriadoEm(leadEntityFront.getCriadoEm());
 			leadModelBanco.get().setCriadoPor(leadEntityFront.getCriadoPor());
