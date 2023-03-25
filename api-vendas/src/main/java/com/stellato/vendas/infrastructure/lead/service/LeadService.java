@@ -55,9 +55,11 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 			
 			Optional<LeadModel> leadModelBanco = leadRepository.findById(id);
 			
+			leadEntityFront.SetId(id);
+			
+			leadModelBanco.get().setId(leadEntityFront.getId());
 			leadModelBanco.get().setNome(leadEntityFront.getNome());
 			leadModelBanco.get().setTelefone(leadEntityFront.getTelefone());
-			//leadModelBanco.get().setW(leadEntityFront.getWhatsApp());
 			leadModelBanco.get().setWhatsapp(leadEntityFront.getWhatsApp());
 			leadModelBanco.get().setCidade(leadEntityFront.getCidade());
 			leadModelBanco.get().setOrigem(leadEntityFront.getOrigem().getNumero());
