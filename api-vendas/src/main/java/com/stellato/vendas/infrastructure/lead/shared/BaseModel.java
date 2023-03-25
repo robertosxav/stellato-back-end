@@ -2,9 +2,12 @@ package com.stellato.vendas.infrastructure.lead.shared;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class BaseModel {
 	
-	private Integer status;
+	protected Integer status;
 	
 	private LocalDate criadoEm;
 	
