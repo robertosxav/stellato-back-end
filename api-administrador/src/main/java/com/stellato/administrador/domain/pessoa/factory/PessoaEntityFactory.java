@@ -12,9 +12,9 @@ public class PessoaEntityFactory {
 		
 		PessoaEntity pessoaEntity = new PessoaEntity(pessoaModel.getId(),pessoaModel.getNome(),
 				pessoaModel.getCpf(),pessoaModel.getNomeFantasia(),pessoaModel.getCnpj(),
-				pessoaModel.getTelefone(),pessoaModel.getwhatsapp(), pessoaModel.getEmail(),
-				/*pessoaModel.getCidade(),*/pessoaModel.getStatus(), pessoaModel.getCriadoEm(),
-				pessoaModel.getCriadoPor(), pessoaModel.getAlteradoEm(),pessoaModel.getAlteradoPor());
+				pessoaModel.getTelefone(),pessoaModel.getWhatsapp(), pessoaModel.getEmail(),
+				pessoaModel.getStatus(), pessoaModel.getCriadoEm(),pessoaModel.getCriadoPor(),
+				pessoaModel.getAlteradoEm(),pessoaModel.getAlteradoPor());
 		
 		return pessoaEntity;
 	}

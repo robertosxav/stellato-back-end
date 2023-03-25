@@ -32,8 +32,10 @@ public class MaterialModel extends BaseModel implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 	
+	@Column(name="DESCRICAO")
 	private String descricao;
 	
+	@Column(name="TIPO")
 	private Integer tipo;
 
 

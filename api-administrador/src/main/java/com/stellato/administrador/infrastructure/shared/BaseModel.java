@@ -25,43 +25,4 @@ public class BaseModel {
 	
 	private Long alteradoPor;
 
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public LocalDate getCriadoEm() {
-		return criadoEm;
-	}
-
-	public void setCriadoEm(LocalDate criadoEm) {
-		this.criadoEm = criadoEm;
-	}
-
-	public Long getCriadoPor() {
-		return criadoPor;
-	}
-
-	public void setCriadoPor(Long criadoPor) {
-		this.criadoPor = criadoPor;
-	}
-
-	public LocalDate getAlteradoEm() {
-		return alteradoEm;
-	}
-
-	public void setAlteradoEm(LocalDate alteradoEm) {
-		this.alteradoEm = alteradoEm;
-	}
-
-	public Long getAlteradoPor() {
-		return alteradoPor;
-	}
-
-	public void setAlteradoPor(Long alteradoPor) {
-		this.alteradoPor = alteradoPor;
-	}	
 }

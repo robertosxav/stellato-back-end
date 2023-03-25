@@ -1,4 +1,4 @@
-package com.stellato.administrador.domain.pessoa.entity;
+package com.stellato.administrador.domain.fornecedor.entity;
 
 import java.time.LocalDate;
 
@@ -12,24 +12,14 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class PessoaEntity implements  BaseEnityInterface{
+public class FornecedorEntity implements BaseEnityInterface{
 
 	private Long id;
-
-	private String nome;
 	
-	private String cpf;
-	
-	private String nomeFantasia;
+	private String razaoSocial;
 	
 	private String cnpj;
-
-	private String telefone;
-
-	private String whatsApp;
-
-	private String email;
-
+	
 	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
@@ -41,10 +31,10 @@ public class PessoaEntity implements  BaseEnityInterface{
 	private LocalDate alteradoEm;
 
 	private Long alteradoPor;
-
+	
 	@Override
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	@Override
@@ -64,6 +54,18 @@ public class PessoaEntity implements  BaseEnityInterface{
 	}
 
 	@Override
+	public Boolean validar() {
+		if (this.razaoSocial.isEmpty()) {
+			throw new StellatoException("Razão Social é obrigatória");
+		}
+		
+		if (this.getCnpj()==null) {
+			throw new StellatoException("CNPJ é obrigatório");
+		}
+		return true;
+	}
+
+	@Override
 	public void Ativar() {
 		this.status 	=	StatusEnum.ATIVO;
 		this.criadoEm	=	LocalDate.now();		
@@ -80,42 +82,13 @@ public class PessoaEntity implements  BaseEnityInterface{
 	public void Inativar() {
 		this.status = StatusEnum.INATIVO;
 	}
-
-	@Override
-	public Boolean validar() {
-		if (this.nome.isEmpty()) {
-			throw new StellatoException("Nome é obrigatório");
-		}
-
-		if (this.telefone.isEmpty()) {
-			throw new StellatoException("Telefone é obrigatório");
-		}
-		
-		if (this.whatsApp.isEmpty()) {
-			throw new StellatoException("whatsApp é obrigatório");
-		}
-
-		if (this.cpf.isEmpty()) {
-			throw new StellatoException("CPF é obrigatório");
-		}
-
-		return true;
-	}
-
-
-
-	public PessoaEntity(Long id, String nome,  String cpf, String nomeFantasia, String cnpj,
-			String telefone, String whatsApp, String email,Integer statusNumero,
-			LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
+	
+	public FornecedorEntity(Long id, String razaoSocial, String cnpj, Integer statusNumero
+			, LocalDate criadoEm,Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.nome = cpf;
-		this.nome = nomeFantasia;
-		this.nome = cnpj;
-		this.telefone = telefone;
-		this.whatsApp = whatsApp;
-		this.email = email;
+		this.razaoSocial = razaoSocial;
+		this.cnpj = cnpj;
 		this.status = StatusEnum.toEnum(statusNumero);
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;
@@ -123,25 +96,15 @@ public class PessoaEntity implements  BaseEnityInterface{
 		this.alteradoPor = alteradoPor;
 	}
 	
-	
-
-	public PessoaEntity(Long id, String nome,  String cpf, String nomeFantasia, String cnpj,
-			String telefone, String whatsApp, String email,LocalDate criadoEm,
-			Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
+	public FornecedorEntity(Long id, String razaoSocial, String cnpj, LocalDate criadoEm,
+			Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.nome = cpf;
-		this.nome = nomeFantasia;
-		this.nome = cnpj;
-		this.telefone = telefone;
-		this.whatsApp = whatsApp;
-		this.email = email;
+		this.razaoSocial = razaoSocial;
+		this.cnpj = cnpj;
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;
 		this.alteradoEm = alteradoEm;
 		this.alteradoPor = alteradoPor;
 	}
-
-
 }

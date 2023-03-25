@@ -55,13 +55,14 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 			
 			Optional<PessoaModel> leadModelBanco = pessoaRepository.findById(id);
 			
+			pessoaEntityFront.SetId(id);
+			
 			leadModelBanco.get().setNome(pessoaEntityFront.getNome());
 			leadModelBanco.get().setNome(pessoaEntityFront.getCpf());
 			leadModelBanco.get().setNome(pessoaEntityFront.getNomeFantasia());
 			leadModelBanco.get().setNome(pessoaEntityFront.getCnpj());
 			leadModelBanco.get().setTelefone(pessoaEntityFront.getTelefone());
-			leadModelBanco.get().setwhatsapp(pessoaEntityFront.getWhatsApp());
-		//	leadModelBanco.get().setCidade(pessoaEntityFront.getCidade());
+			leadModelBanco.get().setWhatsapp(pessoaEntityFront.getWhatsApp());
 			leadModelBanco.get().setStatus(pessoaEntityFront.getStatus().getNumero());
 			leadModelBanco.get().setCriadoEm(pessoaEntityFront.getCriadoEm());
 			leadModelBanco.get().setCriadoPor(pessoaEntityFront.getCriadoPor());
@@ -96,7 +97,6 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 		}
 		
 		return listaPessoaEntity;
-				//listaLeaModel.stream().map(e->(entityFactory.create(e))).collect(Collectors.toList());
 		
 	}
 	
@@ -110,7 +110,7 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 		}
 	
 		return listaPessoaEntity;
-				//listaPessoaModel.stream().map(e->(entityFactory.create(e))).collect(Collectors.toList());
+	
 	}
 	
 	@Override
@@ -126,7 +126,7 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 	}
 	
 	
-	public void deleteLead(Long id) {
+	public void deletePessoa(Long id) {
 		PessoaEntity leadEntityBanco = findById(id);
 		leadEntityBanco.Inativar();	
 		PessoaModel leadModel	= factory.create(leadEntityBanco);

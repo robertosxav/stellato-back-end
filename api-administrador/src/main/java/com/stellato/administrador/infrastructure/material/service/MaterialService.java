@@ -120,7 +120,7 @@ public class MaterialService implements RepositoryInterface<MaterialEntity>{
 	}
 	
 	
-	public void deleteLead(Long id) {
+	public void delete(Long id) {
 		MaterialEntity MaterialEntityBanco = findById(id);
 		MaterialEntityBanco.Inativar();	
 		MaterialModel MaterialModel	= factory.create(MaterialEntityBanco);

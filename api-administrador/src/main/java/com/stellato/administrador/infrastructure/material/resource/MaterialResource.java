@@ -27,29 +27,29 @@ public class MaterialResource {
 	MaterialService materialService;
 	
 	@PostMapping()
-	public ResponseEntity<MaterialEntity> createLead(@RequestBody MaterialEntity materialEntity) throws Exception {
+	public ResponseEntity<MaterialEntity> createMaterial(@RequestBody MaterialEntity materialEntity) throws Exception {
 		MaterialEntity materialEntitySave = materialService.create(materialEntity);
 		return ResponseEntity.status(HttpStatus.CREATED).body(materialEntitySave);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<MaterialEntity> updateLead(@PathVariable Long id,@RequestBody MaterialEntity materialEntity) throws Exception {
+	public ResponseEntity<MaterialEntity> updateMaterial(@PathVariable Long id,@RequestBody MaterialEntity materialEntity) throws Exception {
 		MaterialEntity materialEntityUpdated = materialService.update(id,materialEntity);
 		return ResponseEntity.ok(materialEntityUpdated);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<MaterialEntity> findLead(@PathVariable Long id) {
+	public ResponseEntity<MaterialEntity> findMaterial(@PathVariable Long id) {
 		return ResponseEntity.ok(materialService.findById(id));
 	}
 	
 	@GetMapping("/all")
-	public List<MaterialEntity> findAllLeads() throws Exception {
+	public List<MaterialEntity> findAll() throws Exception {
 		return materialService.findAll();
 	}
 	
 	@GetMapping("/ativos")
-	public List<MaterialEntity> findAllLeadsActives() throws Exception {
+	public List<MaterialEntity> findAllActives() throws Exception {
 		return materialService.findAllActives();
 	}
 	
@@ -64,8 +64,8 @@ public class MaterialResource {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deleteLead(@PathVariable Long id) throws Exception {
-		materialService.deleteLead(id);
+	public ResponseEntity<String> deleteMaterial(@PathVariable Long id) throws Exception {
+		materialService.delete(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Registro deletado com sucesso");
 	}
 }

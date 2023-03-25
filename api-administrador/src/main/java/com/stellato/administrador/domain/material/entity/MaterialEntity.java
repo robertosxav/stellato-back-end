@@ -8,6 +8,11 @@ import com.stellato.administrador.domain.shared.BaseEnityInterface;
 import com.stellato.administrador.domain.shared.enumerated.StatusEnum;
 import com.stellato.administrador.exceptions.StellatoException;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
 public class MaterialEntity implements BaseEnityInterface{
 
 	private Long id;
@@ -32,63 +37,6 @@ public class MaterialEntity implements BaseEnityInterface{
 	public Long getId() {
 		return id;
 	}
-
-	
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	
-	
-	public TipoMaterialEnum getTipo() {
-		return tipo;
-	}
-
-
-	public void setTipo(TipoMaterialEnum tipo) {
-		this.tipo = tipo;
-	}
-
-
-	public LocalDate getCriadoEm() {
-		return criadoEm;
-	}
-
-	public void setCriadoEm(LocalDate criadoEm) {
-		this.criadoEm = criadoEm;
-	}
-
-	public Long getCriadoPor() {
-		return criadoPor;
-	}
-
-	public void setCriadoPor(Long criadoPor) {
-		this.criadoPor = criadoPor;
-	}
-
-
-	public LocalDate getAlteradoEm() {
-		return alteradoEm;
-	}
-
-
-	public void setAlteradoEm(LocalDate alteradoEm) {
-		this.alteradoEm = alteradoEm;
-	}
-
-
-	public Long getAlteradoPor() {
-		return alteradoPor;
-	}
-
-
-	public void setAlteradoPor(Long alteradoPor) {
-		this.alteradoPor = alteradoPor;
-	}
-
 
 	@Override
 	public void SetId(Long id) {
@@ -135,12 +83,6 @@ public class MaterialEntity implements BaseEnityInterface{
 	public void Inativar() {
 		this.status = StatusEnum.INATIVO;
 	}
-
-
-	public MaterialEntity() {
-		super();
-	}
-
 
 	public MaterialEntity(Long id, String descricao, Integer tipoNumero, Integer statusNumero
 			, LocalDate criadoEm,Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
