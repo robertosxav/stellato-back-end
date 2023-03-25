@@ -3,7 +3,7 @@ package com.stellato.vendas.infrastructure.lead;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import com.stellato.vendas.infrastructure.lead.shared.BaseModel;
+import com.stellato.vendas.infrastructure.shared.BaseModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

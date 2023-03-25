@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.stellato.vendas.domain.lead.entity.LeadEntity;
-import com.stellato.vendas.domain.lead.entity.LeadInterface;
+import com.stellato.vendas.domain.shared.BaseEnityInterface;
 import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
 import com.stellato.vendas.exceptions.StellatoException;
 
-public class HistoricoLeadEntity implements LeadInterface{
+public class HistoricoLeadEntity implements BaseEnityInterface{
 	
 	private Long id; 
 	

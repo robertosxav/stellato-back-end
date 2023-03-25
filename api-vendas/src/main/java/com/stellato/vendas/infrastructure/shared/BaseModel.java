@@ -1,4 +1,4 @@
-package com.stellato.vendas.infrastructure.lead.shared;
+package com.stellato.vendas.infrastructure.shared;
 
 import java.time.LocalDate;
 

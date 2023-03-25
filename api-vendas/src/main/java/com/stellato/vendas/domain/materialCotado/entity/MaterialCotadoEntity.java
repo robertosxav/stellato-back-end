@@ -1,5 +1,6 @@
-package com.stellato.vendas.domain.lead.entity;
+package com.stellato.vendas.domain.materialCotado.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -14,26 +15,18 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class LeadEntity implements BaseEnityInterface {
-
+public class MaterialCotadoEntity implements BaseEnityInterface {
+	
 	private Long id;
-
-	private String nome;
-
-	private String telefone;
-
-	private String whatsApp;
-
-	private String email;
-
-	private String cidade;
-
-	private OrigemEnum origem;
-
-	private TipoLead tipoLead;
-
-	private Long idPessoa;
-
+	
+	private String observacao;
+	
+	private BigDecimal valor;
+	
+	private Long idFornecedor;
+	
+	private Long idMaterial;
+	
 	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
@@ -45,7 +38,7 @@ public class LeadEntity implements BaseEnityInterface {
 	private LocalDate alteradoEm;
 
 	private Long alteradoPor;
-
+	
 	@Override
 	public Long getId() {
 		return this.id;
@@ -87,39 +80,37 @@ public class LeadEntity implements BaseEnityInterface {
 
 	@Override
 	public Boolean validar() {
-		if (this.nome.isEmpty()) {
-			throw new StellatoException("Nome é obrigatório");
-		}
-
-		if (this.telefone.isEmpty()) {
-			throw new StellatoException("Telefone é obrigatório");
+	
+		if (this.observacao.isEmpty()) {
 		}
 		
-		if (this.whatsApp.isEmpty()) {
-			throw new StellatoException("whatsApp é obrigatório");
+		if (this.valor == null) {
+			throw new StellatoException("Valor é obrigatório");
 		}
 
-		if (this.cidade.isEmpty()) {
-			throw new StellatoException("Cidade é obrigatório");
+		if (this.valor.compareTo(new BigDecimal(0))==0) {
+			throw new StellatoException("Valor deve ser maior que zero");
 		}
-
+		
+		if (this.idFornecedor == null) {
+			throw new StellatoException("Fornecedor é obrigatório");
+		}
+		
+		if (this.idMaterial == null) {
+			throw new StellatoException("Material é obrigatório");
+		}
+		
 		return true;
 	}
-
-
-	public LeadEntity(Long id, String nome, String telefone, String whatsApp, String email, String cidade,
-			Integer origemNumero, Integer tipoLeadNumero, Long idPessoa, Integer statusNumero, LocalDate criadoEm, Long criadoPor,
-			LocalDate alteradoEm, Long alteradoPor) {
+	
+	public MaterialCotadoEntity(Long id, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial,Integer statusNumero, 
+			LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.telefone = telefone;
-		this.whatsApp = whatsApp;
-		this.email = email;
-		this.cidade = cidade;
-		this.origem = OrigemEnum.toEnum(origemNumero);
-		this.tipoLead = TipoLead.toEnum(tipoLeadNumero);
-		this.idPessoa = idPessoa;
+		this.observacao	= observacao;
+		this.valor = valor;
+		this.idFornecedor = idFornecedor;
+		this.idMaterial = idMaterial;
 		this.status = StatusEnum.toEnum(statusNumero);
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;
@@ -127,19 +118,14 @@ public class LeadEntity implements BaseEnityInterface {
 		this.alteradoPor = alteradoPor;
 	}
 
-	public LeadEntity(Long id, String nome, String telefone, String whatsApp, String email, String cidade,
-			Integer origemNumero, Integer tipoLeadNumero, Long idPessoa, LocalDate criadoEm, Long criadoPor, LocalDate alteradoEm,
-			Long alteradoPor) {
+	public MaterialCotadoEntity(Long id, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial,
+			LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.telefone = telefone;
-		this.whatsApp = whatsApp;
-		this.email = email;
-		this.cidade = cidade;
-		this.origem = OrigemEnum.toEnum(origemNumero);
-		this.tipoLead = TipoLead.toEnum(tipoLeadNumero);
-		this.idPessoa = idPessoa;
+		this.observacao	= observacao;
+		this.valor = valor;
+		this.idFornecedor = idFornecedor;
+		this.idMaterial = idMaterial;
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;
 		this.alteradoEm = alteradoEm;
