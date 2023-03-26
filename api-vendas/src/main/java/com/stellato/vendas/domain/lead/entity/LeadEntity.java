@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.stellato.vendas.domain.lead.entity.enumerated.OrigemEnum;
-import com.stellato.vendas.domain.lead.entity.enumerated.TipoLead;
+import com.stellato.vendas.domain.lead.entity.enumerated.TipoLeadEnum;
 import com.stellato.vendas.domain.shared.BaseEnityInterface;
 import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
 import com.stellato.vendas.exceptions.StellatoException;
@@ -30,7 +30,7 @@ public class LeadEntity implements BaseEnityInterface {
 
 	private OrigemEnum origem;
 
-	private TipoLead tipoLead;
+	private TipoLeadEnum tipoLead;
 
 	private Long idPessoa;
 
@@ -118,7 +118,7 @@ public class LeadEntity implements BaseEnityInterface {
 		this.email = email;
 		this.cidade = cidade;
 		this.origem = OrigemEnum.toEnum(origemNumero);
-		this.tipoLead = TipoLead.toEnum(tipoLeadNumero);
+		this.tipoLead = TipoLeadEnum.toEnum(tipoLeadNumero);
 		this.idPessoa = idPessoa;
 		this.status = StatusEnum.toEnum(statusNumero);
 		this.criadoEm = criadoEm;
@@ -138,7 +138,7 @@ public class LeadEntity implements BaseEnityInterface {
 		this.email = email;
 		this.cidade = cidade;
 		this.origem = OrigemEnum.toEnum(origemNumero);
-		this.tipoLead = TipoLead.toEnum(tipoLeadNumero);
+		this.tipoLead = TipoLeadEnum.toEnum(tipoLeadNumero);
 		this.idPessoa = idPessoa;
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;

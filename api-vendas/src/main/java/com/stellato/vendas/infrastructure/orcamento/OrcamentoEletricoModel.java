@@ -2,6 +2,7 @@ package com.stellato.vendas.infrastructure.orcamento;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import com.stellato.vendas.infrastructure.lead.LeadModel;
 import com.stellato.vendas.infrastructure.shared.BaseModel;
@@ -67,5 +68,58 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 	private Integer tipoEstrutura;
 	
 	private Integer idLead;
+	
+	public OrcamentoEletricoModel(Long id, String titulo, String observacao, String observacaoInterna,
+			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
+			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadrao,
+			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacao,
+			Integer tipoEstrutura, Integer idLead,Integer status, LocalDate criadoEm, Long criadoPor,
+			LocalDate alteradoEm, Long alteradoPor) {
+		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		this.id = id;
+		this.titulo = titulo;
+		this.observacao = observacao;
+		this.observacaoInterna = observacaoInterna;
+		this.validadeProposta = validadeProposta;
+		this.prazoEntrega = prazoEntrega;
+		this.distancia = distancia;
+		this.potenciaModulo = potenciaModulo;
+		this.percentualPerda = percentualPerda;
+		this.detalheProposta = detalheProposta;
+		this.modalidadeTarifaria = modalidadeTarifaria;
+		this.tipoPadrao = tipoPadrao;
+		this.unidadeConsumidora = unidadeConsumidora;
+		this.consumoMedio = consumoMedio;
+		this.precoKwh = precoKwh;
+		this.tipoInstalacao = tipoInstalacao;
+		this.tipoEstrutura = tipoEstrutura;
+		this.idLead = idLead;
+	}
+	
+	public OrcamentoEletricoModel(String titulo, String observacao, String observacaoInterna,
+			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
+			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadrao,
+			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacao,
+			Integer tipoEstrutura, Integer idLead,Integer status, LocalDate criadoEm, Long criadoPor,
+			LocalDate alteradoEm, Long alteradoPor) {
+		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		this.titulo = titulo;
+		this.observacao = observacao;
+		this.observacaoInterna = observacaoInterna;
+		this.validadeProposta = validadeProposta;
+		this.prazoEntrega = prazoEntrega;
+		this.distancia = distancia;
+		this.potenciaModulo = potenciaModulo;
+		this.percentualPerda = percentualPerda;
+		this.detalheProposta = detalheProposta;
+		this.modalidadeTarifaria = modalidadeTarifaria;
+		this.tipoPadrao = tipoPadrao;
+		this.unidadeConsumidora = unidadeConsumidora;
+		this.consumoMedio = consumoMedio;
+		this.precoKwh = precoKwh;
+		this.tipoInstalacao = tipoInstalacao;
+		this.tipoEstrutura = tipoEstrutura;
+		this.idLead = idLead;
+	}
 
 }

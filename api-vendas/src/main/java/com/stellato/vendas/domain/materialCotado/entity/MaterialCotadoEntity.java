@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.stellato.vendas.domain.lead.entity.enumerated.OrigemEnum;
-import com.stellato.vendas.domain.lead.entity.enumerated.TipoLead;
 import com.stellato.vendas.domain.shared.BaseEnityInterface;
 import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
 import com.stellato.vendas.exceptions.StellatoException;

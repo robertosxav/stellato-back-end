@@ -1,16 +1,15 @@
-package com.stellato.vendas.domain.lead.entity.enumerated;
+package com.stellato.vendas.domain.orcamento.entity.enumerated;
 
 import com.stellato.vendas.exceptions.StellatoException;
 
-public enum TipoLead {
-	
-	PESSOA_FISICA(0,"PESSOA FISICA"),
-	PESSOA_JURIDICA(1,"PESSOA JURIDICA");
+public enum TipoPadraoEnum {
+	MONOFASICO(0,"MONOFÁSICO"),
+	BIFASICO(1,"BIFÁSICO");
 	
 	private Integer numero;
 	private String descricao;
 	
-	TipoLead(Integer numero, String descricao) {
+	TipoPadraoEnum(Integer numero, String descricao) {
 		this.numero	=	numero;
 		this.descricao	=	descricao;
 	}
@@ -27,12 +26,12 @@ public enum TipoLead {
 		this.descricao = descricao;
 	}
 	
-	public static TipoLead toEnum(Integer numero) {
+	public static TipoPadraoEnum toEnum(Integer numero) {
 		if (numero == null) {
 			return null;
 		}
 		
-		for(TipoLead s : TipoLead.values()) {
+		for(TipoPadraoEnum s : TipoPadraoEnum.values()) {
 			if(numero.equals(s.getNumero())){
 				return s;
 			}
@@ -41,12 +40,12 @@ public enum TipoLead {
 		throw new StellatoException("Código de enum inválido: "+numero);
 	}
 	
-	public static TipoLead toEnumDesc(String descricao) {
+	public static TipoPadraoEnum toEnumDesc(String descricao) {
 		if (descricao == null || descricao.isEmpty()) {
 			throw new StellatoException("Enum inválido: "+descricao);
 		}
 		
-		for(TipoLead s : TipoLead.values()) {
+		for(TipoPadraoEnum s : TipoPadraoEnum.values()) {
 			if(descricao.equals(s.name())){
 				return s;
 			}
