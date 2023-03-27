@@ -8,10 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.stellato.administrador.domain.fornecedor.entity.FornecedorEntity;
+import com.stellato.administrador.domain.fornecedor.factory.FornecedorEntityFactory;
 import com.stellato.administrador.domain.pessoa.entity.PessoaEntity;
 import com.stellato.administrador.domain.pessoa.factory.PessoaEntityFactory;
 import com.stellato.administrador.domain.shared.repository.RepositoryInterface;
 import com.stellato.administrador.exceptions.StellatoException;
+import com.stellato.administrador.infrastructure.fornecedor.service.FornecedorService;
 import com.stellato.administrador.infrastructure.pessoa.PessoaModel;
 import com.stellato.administrador.infrastructure.pessoa.factory.PessoaFactory;
 import com.stellato.administrador.infrastructure.pessoa.repository.PessoaRepository;
@@ -30,21 +33,39 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 	@Autowired
 	private PessoaEntityFactory entityFactory;
 	
+	@Autowired
+	private FornecedorEntityFactory fornecedorFactory;
+	
+	@Autowired
+	FornecedorService fornecedorService;
+	
 	@Override
 	@Transactional
 	public PessoaEntity create(PessoaEntity pessoaEntityFront){
 	
 		if (pessoaEntityFront.validar()) {
 			pessoaEntityFront.Ativar();
-			PessoaModel leadModel = factory.create(pessoaEntityFront);
+			PessoaModel pessoaModel = factory.create(pessoaEntityFront);
 			
-			pessoaRepository.save(leadModel);
+			pessoaRepository.save(pessoaModel);
 			
-			pessoaEntityFront.SetId(leadModel.getId());
+			pessoaEntityFront.SetId(pessoaModel.getId());
 		
+			verificaEFornecedor(pessoaEntityFront);
+			
 			return pessoaEntityFront;
 		}
 		return null;
+	}
+
+	@Transactional
+	private void verificaEFornecedor(PessoaEntity pessoaEntity) {
+		if (pessoaEntity.getIsForncededor()) {
+			FornecedorEntity fornecedorEntity 	=	new FornecedorEntity(pessoaEntity.getId(),pessoaEntity.getNomeFantasia(), 
+					pessoaEntity.getCnpj(),pessoaEntity.getCriadoEm(), pessoaEntity.getCriadoPor(), null, null);
+			fornecedorService.create(fornecedorEntity);
+		}
+		
 	}
 
 	@Override
@@ -53,22 +74,22 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 			
 			pessoaEntityFront.Alterar(null);
 			
-			Optional<PessoaModel> leadModelBanco = pessoaRepository.findById(id);
+			Optional<PessoaModel> pessoaModelBanco = pessoaRepository.findById(id);
 			
 			pessoaEntityFront.SetId(id);
 			
-			leadModelBanco.get().setNome(pessoaEntityFront.getNome());
-			leadModelBanco.get().setNome(pessoaEntityFront.getCpf());
-			leadModelBanco.get().setNome(pessoaEntityFront.getNomeFantasia());
-			leadModelBanco.get().setNome(pessoaEntityFront.getCnpj());
-			leadModelBanco.get().setTelefone(pessoaEntityFront.getTelefone());
-			leadModelBanco.get().setWhatsapp(pessoaEntityFront.getWhatsApp());
-			leadModelBanco.get().setStatus(pessoaEntityFront.getStatus().getNumero());
-			leadModelBanco.get().setCriadoEm(pessoaEntityFront.getCriadoEm());
-			leadModelBanco.get().setCriadoPor(pessoaEntityFront.getCriadoPor());
-			leadModelBanco.get().setAlteradoEm(pessoaEntityFront.getAlteradoEm());
-			leadModelBanco.get().setAlteradoPor(pessoaEntityFront.getAlteradoPor());
-			pessoaRepository.save(leadModelBanco.get());
+			pessoaModelBanco.get().setNome(pessoaEntityFront.getNome());
+			pessoaModelBanco.get().setNome(pessoaEntityFront.getCpf());
+			pessoaModelBanco.get().setNome(pessoaEntityFront.getNomeFantasia());
+			pessoaModelBanco.get().setNome(pessoaEntityFront.getCnpj());
+			pessoaModelBanco.get().setTelefone(pessoaEntityFront.getTelefone());
+			pessoaModelBanco.get().setWhatsapp(pessoaEntityFront.getWhatsApp());
+			pessoaModelBanco.get().setStatus(pessoaEntityFront.getStatus().getNumero());
+			pessoaModelBanco.get().setCriadoEm(pessoaEntityFront.getCriadoEm());
+			pessoaModelBanco.get().setCriadoPor(pessoaEntityFront.getCriadoPor());
+			pessoaModelBanco.get().setAlteradoEm(pessoaEntityFront.getAlteradoEm());
+			pessoaModelBanco.get().setAlteradoPor(pessoaEntityFront.getAlteradoPor());
+			pessoaRepository.save(pessoaModelBanco.get());
 			
 		return pessoaEntityFront;
 
@@ -77,12 +98,12 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 
 	@Override
 	public PessoaEntity findById(Long id) {
-		Optional<PessoaModel> leadModelSave = pessoaRepository.findById(id);
+		Optional<PessoaModel> pessoaModelSave = pessoaRepository.findById(id);
 		
-		 if (!leadModelSave.isPresent()) {
+		 if (!pessoaModelSave.isPresent()) {
 			 throw new StellatoException("Não foi encontrado nenhum lead com o código: " + id);
 		 }
-		PessoaEntity leadEntity	=	entityFactory.create(leadModelSave.get());
+		PessoaEntity leadEntity	=	entityFactory.create(pessoaModelSave.get());
 		return leadEntity;
 
 	}
@@ -129,8 +150,8 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 	public void deletePessoa(Long id) {
 		PessoaEntity leadEntityBanco = findById(id);
 		leadEntityBanco.Inativar();	
-		PessoaModel leadModel	= factory.create(leadEntityBanco);
-		pessoaRepository.save(leadModel);
+		PessoaModel pessoaModel	= factory.create(leadEntityBanco);
+		pessoaRepository.save(pessoaModel);
 		
 	}
 

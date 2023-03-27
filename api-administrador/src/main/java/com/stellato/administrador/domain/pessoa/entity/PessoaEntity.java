@@ -7,6 +7,7 @@ import com.stellato.administrador.domain.shared.BaseEnityInterface;
 import com.stellato.administrador.domain.shared.enumerated.StatusEnum;
 import com.stellato.administrador.exceptions.StellatoException;
 
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -41,6 +42,9 @@ public class PessoaEntity implements  BaseEnityInterface{
 	private LocalDate alteradoEm;
 
 	private Long alteradoPor;
+	
+	@Transient
+	private Boolean isForncededor = false;
 
 	@Override
 	public Long getId() {
