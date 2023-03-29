@@ -2,6 +2,8 @@ package com.stellato.vendas.infrastructure.orcamento.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -9,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.stellato.vendas.domain.orcamento.entity.OrcamentoEletricoEntity;
 import com.stellato.vendas.domain.shared.repository.RepositoryInterface;
 
-import jakarta.transaction.Transactional;
 
 @Service
 public class OrcamentoEletricoService implements RepositoryInterface<OrcamentoEletricoEntity>{

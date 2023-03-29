@@ -3,6 +3,8 @@ package com.stellato.vendas.infrastructure.materialCotado.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +18,6 @@ import com.stellato.vendas.infrastructure.materialCotado.MaterialCotadoModel;
 import com.stellato.vendas.infrastructure.materialCotado.factory.MaterialCotadoFactory;
 import com.stellato.vendas.infrastructure.materialCotado.repository.MaterialCotadoRepository;
 
-import jakarta.transaction.Transactional;
 
 @Service
 public class MaterialCotadoService implements RepositoryInterface<MaterialCotadoEntity>{

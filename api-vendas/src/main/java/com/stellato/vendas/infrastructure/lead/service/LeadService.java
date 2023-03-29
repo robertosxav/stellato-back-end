@@ -2,6 +2,9 @@ package com.stellato.vendas.infrastructure.lead.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,7 +19,9 @@ import com.stellato.vendas.infrastructure.lead.LeadModel;
 import com.stellato.vendas.infrastructure.lead.factory.LeadFactory;
 import com.stellato.vendas.infrastructure.lead.repository.LeadRepository;
 
-import jakarta.transaction.Transactional;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+
 
 @Service
 public class LeadService implements RepositoryInterface<LeadEntity>{
@@ -79,13 +84,16 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 
 	@Override
 	public LeadEntity findById(Long id) {
-		Optional<LeadModel> leadModelSave = leadRepository.findById(id);
+		/*Optional<LeadModel> leadModelSave = leadRepository.findById(id);
 		
 		 if (!leadModelSave.isPresent()) {
 			 throw new StellatoException("Não foi encontrado nenhum lead com o código: " + id);
 		 }
 		LeadEntity leadEntity	=	entityFactory.create(leadModelSave.get());
-		return leadEntity;
+		return leadEntity;*/
+		
+		
+		return null;
 
 	}
 

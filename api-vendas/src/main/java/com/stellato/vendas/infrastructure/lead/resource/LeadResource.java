@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.vendas.domain.lead.entity.LeadEntity;
 import com.stellato.vendas.infrastructure.lead.service.LeadService;
+import com.stellato.vendas.infrastructure.lead.service.ScoreCalculatorService;
 
 @RestController
 @RequestMapping("/lead")
@@ -25,6 +26,9 @@ public class LeadResource {
 
 	@Autowired
 	LeadService leadService;
+	
+	@Autowired
+	ScoreCalculatorService scoreCalculatorService;
 	
 	@PostMapping()
 	public ResponseEntity<LeadEntity> createLead(@RequestBody LeadEntity leadEntity) throws Exception {
@@ -67,5 +71,10 @@ public class LeadResource {
 	public ResponseEntity<String> deleteLead(@PathVariable Long id) throws Exception {
 		leadService.deleteLead(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Registro deletado com sucesso");
+	}
+	@GetMapping("/teste")
+	public ResponseEntity<String> teste(){
+		Integer i = scoreCalculatorService.getCityScore(600);
+		return ResponseEntity.ok(i.toString());
 	}
 }
