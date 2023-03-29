@@ -44,13 +44,13 @@ public final class Material {
       "e\022\020\n\010resposta\030\001 \001(\005\"{\n\031MaterialException" +
       "Response\022-\n\ttimestamp\030\001 \001(\0132\032.google.pro" +
       "tobuf.Timestamp\022/\n\nerror_code\030\002 \001(\0162\033.ma" +
-      "terial.MaterialErrorCode*N\n\021MaterialErro" +
-      "rCode\022\033\n\027INVALID_CITY_CODE_VALUE\020\000\022\034\n\030CI" +
-      "TY_CODE_CANNOT_BE_NULL\020\0012_\n\017MaterialServ" +
-      "ice\022L\n\021calculateMaterial\022\031.material.Mate" +
-      "rialRequest\032\032.material.MaterialResponse\"" +
-      "\000B\036\n\032com.stellato.gprc.materialP\001b\006proto" +
-      "3"
+      "terial.MaterialErrorCode*R\n\021MaterialErro" +
+      "rCode\022\035\n\031INVALID_MATERIAL_ID_VALUE\020\000\022\036\n\032" +
+      "MATERIAL_ID_CANNOT_BE_NULL\020\0012^\n\017Material" +
+      "Service\022K\n\020verificaMaterial\022\031.material.M" +
+      "aterialRequest\032\032.material.MaterialRespon" +
+      "se\"\000B\036\n\032com.stellato.gprc.materialP\001b\006pr" +
+      "oto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

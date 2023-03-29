@@ -28,35 +28,35 @@ public final class MaterialServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.stellato.gprc.material.MaterialRequest,
-      com.stellato.gprc.material.MaterialResponse> getCalculateMaterialMethod;
+      com.stellato.gprc.material.MaterialResponse> getVerificaMaterialMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "calculateMaterial",
+      fullMethodName = SERVICE_NAME + '/' + "verificaMaterial",
       requestType = com.stellato.gprc.material.MaterialRequest.class,
       responseType = com.stellato.gprc.material.MaterialResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.stellato.gprc.material.MaterialRequest,
-      com.stellato.gprc.material.MaterialResponse> getCalculateMaterialMethod() {
-    io.grpc.MethodDescriptor<com.stellato.gprc.material.MaterialRequest, com.stellato.gprc.material.MaterialResponse> getCalculateMaterialMethod;
-    if ((getCalculateMaterialMethod = MaterialServiceGrpc.getCalculateMaterialMethod) == null) {
+      com.stellato.gprc.material.MaterialResponse> getVerificaMaterialMethod() {
+    io.grpc.MethodDescriptor<com.stellato.gprc.material.MaterialRequest, com.stellato.gprc.material.MaterialResponse> getVerificaMaterialMethod;
+    if ((getVerificaMaterialMethod = MaterialServiceGrpc.getVerificaMaterialMethod) == null) {
       synchronized (MaterialServiceGrpc.class) {
-        if ((getCalculateMaterialMethod = MaterialServiceGrpc.getCalculateMaterialMethod) == null) {
-          MaterialServiceGrpc.getCalculateMaterialMethod = getCalculateMaterialMethod = 
+        if ((getVerificaMaterialMethod = MaterialServiceGrpc.getVerificaMaterialMethod) == null) {
+          MaterialServiceGrpc.getVerificaMaterialMethod = getVerificaMaterialMethod = 
               io.grpc.MethodDescriptor.<com.stellato.gprc.material.MaterialRequest, com.stellato.gprc.material.MaterialResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "material.MaterialService", "calculateMaterial"))
+                  "material.MaterialService", "verificaMaterial"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.stellato.gprc.material.MaterialRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.stellato.gprc.material.MaterialResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new MaterialServiceMethodDescriptorSupplier("calculateMaterial"))
+                  .setSchemaDescriptor(new MaterialServiceMethodDescriptorSupplier("verificaMaterial"))
                   .build();
           }
         }
      }
-     return getCalculateMaterialMethod;
+     return getVerificaMaterialMethod;
   }
 
   /**
@@ -91,20 +91,20 @@ public final class MaterialServiceGrpc {
      * unary
      * </pre>
      */
-    public void calculateMaterial(com.stellato.gprc.material.MaterialRequest request,
+    public void verificaMaterial(com.stellato.gprc.material.MaterialRequest request,
         io.grpc.stub.StreamObserver<com.stellato.gprc.material.MaterialResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getCalculateMaterialMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getVerificaMaterialMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getCalculateMaterialMethod(),
+            getVerificaMaterialMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 com.stellato.gprc.material.MaterialRequest,
                 com.stellato.gprc.material.MaterialResponse>(
-                  this, METHODID_CALCULATE_MATERIAL)))
+                  this, METHODID_VERIFICA_MATERIAL)))
           .build();
     }
   }
@@ -132,10 +132,10 @@ public final class MaterialServiceGrpc {
      * unary
      * </pre>
      */
-    public void calculateMaterial(com.stellato.gprc.material.MaterialRequest request,
+    public void verificaMaterial(com.stellato.gprc.material.MaterialRequest request,
         io.grpc.stub.StreamObserver<com.stellato.gprc.material.MaterialResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getCalculateMaterialMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getVerificaMaterialMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -162,9 +162,9 @@ public final class MaterialServiceGrpc {
      * unary
      * </pre>
      */
-    public com.stellato.gprc.material.MaterialResponse calculateMaterial(com.stellato.gprc.material.MaterialRequest request) {
+    public com.stellato.gprc.material.MaterialResponse verificaMaterial(com.stellato.gprc.material.MaterialRequest request) {
       return blockingUnaryCall(
-          getChannel(), getCalculateMaterialMethod(), getCallOptions(), request);
+          getChannel(), getVerificaMaterialMethod(), getCallOptions(), request);
     }
   }
 
@@ -191,14 +191,14 @@ public final class MaterialServiceGrpc {
      * unary
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.stellato.gprc.material.MaterialResponse> calculateMaterial(
+    public com.google.common.util.concurrent.ListenableFuture<com.stellato.gprc.material.MaterialResponse> verificaMaterial(
         com.stellato.gprc.material.MaterialRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getCalculateMaterialMethod(), getCallOptions()), request);
+          getChannel().newCall(getVerificaMaterialMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_CALCULATE_MATERIAL = 0;
+  private static final int METHODID_VERIFICA_MATERIAL = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -217,8 +217,8 @@ public final class MaterialServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_CALCULATE_MATERIAL:
-          serviceImpl.calculateMaterial((com.stellato.gprc.material.MaterialRequest) request,
+        case METHODID_VERIFICA_MATERIAL:
+          serviceImpl.verificaMaterial((com.stellato.gprc.material.MaterialRequest) request,
               (io.grpc.stub.StreamObserver<com.stellato.gprc.material.MaterialResponse>) responseObserver);
           break;
         default:
@@ -282,7 +282,7 @@ public final class MaterialServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new MaterialServiceFileDescriptorSupplier())
-              .addMethod(getCalculateMaterialMethod())
+              .addMethod(getVerificaMaterialMethod())
               .build();
         }
       }

@@ -18,8 +18,8 @@ message MaterialResponse {
 }
 
 enum MaterialErrorCode {
-  INVALID_CITY_CODE_VALUE = 0;
-  CITY_CODE_CANNOT_BE_NULL = 1;
+  INVALID_MATERIAL_ID_VALUE = 0;
+  MATERIAL_ID_CANNOT_BE_NULL = 1;
 }
 
 message MaterialExceptionResponse {
@@ -29,5 +29,5 @@ message MaterialExceptionResponse {
 
 service MaterialService {
   // unary
-  rpc calculateMaterial(MaterialRequest) returns (MaterialResponse) {};
+  rpc verificaMaterial(MaterialRequest) returns (MaterialResponse) {};
 }

@@ -1,0 +1,33 @@
+
+
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package fornecedor;
+
+option java_package = "com.stellato.gprc.fornecedor";
+option java_multiple_files = true;
+
+message FornecedorRequest {
+  int32 iden_fornecedor = 1;
+}
+
+message FornecedorResponse {
+  int32 resposta = 1;
+}
+
+enum FornecedorErrorCode {
+  INVALID_FORNECEDOR_ID_VALUE = 0;
+  FORNEECDOR_ID_CANNOT_BE_NULL = 1;
+}
+
+message FornecedorExceptionResponse {
+  google.protobuf.Timestamp timestamp = 1;
+  FornecedorErrorCode error_code = 2;
+}
+
+service FornecedorService {
+  // unary
+  rpc verificaFornecedor(FornecedorRequest) returns (FornecedorResponse) {};
+}

@@ -149,7 +149,7 @@ private static final long serialVersionUID = 0L;
     if (timestamp_ != null) {
       output.writeMessage(1, getTimestamp());
     }
-    if (errorCode_ != com.stellato.gprc.material.MaterialErrorCode.INVALID_CITY_CODE_VALUE.getNumber()) {
+    if (errorCode_ != com.stellato.gprc.material.MaterialErrorCode.INVALID_MATERIAL_ID_VALUE.getNumber()) {
       output.writeEnum(2, errorCode_);
     }
     unknownFields.writeTo(output);
@@ -165,7 +165,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, getTimestamp());
     }
-    if (errorCode_ != com.stellato.gprc.material.MaterialErrorCode.INVALID_CITY_CODE_VALUE.getNumber()) {
+    if (errorCode_ != com.stellato.gprc.material.MaterialErrorCode.INVALID_MATERIAL_ID_VALUE.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(2, errorCode_);
     }

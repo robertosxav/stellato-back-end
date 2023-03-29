@@ -9,24 +9,24 @@ package com.stellato.gprc.material;
 public enum MaterialErrorCode
     implements com.google.protobuf.ProtocolMessageEnum {
   /**
-   * <code>INVALID_CITY_CODE_VALUE = 0;</code>
+   * <code>INVALID_MATERIAL_ID_VALUE = 0;</code>
    */
-  INVALID_CITY_CODE_VALUE(0),
+  INVALID_MATERIAL_ID_VALUE(0),
   /**
-   * <code>CITY_CODE_CANNOT_BE_NULL = 1;</code>
+   * <code>MATERIAL_ID_CANNOT_BE_NULL = 1;</code>
    */
-  CITY_CODE_CANNOT_BE_NULL(1),
+  MATERIAL_ID_CANNOT_BE_NULL(1),
   UNRECOGNIZED(-1),
   ;
 
   /**
-   * <code>INVALID_CITY_CODE_VALUE = 0;</code>
+   * <code>INVALID_MATERIAL_ID_VALUE = 0;</code>
    */
-  public static final int INVALID_CITY_CODE_VALUE_VALUE = 0;
+  public static final int INVALID_MATERIAL_ID_VALUE_VALUE = 0;
   /**
-   * <code>CITY_CODE_CANNOT_BE_NULL = 1;</code>
+   * <code>MATERIAL_ID_CANNOT_BE_NULL = 1;</code>
    */
-  public static final int CITY_CODE_CANNOT_BE_NULL_VALUE = 1;
+  public static final int MATERIAL_ID_CANNOT_BE_NULL_VALUE = 1;
 
 
   public final int getNumber() {
@@ -47,8 +47,8 @@ public enum MaterialErrorCode
 
   public static MaterialErrorCode forNumber(int value) {
     switch (value) {
-      case 0: return INVALID_CITY_CODE_VALUE;
-      case 1: return CITY_CODE_CANNOT_BE_NULL;
+      case 0: return INVALID_MATERIAL_ID_VALUE;
+      case 1: return MATERIAL_ID_CANNOT_BE_NULL;
       default: return null;
     }
   }
