@@ -84,16 +84,14 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 
 	@Override
 	public LeadEntity findById(Long id) {
-		/*Optional<LeadModel> leadModelSave = leadRepository.findById(id);
+		Optional<LeadModel> leadModelSave = leadRepository.findById(id);
 		
 		 if (!leadModelSave.isPresent()) {
 			 throw new StellatoException("Não foi encontrado nenhum lead com o código: " + id);
 		 }
 		LeadEntity leadEntity	=	entityFactory.create(leadModelSave.get());
-		return leadEntity;*/
-		
-		
-		return null;
+		return leadEntity;
+
 
 	}
 
