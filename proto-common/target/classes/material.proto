@@ -1,0 +1,33 @@
+
+
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package material;
+
+option java_package = "com.stellato.gprc.material";
+option java_multiple_files = true;
+
+message MaterialRequest {
+  int32 iden_material = 1;
+}
+
+message MaterialResponse {
+  int32 resposta = 1;
+}
+
+enum MaterialErrorCode {
+  INVALID_CITY_CODE_VALUE = 0;
+  CITY_CODE_CANNOT_BE_NULL = 1;
+}
+
+message MaterialExceptionResponse {
+  google.protobuf.Timestamp timestamp = 1;
+  MaterialErrorCode error_code = 2;
+}
+
+service MaterialService {
+  // unary
+  rpc calculateMaterial(MaterialRequest) returns (MaterialResponse) {};
+}
