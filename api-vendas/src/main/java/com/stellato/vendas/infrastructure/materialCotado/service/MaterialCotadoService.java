@@ -37,9 +37,10 @@ public class MaterialCotadoService implements RepositoryInterface<MaterialCotado
 	@Override
 	@Transactional
 	public MaterialCotadoEntity create(MaterialCotadoEntity materialCotadoEntityFront) {
-		boolean retorno = materialRequestImpl.verificaMaterial(materialCotadoEntityFront);
+		boolean retornoMaterial = materialRequestImpl.verificaMaterial(materialCotadoEntityFront);
+		boolean retornoFornecedor = materialRequestImpl.verificaFornecedor(materialCotadoEntityFront);
 
-		if (retorno) {
+		if (retornoMaterial && retornoFornecedor) {
 
 			if (materialCotadoEntityFront.validar()) {
 				materialCotadoEntityFront.Ativar();

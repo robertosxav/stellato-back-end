@@ -4,4 +4,5 @@ import com.stellato.vendas.domain.materialCotado.entity.MaterialCotadoEntity;
 
 public interface GrpcMaterialRequest {
 	public boolean verificaMaterial(MaterialCotadoEntity materialCotadoEntity);
+	public boolean verificaFornecedor(MaterialCotadoEntity materialCotadoEntity);
 }

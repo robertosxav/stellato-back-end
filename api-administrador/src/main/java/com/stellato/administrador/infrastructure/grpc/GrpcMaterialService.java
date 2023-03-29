@@ -12,7 +12,7 @@ import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 
 @GrpcService
-public class GrpcMaterialServiceGrpc extends MaterialServiceGrpc.MaterialServiceImplBase {
+public class GrpcMaterialService extends MaterialServiceGrpc.MaterialServiceImplBase {
 	@Autowired
 	MaterialService materialService;
 	
