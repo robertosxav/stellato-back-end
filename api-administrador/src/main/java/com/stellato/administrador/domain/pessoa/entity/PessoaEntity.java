@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.administrador.domain.pessoa.entity.enumerated.TipoPessoaEnum;
 import com.stellato.administrador.domain.shared.BaseEnityInterface;
 import com.stellato.administrador.domain.shared.enumerated.StatusEnum;
 import com.stellato.administrador.exceptions.StellatoException;
+
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +33,8 @@ public class PessoaEntity implements  BaseEnityInterface{
 	private String whatsApp;
 
 	private String email;
+	
+	private TipoPessoaEnum tipoPessoa;
 
 	private StatusEnum status;
 
@@ -110,7 +114,7 @@ public class PessoaEntity implements  BaseEnityInterface{
 
 
 	public PessoaEntity(Long id, String nome,  String cpf, String nomeFantasia, String cnpj,
-			String telefone, String whatsApp, String email,Integer statusNumero,
+			String telefone, String whatsApp, String email,Integer tipoPessoaNumero, Integer statusNumero,
 			LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
@@ -121,6 +125,7 @@ public class PessoaEntity implements  BaseEnityInterface{
 		this.telefone = telefone;
 		this.whatsApp = whatsApp;
 		this.email = email;
+		this.tipoPessoa = TipoPessoaEnum.toEnum(tipoPessoaNumero);
 		this.status = StatusEnum.toEnum(statusNumero);
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;
@@ -131,7 +136,7 @@ public class PessoaEntity implements  BaseEnityInterface{
 	
 
 	public PessoaEntity(Long id, String nome,  String cpf, String nomeFantasia, String cnpj,
-			String telefone, String whatsApp, String email,LocalDate criadoEm,
+			String telefone, String whatsApp, String email,Integer tipoPessoaNumero,LocalDate criadoEm,
 			Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
@@ -142,6 +147,7 @@ public class PessoaEntity implements  BaseEnityInterface{
 		this.telefone = telefone;
 		this.whatsApp = whatsApp;
 		this.email = email;
+		this.tipoPessoa = TipoPessoaEnum.toEnum(tipoPessoaNumero);
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;
 		this.alteradoEm = alteradoEm;

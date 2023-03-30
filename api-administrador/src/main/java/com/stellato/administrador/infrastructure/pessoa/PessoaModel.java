@@ -52,8 +52,11 @@ public class PessoaModel extends BaseModel implements Serializable {
 	@Column(name="EMAIL")
 	private String email;
 	
+	@Column(name="TIPO_PESSOA")
+	private Integer tipoPessoa;
+	
 	public PessoaModel(Long id, String nome,String cpf,String nomeFantasia,String cnpj,String telefone, String whatsapp,
-			String email,Integer status, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
+			String email, Integer tipoPessoa, Integer status, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.nome = nome;
@@ -63,10 +66,11 @@ public class PessoaModel extends BaseModel implements Serializable {
 		this.telefone = telefone;
 		this.whatsapp = whatsapp;
 		this.email = email;
+		this.tipoPessoa	=	tipoPessoa;
 	}
 	
 	public PessoaModel(String nome,String cpf,String nomeFantasia,String cnpj,String telefone, String whatsapp, 
-			String email,Integer status, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
+			String email, Integer tipoPessoa,Integer status, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.nome = nome;
 		this.cpf = cpf;
@@ -75,6 +79,7 @@ public class PessoaModel extends BaseModel implements Serializable {
 		this.telefone = telefone;
 		this.whatsapp = whatsapp;
 		this.email = email;
+		this.tipoPessoa	=	tipoPessoa;
 	}	
 	
 }

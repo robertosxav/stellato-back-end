@@ -79,9 +79,9 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 			pessoaEntityFront.SetId(id);
 			
 			pessoaModelBanco.get().setNome(pessoaEntityFront.getNome());
-			pessoaModelBanco.get().setNome(pessoaEntityFront.getCpf());
-			pessoaModelBanco.get().setNome(pessoaEntityFront.getNomeFantasia());
-			pessoaModelBanco.get().setNome(pessoaEntityFront.getCnpj());
+			pessoaModelBanco.get().setCpf(pessoaEntityFront.getCpf());
+			pessoaModelBanco.get().setNomeFantasia(pessoaEntityFront.getNomeFantasia());
+			pessoaModelBanco.get().setCnpj(pessoaEntityFront.getCnpj());
 			pessoaModelBanco.get().setTelefone(pessoaEntityFront.getTelefone());
 			pessoaModelBanco.get().setWhatsapp(pessoaEntityFront.getWhatsApp());
 			pessoaModelBanco.get().setStatus(pessoaEntityFront.getStatus().getNumero());

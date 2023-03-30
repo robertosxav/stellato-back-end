@@ -13,8 +13,8 @@ public class PessoaFactory {
 	public PessoaModel create (PessoaEntity pessoaEntity) {		
 		PessoaModel PessoaModel = new PessoaModel(pessoaEntity.getId(), pessoaEntity.getNome(),pessoaEntity.getCpf(),
 				pessoaEntity.getNomeFantasia(),pessoaEntity.getCnpj(),pessoaEntity.getTelefone(), pessoaEntity.getWhatsApp(),
-				pessoaEntity.getEmail(),pessoaEntity.getStatus().getNumero(), pessoaEntity.getCriadoEm(), 
-				pessoaEntity.getCriadoPor(), pessoaEntity.getAlteradoEm(),  pessoaEntity.getAlteradoPor());
+				pessoaEntity.getEmail(),pessoaEntity.getTipoPessoa().getNumero(),pessoaEntity.getStatus().getNumero(), pessoaEntity.getCriadoEm(), 
+				pessoaEntity.getCriadoPor(), pessoaEntity.getAlteradoEm(),pessoaEntity.getAlteradoPor());
 		
 		return PessoaModel;
 	}
