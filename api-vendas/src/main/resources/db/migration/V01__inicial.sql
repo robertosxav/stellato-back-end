@@ -10,6 +10,7 @@ CREATE TABLE "administrador"."tb_pessoa"(
     "telefone" VARCHAR(14) NOT NULL,
     "whatsapp" VARCHAR(14) NOT NULL,
     "email" VARCHAR(100) NOT NULL,
+    "tipo_pessoa" INTEGER NOT NULL,
     "status" NUMERIC(1) NOT NULL DEFAULT '1',
     "criado_em" DATE NULL,
     "criado_por" BIGINT NULL,
