@@ -14,20 +14,20 @@ import com.stellato.administrador.infrastructure.fornecedor.FornecedorModel;
 @Repository
 public interface FornecedorRepository extends JpaRepository<FornecedorModel, Long>{
 	
-	@Query("select new com.stellato.administrador.domain.fornecedor.entity.FornecedorEntity(f.id,f.razaoSocial,f.cnpj,"
+	@Query("select new com.stellato.administrador.domain.fornecedor.entity.FornecedorEntity(f.id,f.codigo,f.razaoSocial,f.cnpj,"
 			+"f.status,f.criadoEm,f.criadoPor,f.alteradoEm,f.alteradoPor) from FornecedorModel f")
 	public List<FornecedorEntity> listarTodos();
 	
-	@Query("select new com.stellato.administrador.domain.fornecedor.entity.FornecedorEntity(f.id,f.razaoSocial,f.cnpj,"
+	@Query("select new com.stellato.administrador.domain.fornecedor.entity.FornecedorEntity(f.id,f.codigo,f.razaoSocial,f.cnpj,"
 			+"f.status,f.criadoEm,f.criadoPor,f.alteradoEm,f.alteradoPor) from FornecedorModel f where f.status =1")
 	public List<FornecedorEntity> listarAtivos();
 
-	@Query("select new com.stellato.administrador.domain.fornecedor.entity.FornecedorEntity(f.id,f.razaoSocial,f.cnpj,"
+	@Query("select new com.stellato.administrador.domain.fornecedor.entity.FornecedorEntity(f.id,f.codigo,f.razaoSocial,f.cnpj,"
 			+"f.status,f.criadoEm,f.criadoPor,f.alteradoEm,f.alteradoPor) from FornecedorModel f where f.status =1")
 	public Page<FornecedorEntity> listarAtivos(Pageable pageable );
 
 
-	@Query("select new com.stellato.administrador.domain.fornecedor.entity.FornecedorEntity(f.id,f.razaoSocial,f.cnpj,"
+	@Query("select new com.stellato.administrador.domain.fornecedor.entity.FornecedorEntity(f.id,f.codigo,f.razaoSocial,f.cnpj,"
 			+"f.status,f.criadoEm,f.criadoPor,f.alteradoEm,f.alteradoPor) from FornecedorModel f where f.status =1 and f.razaoSocial = :razaoSocial")
 	public Page<FornecedorEntity> listarPorRazaoSocial(String razaoSocial, Pageable pageable);
 }

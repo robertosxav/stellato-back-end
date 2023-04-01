@@ -2,6 +2,7 @@ package com.stellato.administrador.infrastructure.material.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -71,6 +72,11 @@ public class MaterialService implements RepositoryInterface<MaterialEntity>{
 
 	@Override
 	public MaterialEntity findById(Long id) {
+		UUID uuid = UUID.randomUUID();
+        String uuidAsString = uuid.toString();
+
+        System.out.println("Your UUID is: " + uuidAsString);
+        
 		Optional<MaterialModel> MaterialModelSave = materialRepository.findById(id);
 		
 		 if (!MaterialModelSave.isPresent()) {
