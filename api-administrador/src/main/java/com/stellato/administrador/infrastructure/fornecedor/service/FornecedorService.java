@@ -76,7 +76,7 @@ public class FornecedorService implements RepositoryInterface<FornecedorEntity>{
 		Optional<FornecedorModel> fornecedorModelSave = fornecedorRepository.findById(id);
 		
 		 if (!fornecedorModelSave.isPresent()) {
-			 throw new StellatoException("Não foi encontrado nenhum lead com o código: " + id);
+			 throw new StellatoException("Não foi encontrado nenhum fornecedor com o código: " + id);
 		 }
 		FornecedorEntity leadEntity	=	entityFactory.create(fornecedorModelSave.get());
 		return leadEntity;
@@ -89,7 +89,7 @@ public class FornecedorService implements RepositoryInterface<FornecedorEntity>{
 		List<FornecedorEntity> listaFornecedorEntity = fornecedorRepository.listarTodos();
 		
 		if (listaFornecedorEntity.isEmpty()) {
-			throw new StellatoException("Não foi encontrado nenhum lead cadastrado"); 
+			throw new StellatoException("Não foi encontrado nenhum fornecedor cadastrado"); 
 		}
 		
 		return listaFornecedorEntity;

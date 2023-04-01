@@ -4,16 +4,13 @@ import java.time.LocalDate;
 
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.stellato.administrador.domain.pessoa.entity.enumerated.TipoPessoaEnum;
-import com.stellato.administrador.domain.shared.BaseEnityInterface;
 import com.stellato.administrador.domain.shared.BaseEntity;
-import com.stellato.administrador.domain.shared.enumerated.StatusEnum;
 import com.stellato.administrador.exceptions.StellatoException;
-
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @NoArgsConstructor
@@ -37,8 +34,9 @@ public class PessoaEntity extends BaseEntity{
 	
 	private TipoPessoaEnum tipoPessoa;
 	
+	@Setter
 	@Transient
-	private Boolean isForncededor = false;
+	private Boolean isFornecedor = false;
 
 	@Override
 	public Long getId() {

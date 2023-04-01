@@ -16,6 +16,8 @@ import com.stellato.administrador.domain.pessoa.entity.PessoaEntity;
 import com.stellato.administrador.domain.pessoa.factory.PessoaEntityFactory;
 import com.stellato.administrador.domain.shared.repository.RepositoryInterface;
 import com.stellato.administrador.exceptions.StellatoException;
+import com.stellato.administrador.infrastructure.fornecedor.FornecedorModel;
+import com.stellato.administrador.infrastructure.fornecedor.repository.FornecedorRepository;
 import com.stellato.administrador.infrastructure.fornecedor.service.FornecedorService;
 import com.stellato.administrador.infrastructure.pessoa.PessoaModel;
 import com.stellato.administrador.infrastructure.pessoa.factory.PessoaFactory;
@@ -34,10 +36,10 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 	private PessoaEntityFactory entityFactory;
 	
 	@Autowired
-	private FornecedorEntityFactory fornecedorFactory;
+	FornecedorService fornecedorService;
 	
 	@Autowired
-	FornecedorService fornecedorService;
+	FornecedorRepository fornecedorRepository;
 	
 	@Override
 	@Transactional
@@ -51,7 +53,7 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 			
 			pessoaEntityFront.SetId(pessoaModel.getId());
 		
-			verificaEFornecedor(pessoaEntityFront);
+			gerarRegistroFornecedor(pessoaEntityFront);
 			
 			return pessoaEntityFront;
 		}
@@ -59,8 +61,8 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 	}
 
 	@Transactional
-	private void verificaEFornecedor(PessoaEntity pessoaEntity) {
-		if (pessoaEntity.getIsForncededor()) {
+	private void gerarRegistroFornecedor(PessoaEntity pessoaEntity) {
+		if (pessoaEntity.getIsFornecedor()) {
 			FornecedorEntity fornecedorEntity 	=	new FornecedorEntity(pessoaEntity.getId(),pessoaEntity.getCodigo(),pessoaEntity.getNomeFantasia(), 
 					pessoaEntity.getCnpj(),pessoaEntity.getCriadoEm(), pessoaEntity.getCriadoPor(), null, null);
 			fornecedorService.create(fornecedorEntity);
@@ -101,10 +103,16 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 		Optional<PessoaModel> pessoaModelSave = pessoaRepository.findById(id);
 		
 		 if (!pessoaModelSave.isPresent()) {
-			 throw new StellatoException("Não foi encontrado nenhum lead com o código: " + id);
+			 throw new StellatoException("Não foi encontrado nenhuma pessoa com o código: " + id);
 		 }
-		PessoaEntity leadEntity	=	entityFactory.create(pessoaModelSave.get());
-		return leadEntity;
+		Optional <FornecedorModel> fornecedorModel = fornecedorRepository.findById(id);
+		PessoaEntity pessoaEntity	=	entityFactory.create(pessoaModelSave.get());
+		
+		if(fornecedorModel.isPresent()) {
+			pessoaEntity.setIsFornecedor(true);
+		}
+	
+		return pessoaEntity;
 
 	}
 
@@ -114,7 +122,7 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 		List<PessoaEntity> listaPessoaEntity = pessoaRepository.listarTodos();
 		
 		if (listaPessoaEntity.isEmpty()) {
-			throw new StellatoException("Não foi encontrado nenhum lead cadastrado"); 
+			throw new StellatoException("Não foi encontrado nenhuma pessoa cadastrada"); 
 		}
 		
 		return listaPessoaEntity;
