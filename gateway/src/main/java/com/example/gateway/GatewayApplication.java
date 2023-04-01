@@ -12,19 +12,4 @@ public class GatewayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
-	
-	@Bean
-	public RouteLocator myRoutes(RouteLocatorBuilder builder) {
-
-		 return builder.routes()
-			        .route(p -> p
-			                .path("/vendas/**")
-			                .filters(f -> f.rewritePath("/vendas", ""))
-			                .uri("http://localhost:8081"))
-			        .route(p -> p
-			                .path("/administrador/**")
-			                .filters(f -> f.rewritePath("/administrador", ""))
-			                .uri("http://localhost:8082"))
-			        .build();
-	}
 }
