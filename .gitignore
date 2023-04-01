@@ -1,9 +1,4 @@
 /.metadata/
-/docker/Docker-Compose
-api-administrador/target
-proto-common/target/
-api-vendas/target
-docker/
 
 HELP.md
 target/
@@ -39,3 +34,10 @@ build/
 ### VS Code ###
 .vscode/
 .docker/Docker-Compose
+api-administrador/src/main/**/target
+proto-common/**/target
+api-vendas/src/main/**/target
+
+proto-common/target
+proto-common/target/classes/META-INF/maven/com.stel.grpc/proto-common/pom.properties
+proto-common/target/proto-common-0.0.1-SNAPSHOT.jar
