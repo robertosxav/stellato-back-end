@@ -1,3 +1,9 @@
 /.metadata/
 /docker/Docker-Compose/
-/.gitignore
+
+
+api-administrador/target
+proto-common/target/
+api-vendas/target
+docker/
+./docker
