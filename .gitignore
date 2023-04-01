@@ -38,4 +38,4 @@ build/
 
 ### VS Code ###
 .vscode/
-.docker/
+.docker/Docker-Compose
