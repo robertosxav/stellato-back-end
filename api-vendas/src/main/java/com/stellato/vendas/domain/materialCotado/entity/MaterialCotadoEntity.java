@@ -3,9 +3,7 @@ package com.stellato.vendas.domain.materialCotado.entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.stellato.vendas.domain.shared.BaseEnityInterface;
-import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
+import com.stellato.vendas.domain.shared.BaseEntity;
 import com.stellato.vendas.exceptions.StellatoException;
 
 import lombok.Getter;
@@ -13,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class MaterialCotadoEntity implements BaseEnityInterface {
+public class MaterialCotadoEntity extends BaseEntity {
 	
 	private Long id;
 	
@@ -25,18 +23,6 @@ public class MaterialCotadoEntity implements BaseEnityInterface {
 	
 	private Long idMaterial;
 	
-	private StatusEnum status;
-
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate criadoEm;
-
-	private Long criadoPor;
-
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate alteradoEm;
-
-	private Long alteradoPor;
-	
 	@Override
 	public Long getId() {
 		return this.id;
@@ -45,35 +31,6 @@ public class MaterialCotadoEntity implements BaseEnityInterface {
 	@Override
 	public void SetId(Long id) {
 		this.id = id;
-	}
-
-	@Override
-	public StatusEnum getStatus() {
-		return this.status;
-	}
-
-	@Override
-	public void setStatus(StatusEnum status) {
-		this.status = status;
-
-	}
-
-	@Override
-	public void Ativar() {
-		this.status 	=	StatusEnum.ATIVO;
-		this.criadoEm	=	LocalDate.now();		
-	}
-	
-	@Override
-	public void Alterar(Long id) {
-		this.status 	=	StatusEnum.ATIVO;
-		this.alteradoEm	 =	LocalDate.now();	
-		this.alteradoPor = id;
-	}
-
-	@Override
-	public void Inativar() {
-		this.status = StatusEnum.INATIVO;
 	}
 
 	@Override
@@ -109,11 +66,6 @@ public class MaterialCotadoEntity implements BaseEnityInterface {
 		this.valor = valor;
 		this.idFornecedor = idFornecedor;
 		this.idMaterial = idMaterial;
-		this.status = StatusEnum.toEnum(statusNumero);
-		this.criadoEm = criadoEm;
-		this.criadoPor = criadoPor;
-		this.alteradoEm = alteradoEm;
-		this.alteradoPor = alteradoPor;
 	}
 
 	public MaterialCotadoEntity(Long id, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial,
@@ -124,10 +76,6 @@ public class MaterialCotadoEntity implements BaseEnityInterface {
 		this.valor = valor;
 		this.idFornecedor = idFornecedor;
 		this.idMaterial = idMaterial;
-		this.criadoEm = criadoEm;
-		this.criadoPor = criadoPor;
-		this.alteradoEm = alteradoEm;
-		this.alteradoPor = alteradoPor;
 	}
 
 }

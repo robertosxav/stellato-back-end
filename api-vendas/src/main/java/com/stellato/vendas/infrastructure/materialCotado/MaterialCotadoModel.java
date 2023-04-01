@@ -45,9 +45,9 @@ public class MaterialCotadoModel extends BaseModel implements Serializable {
 	@Column(name= "ID_MATERIAL")
 	private Long idMaterial;
 	
-	public MaterialCotadoModel(Long id, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial, Integer status, LocalDate criadoEm, Long criadoPor,
+	public MaterialCotadoModel(Long id, String codigo, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial, Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
-		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.observacao = observacao;
 		this.valor = valor;
@@ -55,9 +55,9 @@ public class MaterialCotadoModel extends BaseModel implements Serializable {
 		this.idMaterial = idMaterial;
 	}
 	
-	public MaterialCotadoModel(String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial, Integer status, LocalDate criadoEm, Long criadoPor,
+	public MaterialCotadoModel(String codigo, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial, Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
-		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.observacao = observacao;
 		this.valor = valor;
 		this.idFornecedor = idFornecedor;

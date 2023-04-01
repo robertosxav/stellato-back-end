@@ -11,7 +11,7 @@ import com.stellato.vendas.infrastructure.orcamento.OrcamentoEletricoModel;
 public class OrcamentoFactory {
 	
 	public OrcamentoEletricoModel create (OrcamentoEletricoEntity orcamentoEletricoEntity) {		
-		OrcamentoEletricoModel materialCotadoModel = new OrcamentoEletricoModel(orcamentoEletricoEntity.getId(),orcamentoEletricoEntity.getTitulo(),orcamentoEletricoEntity.getObservacao(),
+		OrcamentoEletricoModel materialCotadoModel = new OrcamentoEletricoModel(orcamentoEletricoEntity.getId(),orcamentoEletricoEntity.getCodigo(),orcamentoEletricoEntity.getTitulo(),orcamentoEletricoEntity.getObservacao(),
 				orcamentoEletricoEntity.getObservacaoInterna(),orcamentoEletricoEntity.getValidadeProposta(),orcamentoEletricoEntity.getPrazoEntrega(),orcamentoEletricoEntity.getDistancia(),
 				orcamentoEletricoEntity.getPotenciaModulo(),orcamentoEletricoEntity.getPercentualPerda(),orcamentoEletricoEntity.getDetalheProposta(),orcamentoEletricoEntity.getModalidadeTarifaria(),
 				orcamentoEletricoEntity.getTipoPadrao().getNumero(),orcamentoEletricoEntity.getUnidadeConsumidora(),orcamentoEletricoEntity.getConsumoMedio(),orcamentoEletricoEntity.getPrecoKwh(), 

@@ -14,23 +14,23 @@ import com.stellato.vendas.infrastructure.lead.LeadModel;
 @Repository
 public interface LeadRepository extends JpaRepository<LeadModel, Long>{
 	
-	@Query("select new com.stellato.vendas.domain.lead.entity.LeadEntity(l.id,l.nome,l.telefone,l.whatsapp,l.email,l.cidade,"
-			+ "	l.origem, l.tipoLead,l.idPessoa,l.status, l.criadoEm,l.criadoPor,l.alteradoEm, l.alteradoPor)"
+	@Query("select new com.stellato.vendas.domain.lead.entity.LeadEntity(l.id,l.codigo,l.nome,l.telefone,l.whatsapp,"
+			+ "l.email,l.cidade, l.origem, l.tipoLead,l.idPessoa,l.status, l.criadoEm,l.criadoPor,l.alteradoEm, l.alteradoPor)"
 			+ " from LeadModel l")
 	public List<LeadEntity> listarTodos();
 	
-	@Query("select new com.stellato.vendas.domain.lead.entity.LeadEntity(l.id,l.nome,l.telefone,l.whatsapp,l.email,l.cidade,"
-			+ "	l.origem, l.tipoLead,l.idPessoa,l.status, l.criadoEm,l.criadoPor,l.alteradoEm, l.alteradoPor)"
+	@Query("select new com.stellato.vendas.domain.lead.entity.LeadEntity(l.id,l.codigo,l.nome,l.telefone,l.whatsapp,"
+			+ "l.email,l.cidade, l.origem, l.tipoLead,l.idPessoa,l.status, l.criadoEm,l.criadoPor,l.alteradoEm, l.alteradoPor)"
 			+ " from LeadModel l where l.status =1")
 	public List<LeadEntity> listarAtivos();
 
-	@Query("select new com.stellato.vendas.domain.lead.entity.LeadEntity(l.id,l.nome,l.telefone,l.whatsapp,l.email,l.cidade,"
-			+ "	l.origem, l.tipoLead,l.idPessoa,l.status, l.criadoEm,l.criadoPor,l.alteradoEm, l.alteradoPor)"
+	@Query("select new com.stellato.vendas.domain.lead.entity.LeadEntity(l.id,l.codigo,l.nome,l.telefone,l.whatsapp,"
+			+ "l.email,l.cidade, l.origem, l.tipoLead,l.idPessoa,l.status, l.criadoEm,l.criadoPor,l.alteradoEm, l.alteradoPor)"
 			+ " from LeadModel l where l.status =1")
 	public Page<LeadEntity> listarAtivos(Pageable pageable );
 
-	@Query("select new com.stellato.vendas.domain.lead.entity.LeadEntity(l.id,l.nome,l.telefone,l.whatsapp,l.email,l.cidade,"
-			+ "	l.origem, l.tipoLead,l.idPessoa,l.status, l.criadoEm,l.criadoPor,l.alteradoEm, l.alteradoPor)"
-			+ " from LeadModel l where  l.status =1 and upper(l.nome) like :nome")
+	@Query("select new com.stellato.vendas.domain.lead.entity.LeadEntity(l.id,l.codigo,l.nome,l.telefone,l.whatsapp,"
+			+ "l.email,l.cidade, l.origem, l.tipoLead,l.idPessoa,l.status, l.criadoEm,l.criadoPor,l.alteradoEm, l.alteradoPor)"
+			+ " from LeadModel l where l.status =1 and upper(l.nome) like :nome")
 	public Page<LeadEntity> listarPorNome(String nome, Pageable pageable);
 }

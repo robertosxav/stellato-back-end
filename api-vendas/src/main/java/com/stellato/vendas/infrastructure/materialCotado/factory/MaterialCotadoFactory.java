@@ -10,7 +10,7 @@ import com.stellato.vendas.infrastructure.materialCotado.MaterialCotadoModel;
 public class MaterialCotadoFactory {
 	
 	public MaterialCotadoModel create (MaterialCotadoEntity materialCotadoEntity) {		
-		MaterialCotadoModel materialCotadoModel = new MaterialCotadoModel(materialCotadoEntity.getId(), materialCotadoEntity.getObservacao(),materialCotadoEntity.getValor(),materialCotadoEntity.getIdFornecedor(),
+		MaterialCotadoModel materialCotadoModel = new MaterialCotadoModel(materialCotadoEntity.getId(),materialCotadoEntity.getCodigo(), materialCotadoEntity.getObservacao(),materialCotadoEntity.getValor(),materialCotadoEntity.getIdFornecedor(),
 				materialCotadoEntity.getIdMaterial(),materialCotadoEntity.getStatus().getNumero(),materialCotadoEntity.getCriadoEm(), materialCotadoEntity.getCriadoPor(), materialCotadoEntity.getAlteradoEm(), 
 				materialCotadoEntity.getAlteradoPor());
 		

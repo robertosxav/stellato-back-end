@@ -4,11 +4,12 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.stellato.vendas.domain.lead.entity.LeadEntity;
-import com.stellato.vendas.domain.shared.BaseEnityInterface;
+import com.stellato.vendas.domain.shared.BaseEntity;
+import com.stellato.vendas.domain.shared.BaseEntityInterface;
 import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
 import com.stellato.vendas.exceptions.StellatoException;
 
-public class HistoricoLeadEntity implements BaseEnityInterface{
+public class HistoricoLeadEntity extends BaseEntity{
 	
 	private Long id; 
 	
@@ -47,17 +48,7 @@ public class HistoricoLeadEntity implements BaseEnityInterface{
 	public void setDecricao(String decricao) {
 		this.decricao = decricao;
 	}
-	@Override
-	public StatusEnum getStatus() {
-		return this.status;
-	}
-
-	@Override
-	public void setStatus(StatusEnum status) {
-		this.status	=	status;
-	}
-	
-	public LeadEntity getLead() {
+		public LeadEntity getLead() {
 		return lead;
 	}
 
@@ -65,13 +56,6 @@ public class HistoricoLeadEntity implements BaseEnityInterface{
 		this.lead = lead;
 	}
 
-	public void Ativar() {
-		this.status = StatusEnum.ATIVO;
-	}
-	public void Inativar() {
-		this.status = StatusEnum.ATIVO;
-	}
-	
 	public Boolean validar(){
 		if (this.decricao.isEmpty()) {
 			throw new StellatoException("Descrição é obrigatório");
@@ -98,10 +82,5 @@ public class HistoricoLeadEntity implements BaseEnityInterface{
 		this.lead	= lead;
 	}
 
-	@Override
-	public void Alterar(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }

@@ -47,10 +47,10 @@ public class LeadModel extends BaseModel implements Serializable {
 	
 	private Long idPessoa;
 
-	public LeadModel(Long id, String nome, String telefone, String whatsapp, String email, String cidade,
+	public LeadModel(Long id, String codigo, String nome, String telefone, String whatsapp, String email, String cidade,
 			Integer origem, Integer tipoLead, Long idPessoa, Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
-		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -62,10 +62,10 @@ public class LeadModel extends BaseModel implements Serializable {
 		this.idPessoa = idPessoa;
 	}
 	
-	public LeadModel(String nome, String telefone, String whatsapp, String email, String cidade,
+	public LeadModel(String nome, String codigo,String telefone, String whatsapp, String email, String cidade,
 			Integer origem, Integer tipoLead, Long idPessoa, Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
-		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.nome = nome;
 		this.telefone = telefone;
 		this.whatsapp = whatsapp;

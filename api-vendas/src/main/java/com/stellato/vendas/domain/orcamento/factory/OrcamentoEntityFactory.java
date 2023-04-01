@@ -7,7 +7,7 @@ public class OrcamentoEntityFactory {
 
 	public OrcamentoEletricoEntity create(OrcamentoEletricoModel orcamentoEletricoModel) {
 
-		OrcamentoEletricoEntity orcamentoCotadoEntity = new OrcamentoEletricoEntity(orcamentoEletricoModel.getId(),orcamentoEletricoModel.getTitulo(),orcamentoEletricoModel.getObservacao(),
+		OrcamentoEletricoEntity orcamentoCotadoEntity = new OrcamentoEletricoEntity(orcamentoEletricoModel.getId(),orcamentoEletricoModel.getCodigo(),orcamentoEletricoModel.getTitulo(),orcamentoEletricoModel.getObservacao(),
 				orcamentoEletricoModel.getObservacaoInterna(),orcamentoEletricoModel.getValidadeProposta(),orcamentoEletricoModel.getPrazoEntrega(),orcamentoEletricoModel.getDistancia(),
 				orcamentoEletricoModel.getPotenciaModulo(),orcamentoEletricoModel.getPercentualPerda(),orcamentoEletricoModel.getDetalheProposta(),orcamentoEletricoModel.getModalidadeTarifaria(),
 				orcamentoEletricoModel.getTipoPadrao(),orcamentoEletricoModel.getUnidadeConsumidora(),orcamentoEletricoModel.getConsumoMedio(),orcamentoEletricoModel.getPrecoKwh(), 

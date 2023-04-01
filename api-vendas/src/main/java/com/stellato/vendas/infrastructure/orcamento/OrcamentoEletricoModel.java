@@ -69,13 +69,13 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 	
 	private Integer idLead;
 	
-	public OrcamentoEletricoModel(Long id, String titulo, String observacao, String observacaoInterna,
+	public OrcamentoEletricoModel(Long id, String codigo, String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
 			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadrao,
 			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacao,
 			Integer tipoEstrutura, Integer idLead,Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
-		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.titulo = titulo;
 		this.observacao = observacao;
@@ -96,13 +96,13 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 		this.idLead = idLead;
 	}
 	
-	public OrcamentoEletricoModel(String titulo, String observacao, String observacaoInterna,
+	public OrcamentoEletricoModel(String codigo, String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
 			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadrao,
 			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacao,
 			Integer tipoEstrutura, Integer idLead,Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
-		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.titulo = titulo;
 		this.observacao = observacao;
 		this.observacaoInterna = observacaoInterna;
