@@ -34,17 +34,17 @@ public class FornecedorModel extends BaseModel implements Serializable {
 	@Column(name="CNPJ")
 	private String cnpj;
 	
-	public FornecedorModel(Long id, String razaoSocial,String cnpj, Integer status, LocalDate criadoEm, Long criadoPor,
+	public FornecedorModel(Long id,String codigo, String razaoSocial,String cnpj, Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
-		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		super(codigo,status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
 	}
     
-	public FornecedorModel(String razaoSocial,String cnpj, Integer status, LocalDate criadoEm, Long criadoPor,
+	public FornecedorModel(String codigo,String razaoSocial,String cnpj, Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
-		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		super(codigo,status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
 	}

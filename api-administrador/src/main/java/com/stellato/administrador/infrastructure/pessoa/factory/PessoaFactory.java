@@ -11,7 +11,7 @@ import com.stellato.administrador.infrastructure.pessoa.PessoaModel;
 public class PessoaFactory {
 	
 	public PessoaModel create (PessoaEntity pessoaEntity) {		
-		PessoaModel PessoaModel = new PessoaModel(pessoaEntity.getId(), pessoaEntity.getNome(),pessoaEntity.getCpf(),
+		PessoaModel PessoaModel = new PessoaModel(pessoaEntity.getId(),pessoaEntity.getCodigo(), pessoaEntity.getNome(),pessoaEntity.getCpf(),
 				pessoaEntity.getNomeFantasia(),pessoaEntity.getCnpj(),pessoaEntity.getTelefone(), pessoaEntity.getWhatsApp(),
 				pessoaEntity.getEmail(),pessoaEntity.getTipoPessoa().getNumero(),pessoaEntity.getStatus().getNumero(), pessoaEntity.getCriadoEm(), 
 				pessoaEntity.getCriadoPor(), pessoaEntity.getAlteradoEm(),pessoaEntity.getAlteradoPor());

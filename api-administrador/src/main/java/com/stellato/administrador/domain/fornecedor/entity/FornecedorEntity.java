@@ -16,6 +16,8 @@ public class FornecedorEntity implements BaseEnityInterface{
 
 	private Long id;
 	
+	private String codigo;
+	
 	private String razaoSocial;
 	
 	private String cnpj;
@@ -83,10 +85,11 @@ public class FornecedorEntity implements BaseEnityInterface{
 		this.status = StatusEnum.INATIVO;
 	}
 	
-	public FornecedorEntity(Long id, String razaoSocial, String cnpj, Integer statusNumero
+	public FornecedorEntity(Long id, String codigo, String razaoSocial, String cnpj, Integer statusNumero
 			, LocalDate criadoEm,Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
+		this.codigo	= codigo;
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
 		this.status = StatusEnum.toEnum(statusNumero);
@@ -96,10 +99,11 @@ public class FornecedorEntity implements BaseEnityInterface{
 		this.alteradoPor = alteradoPor;
 	}
 	
-	public FornecedorEntity(Long id, String razaoSocial, String cnpj, LocalDate criadoEm,
+	public FornecedorEntity(Long id, String codigo, String razaoSocial, String cnpj, LocalDate criadoEm,
 			Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
+		this.codigo = codigo;
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
 		this.criadoEm = criadoEm;

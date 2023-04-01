@@ -38,20 +38,24 @@ public class MaterialModel extends BaseModel implements Serializable {
 	@Column(name="TIPO")
 	private Integer tipo;
 
+	@Column(name="UNIDADE_MEDIDA")
+	private Integer unidadeMedida;
 
-	public MaterialModel(Long id, String descricao, Integer tipo, Integer status, LocalDate criadoEm, Long criadoPor,
-			LocalDate alteradoEm, Long alteradoPor) {
-		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+	public MaterialModel(Long id,String codigo,String descricao, Integer tipo,Integer unidadeMedida,Integer status, 
+			LocalDate criadoEm,Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
+		super(codigo,status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.descricao = descricao;
 		this.tipo = tipo;
+		this.unidadeMedida = unidadeMedida;
 	}
     
-	public MaterialModel(String descricao, Integer tipo, Integer status, LocalDate criadoEm, Long criadoPor,
-			LocalDate alteradoEm, Long alteradoPor) {
-		super(status, criadoEm, criadoPor, alteradoEm, alteradoPor);
+	public MaterialModel(String descricao,String codigo, Integer tipo,Integer unidadeMedida, Integer status,
+			LocalDate criadoEm,Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
+		super(codigo,status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.descricao = descricao;
 		this.tipo = tipo;
+		this.unidadeMedida = unidadeMedida;
 	}
 
 }

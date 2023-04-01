@@ -3,6 +3,7 @@ CREATE SCHEMA vendas;
 
 CREATE TABLE "administrador"."tb_pessoa"(
     "id" BIGINT NOT NULL,
+	"codigo" VARCHAR(40) NULL,
     "nome" VARCHAR(200) NOT NULL,
     "cpf" VARCHAR(11) NOT NULL,
     "nome_fantasia" VARCHAR(300) NOT NULL,
@@ -30,6 +31,7 @@ OWNED BY "administrador"."tb_pessoa".id;
 		
 CREATE TABLE "administrador"."tb_fornecedor"(
     "id" BIGINT NOT NULL,
+	"codigo" VARCHAR(40) NULL,
     "razao_social" VARCHAR(200) NOT NULL,
     "cnpj" VARCHAR(14) NOT NULL,
     "status" NUMERIC(1) NOT NULL DEFAULT '1',
@@ -51,6 +53,7 @@ OWNED BY "administrador"."tb_fornecedor".id;
 
 CREATE TABLE "vendas"."tb_lead"(
     "id" BIGINT NOT NULL,
+	"codigo" VARCHAR(40) NULL,
     "nome" VARCHAR(200) NOT NULL,
     "telefone" VARCHAR(14) NOT NULL,
     "whatsapp" VARCHAR(14) NOT NULL,
@@ -85,8 +88,11 @@ ON COLUMN
 
 CREATE TABLE "administrador"."tb_material"(
     "id" BIGINT NOT NULL,
+	"codigo" VARCHAR(40) NULL,
     "descricao" VARCHAR(300) NOT NULL,
+	"observao_interna" VARCHAR(2000) NULL,
     "tipo" INTEGER NOT NULL,
+	"unidade_medida" INTEGER NOT NULL,
     "status" NUMERIC(1) NOT NULL DEFAULT '1',
     "criado_em" DATE NULL,
     "criado_por" BIGINT NULL,
@@ -109,7 +115,9 @@ OWNED BY "administrador"."tb_material".id;
 
 CREATE TABLE "vendas"."tb_material_cotado"(
     "id" BIGINT NOT NULL,
-    "observacao" VARCHAR(100) NULL,
+	"codigo" VARCHAR(40) NULL,
+    "observacao" VARCHAR(2000) NULL,
+	"observao_interna" VARCHAR(2000) NULL,
     "valor" DOUBLE PRECISION NOT NULL,
     "id_fornecedor" BIGINT NOT NULL,
     "id_material" BIGINT NOT NULL,
@@ -138,6 +146,7 @@ OWNED BY "vendas"."tb_material_cotado".id;
     
 CREATE TABLE "vendas"."tb_orcamento_eletrico"(
     "id" BIGINT NOT NULL,
+	"codigo" VARCHAR(40) NULL,
     "titulo" VARCHAR(100) NOT NULL,
     "observacao" VARCHAR(500) NULL,
     "observacao_interna" VARCHAR(500) NULL,
@@ -201,6 +210,7 @@ OWNED BY "vendas"."tb_orcamento_eletrico".id;
 
 CREATE TABLE "vendas"."tb_orcamento_material"(
     "id" BIGINT NOT NULL,
+	"codigo" VARCHAR(40) NULL,
     "id_material_cotado" BIGINT NOT NULL,
     "id_orcamento" BIGINT NOT NULL,
     "quantidade" INTEGER NOT NULL,

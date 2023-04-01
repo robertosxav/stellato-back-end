@@ -20,6 +20,8 @@ public class PessoaEntity implements  BaseEnityInterface{
 
 	private Long id;
 
+	private String codigo;
+	
 	private String nome;
 	
 	private String cpf;
@@ -113,15 +115,16 @@ public class PessoaEntity implements  BaseEnityInterface{
 
 
 
-	public PessoaEntity(Long id, String nome,  String cpf, String nomeFantasia, String cnpj,
+	public PessoaEntity(Long id, String codigo,String nome,  String cpf, String nomeFantasia, String cnpj,
 			String telefone, String whatsApp, String email,Integer tipoPessoaNumero, Integer statusNumero,
 			LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
+		this.codigo = codigo;
 		this.nome = nome;
-		this.nome = cpf;
-		this.nome = nomeFantasia;
-		this.nome = cnpj;
+		this.cpf = cpf;
+		this.nomeFantasia = nomeFantasia;
+		this.cnpj = cnpj;
 		this.telefone = telefone;
 		this.whatsApp = whatsApp;
 		this.email = email;
@@ -135,15 +138,16 @@ public class PessoaEntity implements  BaseEnityInterface{
 	
 	
 
-	public PessoaEntity(Long id, String nome,  String cpf, String nomeFantasia, String cnpj,
+	public PessoaEntity(Long id, String codigo,String nome,  String cpf, String nomeFantasia, String cnpj,
 			String telefone, String whatsApp, String email,Integer tipoPessoaNumero,LocalDate criadoEm,
 			Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
+		this.codigo = codigo;
 		this.nome = nome;
-		this.nome = cpf;
-		this.nome = nomeFantasia;
-		this.nome = cnpj;
+		this.cpf = cpf;
+		this.nomeFantasia = nomeFantasia;
+		this.cnpj = cnpj;
 		this.telefone = telefone;
 		this.whatsApp = whatsApp;
 		this.email = email;

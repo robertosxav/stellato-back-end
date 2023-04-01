@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.stellato.administrador.domain.material.entity.enumerated.TipoMaterialEnum;
+import com.stellato.administrador.domain.material.entity.enumerated.UnidadeMedidaEnum;
 import com.stellato.administrador.domain.shared.BaseEnityInterface;
 import com.stellato.administrador.domain.shared.enumerated.StatusEnum;
 import com.stellato.administrador.exceptions.StellatoException;
@@ -17,9 +18,13 @@ public class MaterialEntity implements BaseEnityInterface{
 
 	private Long id;
 	
+	private String codigo;
+	
 	private String descricao;
 	
 	private TipoMaterialEnum tipo;
+	
+	private UnidadeMedidaEnum unidadeMedida;
 	
 	private StatusEnum status;
 
@@ -84,12 +89,14 @@ public class MaterialEntity implements BaseEnityInterface{
 		this.status = StatusEnum.INATIVO;
 	}
 
-	public MaterialEntity(Long id, String descricao, Integer tipoNumero, Integer statusNumero
-			, LocalDate criadoEm,Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
+	public MaterialEntity(Long id, String codigo, String descricao, Integer tipoNumero,Integer unidadeMedidaNumero,
+			Integer statusNumero,LocalDate criadoEm,Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
+		this.codigo = codigo;
 		this.descricao = descricao;
 		this.tipo = TipoMaterialEnum.toEnum(tipoNumero);
+		this.unidadeMedida = UnidadeMedidaEnum.toEnum(unidadeMedidaNumero);
 		this.status = StatusEnum.toEnum(statusNumero);
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;
@@ -97,12 +104,14 @@ public class MaterialEntity implements BaseEnityInterface{
 		this.alteradoPor = alteradoPor;
 	}
 	
-	public MaterialEntity(Long id, String descricao, Integer tipoNumero, LocalDate criadoEm,
-			Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
+	public MaterialEntity(Long id, String codigo, String descricao, Integer tipoNumero, Integer unidadeMedidaNumero,
+			LocalDate criadoEm,Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
 		super();
 		this.id = id;
+		this.codigo = codigo;
 		this.descricao = descricao;
 		this.tipo = TipoMaterialEnum.toEnum(tipoNumero);
+		this.unidadeMedida = UnidadeMedidaEnum.toEnum(unidadeMedidaNumero);
 		this.criadoEm = criadoEm;
 		this.criadoPor = criadoPor;
 		this.alteradoEm = alteradoEm;

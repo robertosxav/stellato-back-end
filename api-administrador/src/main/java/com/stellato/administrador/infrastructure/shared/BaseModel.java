@@ -16,6 +16,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BaseModel {
 	
+	private String codigo;
+	
 	private Integer status;
 	
 	private LocalDate criadoEm;

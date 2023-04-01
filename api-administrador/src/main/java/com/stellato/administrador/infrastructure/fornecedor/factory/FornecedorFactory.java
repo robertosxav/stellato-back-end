@@ -11,7 +11,7 @@ import com.stellato.administrador.infrastructure.fornecedor.FornecedorModel;
 public class FornecedorFactory {
 	
 	public FornecedorModel create (FornecedorEntity fornecedorEntity) {		
-		FornecedorModel fornecedorModel = new FornecedorModel(fornecedorEntity.getId(),fornecedorEntity.getRazaoSocial(),fornecedorEntity.getCnpj(),
+		FornecedorModel fornecedorModel = new FornecedorModel(fornecedorEntity.getId(),fornecedorEntity.getCodigo(),fornecedorEntity.getRazaoSocial(),fornecedorEntity.getCnpj(),
 				fornecedorEntity.getStatus().getNumero(),fornecedorEntity.getCriadoEm(), fornecedorEntity.getCriadoPor(), fornecedorEntity.getAlteradoEm(),
 				fornecedorEntity.getAlteradoPor());
 		

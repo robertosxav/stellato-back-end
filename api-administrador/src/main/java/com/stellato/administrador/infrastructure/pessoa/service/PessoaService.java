@@ -61,7 +61,7 @@ public class PessoaService implements RepositoryInterface<PessoaEntity>{
 	@Transactional
 	private void verificaEFornecedor(PessoaEntity pessoaEntity) {
 		if (pessoaEntity.getIsForncededor()) {
-			FornecedorEntity fornecedorEntity 	=	new FornecedorEntity(pessoaEntity.getId(),pessoaEntity.getNomeFantasia(), 
+			FornecedorEntity fornecedorEntity 	=	new FornecedorEntity(pessoaEntity.getId(),pessoaEntity.getCodigo(),pessoaEntity.getNomeFantasia(), 
 					pessoaEntity.getCnpj(),pessoaEntity.getCriadoEm(), pessoaEntity.getCriadoPor(), null, null);
 			fornecedorService.create(fornecedorEntity);
 		}

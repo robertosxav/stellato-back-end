@@ -10,8 +10,8 @@ public class MaterialEntityFactory {
 	
 	public MaterialEntity create (MaterialModel materialModel) {		
 		
-		MaterialEntity materialEntity = new MaterialEntity(materialModel.getId(),materialModel.getDescricao(),
-				materialModel.getStatus(), materialModel.getCriadoEm(),materialModel.getCriadoPor(), 
+		MaterialEntity materialEntity = new MaterialEntity(materialModel.getId(),materialModel.getCodigo(),materialModel.getDescricao(),
+				materialModel.getTipo(),materialModel.getUnidadeMedida(), materialModel.getCriadoEm(),materialModel.getCriadoPor(), 
 				materialModel.getAlteradoEm(),materialModel.getAlteradoPor());
 		
 		return materialEntity;

@@ -11,7 +11,7 @@ public class FornecedorEntityFactory {
 	
 	public FornecedorEntity create (FornecedorModel fornecedorModel) {		
 		
-		FornecedorEntity fornecedorEntity = new FornecedorEntity(fornecedorModel.getId(),fornecedorModel.getRazaoSocial(),
+		FornecedorEntity fornecedorEntity = new FornecedorEntity(fornecedorModel.getId(),fornecedorModel.getCodigo(),fornecedorModel.getRazaoSocial(),
 				fornecedorModel.getCnpj(),fornecedorModel.getStatus(), fornecedorModel.getCriadoEm(),fornecedorModel.getCriadoPor(), 
 				fornecedorModel.getAlteradoEm(),fornecedorModel.getAlteradoPor());
 		
