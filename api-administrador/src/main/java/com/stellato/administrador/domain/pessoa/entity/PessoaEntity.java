@@ -7,6 +7,7 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.stellato.administrador.domain.pessoa.entity.enumerated.TipoPessoaEnum;
 import com.stellato.administrador.domain.shared.BaseEnityInterface;
+import com.stellato.administrador.domain.shared.BaseEntity;
 import com.stellato.administrador.domain.shared.enumerated.StatusEnum;
 import com.stellato.administrador.exceptions.StellatoException;
 
@@ -16,11 +17,9 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class PessoaEntity implements  BaseEnityInterface{
+public class PessoaEntity extends BaseEntity{
 
 	private Long id;
-
-	private String codigo;
 	
 	private String nome;
 	
@@ -37,18 +36,6 @@ public class PessoaEntity implements  BaseEnityInterface{
 	private String email;
 	
 	private TipoPessoaEnum tipoPessoa;
-
-	private StatusEnum status;
-
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate criadoEm;
-
-	private Long criadoPor;
-
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate alteradoEm;
-
-	private Long alteradoPor;
 	
 	@Transient
 	private Boolean isForncededor = false;
@@ -61,35 +48,6 @@ public class PessoaEntity implements  BaseEnityInterface{
 	@Override
 	public void SetId(Long id) {
 		this.id = id;
-	}
-
-	@Override
-	public StatusEnum getStatus() {
-		return this.status;
-	}
-
-	@Override
-	public void setStatus(StatusEnum status) {
-		this.status = status;
-
-	}
-
-	@Override
-	public void Ativar() {
-		this.status 	=	StatusEnum.ATIVO;
-		this.criadoEm	=	LocalDate.now();		
-	}
-	
-	@Override
-	public void Alterar(Long id) {
-		this.status 	=	StatusEnum.ATIVO;
-		this.alteradoEm	 =	LocalDate.now();	
-		this.alteradoPor = id;
-	}
-
-	@Override
-	public void Inativar() {
-		this.status = StatusEnum.INATIVO;
 	}
 
 	@Override
@@ -118,9 +76,8 @@ public class PessoaEntity implements  BaseEnityInterface{
 	public PessoaEntity(Long id, String codigo,String nome,  String cpf, String nomeFantasia, String cnpj,
 			String telefone, String whatsApp, String email,Integer tipoPessoaNumero, Integer statusNumero,
 			LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
-		super();
+		super(codigo,statusNumero, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
-		this.codigo = codigo;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.nomeFantasia = nomeFantasia;
@@ -129,11 +86,6 @@ public class PessoaEntity implements  BaseEnityInterface{
 		this.whatsApp = whatsApp;
 		this.email = email;
 		this.tipoPessoa = TipoPessoaEnum.toEnum(tipoPessoaNumero);
-		this.status = StatusEnum.toEnum(statusNumero);
-		this.criadoEm = criadoEm;
-		this.criadoPor = criadoPor;
-		this.alteradoEm = alteradoEm;
-		this.alteradoPor = alteradoPor;
 	}
 	
 	
@@ -141,9 +93,8 @@ public class PessoaEntity implements  BaseEnityInterface{
 	public PessoaEntity(Long id, String codigo,String nome,  String cpf, String nomeFantasia, String cnpj,
 			String telefone, String whatsApp, String email,Integer tipoPessoaNumero,LocalDate criadoEm,
 			Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
-		super();
+		super(codigo, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
-		this.codigo = codigo;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.nomeFantasia = nomeFantasia;
@@ -152,11 +103,5 @@ public class PessoaEntity implements  BaseEnityInterface{
 		this.whatsApp = whatsApp;
 		this.email = email;
 		this.tipoPessoa = TipoPessoaEnum.toEnum(tipoPessoaNumero);
-		this.criadoEm = criadoEm;
-		this.criadoPor = criadoPor;
-		this.alteradoEm = alteradoEm;
-		this.alteradoPor = alteradoPor;
 	}
-
-
 }

@@ -11,4 +11,5 @@ public interface BaseEnityInterface {
 	public void Ativar();
 	public void Alterar(Long id);
 	public void Inativar();
+	public String gerarUUID();
 }

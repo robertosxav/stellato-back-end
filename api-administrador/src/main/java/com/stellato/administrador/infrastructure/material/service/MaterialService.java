@@ -72,10 +72,6 @@ public class MaterialService implements RepositoryInterface<MaterialEntity>{
 
 	@Override
 	public MaterialEntity findById(Long id) {
-		UUID uuid = UUID.randomUUID();
-        String uuidAsString = uuid.toString();
-
-        System.out.println("Your UUID is: " + uuidAsString);
         
 		Optional<MaterialModel> MaterialModelSave = materialRepository.findById(id);
 		
@@ -84,7 +80,6 @@ public class MaterialService implements RepositoryInterface<MaterialEntity>{
 		 }
 		MaterialEntity MaterialEntity	=	entityFactory.create(MaterialModelSave.get());
 		return MaterialEntity;
-
 	}
 
 	@Override
@@ -110,7 +105,6 @@ public class MaterialService implements RepositoryInterface<MaterialEntity>{
 		}
 	
 		return listaMaterialEntity;
-				//listaMaterialModel.stream().map(e->(entityFactory.create(e))).collect(Collectors.toList());
 	}
 	
 	@Override

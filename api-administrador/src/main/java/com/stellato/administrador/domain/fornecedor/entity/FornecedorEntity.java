@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.stellato.administrador.domain.shared.BaseEnityInterface;
+import com.stellato.administrador.domain.shared.BaseEntity;
 import com.stellato.administrador.domain.shared.enumerated.StatusEnum;
 import com.stellato.administrador.exceptions.StellatoException;
 
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class FornecedorEntity implements BaseEnityInterface{
+public class FornecedorEntity extends BaseEntity{
 
 	private Long id;
 	
@@ -22,17 +23,6 @@ public class FornecedorEntity implements BaseEnityInterface{
 	
 	private String cnpj;
 	
-	private StatusEnum status;
-
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate criadoEm;
-
-	private Long criadoPor;
-
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate alteradoEm;
-
-	private Long alteradoPor;
 	
 	@Override
 	public Long getId() {
@@ -42,17 +32,6 @@ public class FornecedorEntity implements BaseEnityInterface{
 	@Override
 	public void SetId(Long id) {
 		this.id = id;
-	}
-
-	@Override
-	public StatusEnum getStatus() {
-		return this.status;
-	}
-
-	@Override
-	public void setStatus(StatusEnum status) {
-		this.status = status;
-
 	}
 
 	@Override
@@ -66,49 +45,25 @@ public class FornecedorEntity implements BaseEnityInterface{
 		}
 		return true;
 	}
-
-	@Override
-	public void Ativar() {
-		this.status 	=	StatusEnum.ATIVO;
-		this.criadoEm	=	LocalDate.now();		
-	}
-	
-	@Override
-	public void Alterar(Long id) {
-		this.status 	=	StatusEnum.ATIVO;
-		this.alteradoEm	 =	LocalDate.now();	
-		this.alteradoPor = id;
-	}
-
-	@Override
-	public void Inativar() {
-		this.status = StatusEnum.INATIVO;
-	}
 	
 	public FornecedorEntity(Long id, String codigo, String razaoSocial, String cnpj, Integer statusNumero
 			, LocalDate criadoEm,Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
-		super();
+		super(codigo, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.codigo	= codigo;
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
-		this.status = StatusEnum.toEnum(statusNumero);
-		this.criadoEm = criadoEm;
-		this.criadoPor = criadoPor;
-		this.alteradoEm = alteradoEm;
-		this.alteradoPor = alteradoPor;
+
 	}
 	
 	public FornecedorEntity(Long id, String codigo, String razaoSocial, String cnpj, LocalDate criadoEm,
 			Long criadoPor, LocalDate alteradoEm, Long alteradoPor) {
-		super();
+		super(codigo, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.codigo = codigo;
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
-		this.criadoEm = criadoEm;
-		this.criadoPor = criadoPor;
-		this.alteradoEm = alteradoEm;
-		this.alteradoPor = alteradoPor;
+
 	}
+
 }

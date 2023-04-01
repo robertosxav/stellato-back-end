@@ -3,8 +3,6 @@ package com.stellato.administrador.infrastructure.material;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import com.stellato.administrador.infrastructure.shared.BaseModel;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.stellato.administrador.infrastructure.shared.BaseModel;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
