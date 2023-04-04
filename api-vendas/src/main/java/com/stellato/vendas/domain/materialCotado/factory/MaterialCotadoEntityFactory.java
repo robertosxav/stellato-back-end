@@ -12,7 +12,7 @@ public class MaterialCotadoEntityFactory {
 	
 	public MaterialCotadoEntity create (MaterialCotadoModel materialCotadoModel) {		
 		
-		MaterialCotadoEntity materialCotadoEntity = new MaterialCotadoEntity(materialCotadoModel.getId(), materialCotadoModel.getObservacao(),
+		MaterialCotadoEntity materialCotadoEntity = new MaterialCotadoEntity(materialCotadoModel.getId(), materialCotadoModel.getCodigo(),materialCotadoModel.getObservacao(),
 				materialCotadoModel.getValor(),materialCotadoModel.getIdFornecedor(),materialCotadoModel.getIdMaterial(),
 				materialCotadoModel.getStatus(), materialCotadoModel.getCriadoEm(),
 				materialCotadoModel.getCriadoPor(), materialCotadoModel.getAlteradoEm(),materialCotadoModel.getAlteradoPor());

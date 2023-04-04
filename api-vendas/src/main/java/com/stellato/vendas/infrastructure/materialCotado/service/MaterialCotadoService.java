@@ -84,7 +84,7 @@ public class MaterialCotadoService implements RepositoryInterface<MaterialCotado
 
 	@Override
 	public MaterialCotadoEntity findById(Long id) {
-		Optional<MaterialCotadoModel> materialCotadoModelSave = null;// materialCotadoRepository.findById(id);
+		Optional<MaterialCotadoModel> materialCotadoModelSave = materialCotadoRepository.findById(id);
 
 		if (!materialCotadoModelSave.isPresent()) {
 			throw new StellatoException("Não foi encontrado nenhum lead com o código: " + id);
@@ -97,7 +97,7 @@ public class MaterialCotadoService implements RepositoryInterface<MaterialCotado
 	@Override
 	public List<MaterialCotadoEntity> findAll() {
 
-		List<MaterialCotadoEntity> listaMaterialCotadoEntity = null;// materialCotadoRepository.listarTodos();
+		List<MaterialCotadoEntity> listaMaterialCotadoEntity =  materialCotadoRepository.listarTodos();
 
 		if (listaMaterialCotadoEntity.isEmpty()) {
 			throw new StellatoException("Não foi encontrado nenhum lead cadastrado");
@@ -109,7 +109,7 @@ public class MaterialCotadoService implements RepositoryInterface<MaterialCotado
 	@Override
 	public List<MaterialCotadoEntity> findAllActives() {
 
-		List<MaterialCotadoEntity> listaMaterialCotadoEntity = null;// materialCotadoRepository.listarAtivos();
+		List<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.listarAtivos();
 
 		if (listaMaterialCotadoEntity.isEmpty()) {
 			throw new StellatoException("Não foi encontrado nenhum lead ativo");
@@ -120,7 +120,7 @@ public class MaterialCotadoService implements RepositoryInterface<MaterialCotado
 
 	@Override
 	public Page<MaterialCotadoEntity> findAllActivesPage(Pageable pageable) {
-		Page<MaterialCotadoEntity> listaMaterialCotadoEntity = null;// materialCotadoRepository.listarAtivos(pageable);
+		Page<MaterialCotadoEntity> listaMaterialCotadoEntity =  materialCotadoRepository.listarAtivos(pageable);
 		return listaMaterialCotadoEntity;
 	}
 
@@ -131,5 +131,37 @@ public class MaterialCotadoService implements RepositoryInterface<MaterialCotado
 		materialCotadoRepository.save(materialCotadoModel);
 
 	}
+	
+	public List<MaterialCotadoEntity> findByFornecedor(Long idFornecedor) {
+		List<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.findByIdFornecedor(idFornecedor);
 
+		if (listaMaterialCotadoEntity.isEmpty()) {
+			throw new StellatoException("Não foi encontrado nenhum material cotado para o fornecedor: "+ idFornecedor);
+		}
+
+		return listaMaterialCotadoEntity;
+
+	}
+	
+	public Page<MaterialCotadoEntity> findByFornecedorPage(Long idFornecedor,Pageable pageable) {
+		Page<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.findByIdFornecedor(idFornecedor,pageable);
+		return listaMaterialCotadoEntity;
+	}
+
+	
+	public List<MaterialCotadoEntity> findByMaterial(Long idMaterial) {
+		List<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.findByIdMaterial(idMaterial);
+
+		if (listaMaterialCotadoEntity.isEmpty()) {
+			throw new StellatoException("Não foi encontrado nenhum material cotado para o material: "+ idMaterial);
+		}
+
+		return listaMaterialCotadoEntity;
+
+	}
+	
+	public Page<MaterialCotadoEntity> findByMaterialPage(Long idMaterial,Pageable pageable) {
+		Page<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.findByIdMaterial(idMaterial,pageable);
+		return listaMaterialCotadoEntity;
+	}
 }

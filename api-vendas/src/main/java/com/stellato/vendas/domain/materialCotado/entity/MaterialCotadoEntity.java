@@ -58,9 +58,9 @@ public class MaterialCotadoEntity extends BaseEntity {
 		return true;
 	}
 	
-	public MaterialCotadoEntity(Long id, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial,Integer statusNumero, 
+	public MaterialCotadoEntity(Long id, String codigo, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial,Integer statusNumero, 
 			LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
-		super();
+		super(codigo,statusNumero, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.observacao	= observacao;
 		this.valor = valor;
@@ -68,9 +68,9 @@ public class MaterialCotadoEntity extends BaseEntity {
 		this.idMaterial = idMaterial;
 	}
 
-	public MaterialCotadoEntity(Long id, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial,
+	public MaterialCotadoEntity(Long id, String codigo, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial,
 			LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
-		super();
+		super(codigo, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.observacao	= observacao;
 		this.valor = valor;

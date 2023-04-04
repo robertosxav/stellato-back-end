@@ -64,4 +64,24 @@ public class MaterialCotadoResource {
 		materialCotadoService.deleteMaterialCotado(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Registro deletado com sucesso");
 	}
+	
+	@GetMapping("/fornecedor/{idFornecedor}")
+	public List<MaterialCotadoEntity> findByIdFornecedor(@PathVariable Long idFornecedor) throws Exception {
+		return materialCotadoService.findByFornecedor(idFornecedor);
+	}
+	
+	@GetMapping("/fornecedor/paginado/{idFornecedor}")
+	public Page<MaterialCotadoEntity> findByIdFornecedorPage(@PathVariable Long idFornecedor, Pageable pageable) throws Exception {
+		return materialCotadoService.findByFornecedorPage(idFornecedor, pageable);
+	}
+	
+	@GetMapping("/material/{idMaterial}")
+	public List<MaterialCotadoEntity> findByIdMaterial(@PathVariable Long idMaterial) throws Exception {
+		return materialCotadoService.findByMaterial(idMaterial);
+	}
+	
+	@GetMapping("/material/paginado/{idMaterial}")
+	public Page<MaterialCotadoEntity> findByIdMaterialPage(@PathVariable Long idMaterial, Pageable pageable) throws Exception {
+		return materialCotadoService.findByMaterialPage(idMaterial, pageable);
+	}
 }
