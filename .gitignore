@@ -1,3 +1,43 @@
 /.metadata/
-/docker/Docker-Compose/
-/.gitignore
+
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+.docker/Docker-Compose
+api-administrador/src/main/**/target
+proto-common/**/target
+api-vendas/src/main/**/target
+
+proto-common/target
+proto-common/target/classes/META-INF/maven/com.stel.grpc/proto-common/pom.properties
+proto-common/target/proto-common-0.0.1-SNAPSHOT.jar
