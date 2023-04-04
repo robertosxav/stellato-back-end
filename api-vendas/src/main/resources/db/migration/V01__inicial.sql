@@ -97,7 +97,8 @@ CREATE TABLE "administrador"."tb_material"(
     "criado_em" DATE NULL,
     "criado_por" BIGINT NULL,
     "alterado_em" DATE NULL,
-    "alterado_por" BIGINT NULL
+    "alterado_por" BIGINT NULL,
+    "id_arquivo" BIGINT NULL
 );
 CREATE INDEX "tb_material_id_index" ON
     "administrador"."tb_material"("id");
@@ -125,7 +126,8 @@ CREATE TABLE "vendas"."tb_material_cotado"(
     "criado_em" DATE NULL,
     "criado_por" BIGINT NULL,
     "alterado_em" DATE NULL,
-    "alterado_por" BIGINT NULL
+    "alterado_por" BIGINT NULL,
+    "id_arquivo" BIGINT NULL
 );
 CREATE INDEX "tb_material_cotado_id_index" ON
     "vendas"."tb_material_cotado"("id");
@@ -225,6 +227,46 @@ CREATE INDEX "tb_orcamento_material_id_material_orcamento_index" ON
     "vendas"."tb_orcamento_material"("id");
 ALTER TABLE
     "vendas"."tb_orcamento_material" ADD PRIMARY KEY("id");
+
+CREATE TABLE "vendas"."tb_arquivo"(
+    "id" BIGINT NOT NULL,
+    "nome_arquivo" VARCHAR(50) NOT NULL,
+    "extensao" VARCHAR(10) NOT NULL,
+    "status" INTEGER NULL DEFAULT '1',
+    "arquivo" INTEGER NOT NULL
+);
+
+CREATE INDEX "tb_arquivo_id_index" ON
+    "vendas"."tb_arquivo"("id");
+ALTER TABLE
+    "vendas"."tb_arquivo" ADD PRIMARY KEY("id");
+    
+CREATE SEQUENCE "vendas"."tb_arquivo_seq"
+START 1
+INCREMENT 1
+MINVALUE 1
+OWNED BY "vendas"."tb_arquivo".id;
+
+
+CREATE TABLE "administrador"."tb_arquivo"(
+    "id" BIGINT NOT NULL,
+    "nome_arquivo" VARCHAR(50) NOT NULL,
+    "extensao" VARCHAR(10) NOT NULL,
+    "status" INTEGER NULL DEFAULT '1',
+    "arquivo" INTEGER NOT NULL
+);
+
+CREATE INDEX "tb_arquivo_id_index" ON
+    "administrador"."tb_arquivo"("id");
+ALTER TABLE
+    "administrador"."tb_arquivo" ADD PRIMARY KEY("id");
+    
+CREATE SEQUENCE "administrador"."tb_arquivo_seq"
+START 1
+INCREMENT 1
+MINVALUE 1
+OWNED BY "administrador"."tb_arquivo".id;    
+    
 COMMENT
 ON COLUMN
     "vendas"."tb_orcamento_material"."id_material_cotado" IS 'fk para tabela de material';
@@ -255,3 +297,9 @@ START 1
 INCREMENT 1
 MINVALUE 1
 OWNED BY "vendas"."tb_orcamento_material".id; 
+
+ALTER TABLE
+    "administrador"."tb_material" ADD CONSTRAINT "tb_material_id_arquivo_foreign" FOREIGN KEY("id_arquivo") REFERENCES "administrador"."tb_arquivo"("id");
+   
+ALTER TABLE
+    "vendas"."tb_material_cotado" ADD CONSTRAINT "tb_material_cotado_id_arquivo_foreign" FOREIGN KEY("id_arquivo") REFERENCES "vendas"."tb_arquivo"("id");

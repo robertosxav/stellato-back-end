@@ -9,9 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.stellato.vendas.infrastructure.lead.LeadModel;
 import com.stellato.vendas.infrastructure.shared.BaseModel;
 
 import lombok.AllArgsConstructor;
@@ -33,47 +36,63 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 	
+	@Column(name = "TITULO")
 	private String titulo;
 	
+	@Column(name = "OBSERVACAO")
 	private String observacao;
 	
+	@Column(name = "OBSERVACAO_INTERNA")
 	private String observacaoInterna;
 	
+	@Column(name = "VALIDADE_PROPOSTA")
 	private Integer validadeProposta;
 	
+	@Column(name = "PRAZO_ENTREGA")
 	private Integer prazoEntrega;
 	
+	@Column(name = "DISTANCIA")
 	private Integer distancia;
 	
+	@Column(name = "POTENCIA_MODULO")
 	private BigDecimal potenciaModulo;
 	
+	@Column(name = "PERCENTUAL_PERDA")
 	private Integer percentualPerda;
 	
+	@Column(name = "DETALHE_PROPOSTA")
 	private String detalheProposta;
 	
 	@Column(name = "MODALIDA_TARIFARIA")
 	private Integer modalidadeTarifaria;
 	
+	@Column(name = "TIPO_PADRAO")
 	private Integer tipoPadrao;
 	
 	@Column(name = "UC")
 	private String unidadeConsumidora;
 	
+	@Column(name = "CONSUMO_MEDIO")
 	private BigDecimal consumoMedio;
 	
+	@Column(name = "PRECO_KWH")
 	private BigDecimal precoKwh;
 	
+	@Column(name = "TIPO_INSTALACAO")
 	private Integer tipoInstalacao;
 	
+	@Column(name = "TIPO_ESTRUTURA")
 	private Integer tipoEstrutura;
 	
-	private Integer idLead;
+	@ManyToOne()
+	@JoinColumn(name = "ID_LEAD")
+	private LeadModel lead;
 	
 	public OrcamentoEletricoModel(Long id, String codigo, String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
 			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadrao,
 			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacao,
-			Integer tipoEstrutura, Integer idLead,Integer status, LocalDate criadoEm, Long criadoPor,
+			Integer tipoEstrutura, LeadModel lead,Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
 		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
@@ -93,14 +112,14 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 		this.precoKwh = precoKwh;
 		this.tipoInstalacao = tipoInstalacao;
 		this.tipoEstrutura = tipoEstrutura;
-		this.idLead = idLead;
+		this.lead = lead;
 	}
 	
 	public OrcamentoEletricoModel(String codigo, String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
 			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadrao,
 			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacao,
-			Integer tipoEstrutura, Integer idLead,Integer status, LocalDate criadoEm, Long criadoPor,
+			Integer tipoEstrutura, LeadModel lead,Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
 		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.titulo = titulo;
@@ -119,7 +138,7 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 		this.precoKwh = precoKwh;
 		this.tipoInstalacao = tipoInstalacao;
 		this.tipoEstrutura = tipoEstrutura;
-		this.idLead = idLead;
+		this.lead = lead;
 	}
 
 }

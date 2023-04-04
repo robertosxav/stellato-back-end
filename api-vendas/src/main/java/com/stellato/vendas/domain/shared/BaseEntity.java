@@ -49,7 +49,7 @@ public abstract class BaseEntity implements BaseEntityInterface{
 
 	@Override
 	public void Inativar() {
-		this.setStatus(StatusEnum.ATIVO);
+		this.setStatus(StatusEnum.INATIVO);
 	}
 	
 	@Override
