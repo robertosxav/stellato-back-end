@@ -41,3 +41,11 @@ api-vendas/src/main/**/target
 proto-common/target
 proto-common/target/classes/META-INF/maven/com.stel.grpc/proto-common/pom.properties
 proto-common/target/proto-common-0.0.1-SNAPSHOT.jar
+proto-common/.settings
+proto-common/.apt_generated
+proto-common/.classpath
+proto-common/.factorypath
+proto-common/.project
+proto-common/.settings
+proto-common/.springBeans
+proto-common/.sts4-cache
