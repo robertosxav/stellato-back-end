@@ -19,6 +19,9 @@ public interface OrcamentoEletricoRepository extends JpaRepository<OrcamentoElet
 			+ " from OrcamentoEletricoModel o")
 	public List<OrcamentoEletricoEntity> listarTodos();
 	
+	@Query("select o from OrcamentoEletricoModel o")
+	public List<OrcamentoEletricoModel> teste();
+	
 //	public List<OrcamentoEletricoEntity> listarAtivos();
 
 	//public Page<OrcamentoEletricoEntity> listarAtivos(Pageable pageable );

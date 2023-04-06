@@ -3,18 +3,23 @@ package com.stellato.vendas.infrastructure.orcamento;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.stellato.vendas.infrastructure.lead.LeadModel;
+import com.stellato.vendas.infrastructure.materialCotado.MaterialCotadoModel;
 import com.stellato.vendas.infrastructure.shared.BaseModel;
 
 import lombok.AllArgsConstructor;
@@ -87,6 +92,14 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 	@ManyToOne()
 	@JoinColumn(name = "ID_LEAD")
 	private LeadModel lead;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="TB_ORCAMENTO_MATERIAL", schema = "vendas",
+            joinColumns={@JoinColumn(name="ID_ORCAMENTO", 
+            referencedColumnName="id")},  
+            inverseJoinColumns={@JoinColumn(name="ID_MATERIAL_COTADO", 
+            referencedColumnName="id")})
+	private List<MaterialCotadoModel>listaMateriais;
 	
 	public OrcamentoEletricoModel(Long id, String codigo, String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,

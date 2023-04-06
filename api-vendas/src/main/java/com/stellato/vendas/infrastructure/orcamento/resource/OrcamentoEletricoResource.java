@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.vendas.domain.orcamento.entity.OrcamentoEletricoEntity;
+import com.stellato.vendas.infrastructure.orcamento.OrcamentoEletricoModel;
 import com.stellato.vendas.infrastructure.orcamento.service.OrcamentoEletricoService;
 
 import io.swagger.annotations.ApiOperation;
@@ -72,5 +73,11 @@ public class OrcamentoEletricoResource {
 	public ResponseEntity<String> deleteMaterialCotado(@PathVariable Long id) throws Exception {
 		orcamentoEletricoService.deleteOrcamentoEletrico(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Registro deletado com sucesso");
+	}
+	
+	@ApiOperation(value = "Serviço de teste")
+	@GetMapping("/teste")
+	public List<OrcamentoEletricoModel> teste() throws Exception {
+		return orcamentoEletricoService.teste();
 	}
 }

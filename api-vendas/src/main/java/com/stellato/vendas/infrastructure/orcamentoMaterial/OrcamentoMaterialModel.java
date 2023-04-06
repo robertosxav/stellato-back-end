@@ -37,11 +37,11 @@ public class OrcamentoMaterialModel extends BaseModel implements Serializable {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_MATERIAL_COTADO")
+	@JoinColumn(name = "ID_MATERIAL_COTADO",referencedColumnName = "ID")
 	private MaterialCotadoModel materialCotado;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_ORCAMENTO")
+	@JoinColumn(name = "ID_ORCAMENTO",referencedColumnName = "ID")
 	private OrcamentoEletricoModel orcamentoEletrico;
 	
 	@Column(name = "QUANTIDADE")

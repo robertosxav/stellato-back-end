@@ -104,5 +104,17 @@ public class OrcamentoEletricoService implements RepositoryInterface<OrcamentoEl
 	public void deleteOrcamentoEletrico(Long id) {
 	
 	}
+	
+
+	public List<OrcamentoEletricoModel> teste(){
+		
+		List<OrcamentoEletricoModel> listaOrcamentoEletricoModel = orcamentoEletricoRepository.teste();
+		
+		if (listaOrcamentoEletricoModel.isEmpty()) {
+			throw new StellatoException("erro teste"); 
+		}
+		
+		return listaOrcamentoEletricoModel;
+	}
 
 }
