@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.MappedSuperclass;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,7 @@ public class BaseModel {
 	
 	protected Integer status;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate criadoEm;
 	
 	private Long criadoPor;
