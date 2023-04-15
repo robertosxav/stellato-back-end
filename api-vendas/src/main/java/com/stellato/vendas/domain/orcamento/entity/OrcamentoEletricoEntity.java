@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class OrcamentoEletricoEntity extends BaseEntity {
 
@@ -94,8 +95,8 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 		this.precoKwh = precoKwh;
 		this.tipoInstalacao = TipoInstalacaoEnum.toEnum(tipoInstalacaoNumero);
 		this.tipoEstrutura = TipoEstruturaEnum.toEnum(tipoEstruturaNumero);
-		this.lead = lead;
 	}
+
 	
 	public OrcamentoEletricoEntity(Long id, String codigo, String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
@@ -120,15 +121,17 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 		this.precoKwh = precoKwh;
 		this.tipoInstalacao = TipoInstalacaoEnum.toEnum(tipoInstalacaoNumero);
 		this.tipoEstrutura = TipoEstruturaEnum.toEnum(tipoEstruturaNumero);
-		this.lead = lead;
+		this.lead	= lead;
+	
 	}
 	
 	public OrcamentoEletricoEntity(Long id, String codigo, String titulo, String observacao, String observacaoInterna,
-			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,Integer percentualPerda, 
-			String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadraoNumero,String unidadeConsumidora,BigDecimal consumoMedio,
-			BigDecimal precoKwh, Integer tipoInstalacaoNumero,Integer tipoEstruturaNumero,Integer statusNumero, LocalDate criadoEm, 
-			Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
-		super(codigo, criadoEm, criadoPor, alteradoEm, alteradoPor);
+			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
+			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadraoNumero,
+			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacaoNumero,
+			Integer tipoEstruturaNumero,Long idLead, String nomeLead,String telefoneLead, String emailLead,String whatsAppLead,
+			Integer statusNumero, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
+		super(codigo, statusNumero, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.titulo = titulo;
 		this.observacao = observacao;
@@ -146,6 +149,8 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 		this.precoKwh = precoKwh;
 		this.tipoInstalacao = TipoInstalacaoEnum.toEnum(tipoInstalacaoNumero);
 		this.tipoEstrutura = TipoEstruturaEnum.toEnum(tipoEstruturaNumero);
+		this.lead	= new LeadEntity(idLead, nomeLead, telefoneLead,emailLead,whatsAppLead);
+	
 	}
-
+	
 }

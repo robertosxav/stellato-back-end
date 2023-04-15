@@ -69,12 +69,10 @@ public class OrcamentoEletricoService implements RepositoryInterface<OrcamentoEl
 	
 	@Override
 	public OrcamentoEletricoEntity findById(Long id) {
-		Optional<OrcamentoEletricoModel> orcamentoEletricoModelSave = orcamentoEletricoRepository.findById(id);
-		
-		 if (!orcamentoEletricoModelSave.isPresent()) {
-			 throw new StellatoException("Não foi encontrado nenhum orcamento com o código: " + id);
-		 }
-		OrcamentoEletricoEntity orcamentoEletricoEntity	=	entityFactory.create(orcamentoEletricoModelSave.get());
+		OrcamentoEletricoModel orcamentoEletricoModelSave = orcamentoEletricoRepository
+				.findById(id).orElseThrow(()->new StellatoException("Não foi encontrado nenhum orcamento com o código: " + id));
+		 
+		OrcamentoEletricoEntity orcamentoEletricoEntity	=	entityFactory.create(orcamentoEletricoModelSave);
 		return orcamentoEletricoEntity;
 	}
 

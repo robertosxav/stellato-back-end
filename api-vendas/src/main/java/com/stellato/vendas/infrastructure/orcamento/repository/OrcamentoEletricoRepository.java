@@ -15,8 +15,10 @@ public interface OrcamentoEletricoRepository extends JpaRepository<OrcamentoElet
 	@Query("select new com.stellato.vendas.domain.orcamento.entity.OrcamentoEletricoEntity(o.id,o.codigo,o.titulo,"
 			+ "o.observacao,o.observacaoInterna,o.validadeProposta,o.prazoEntrega,o.distancia,o.potenciaModulo,"
 			+ "o.percentualPerda,o.detalheProposta,o.modalidadeTarifaria,o.tipoPadrao,o.unidadeConsumidora,o.consumoMedio,"
-			+ "o.precoKwh,o.tipoInstalacao,o.tipoEstrutura,o.status,o.criadoEm,o.criadoPor,o.alteradoEm,o.alteradoPor)"
+			+ "o.precoKwh,o.tipoInstalacao,o.tipoEstrutura,o.lead.id,o.lead.nome,o.lead.telefone,o.lead.email,o.lead.whatsApp,"
+			+ "o.status,o.criadoEm,o.criadoPor,o.alteradoEm,o.alteradoPor)"
 			+ " from OrcamentoEletricoModel o")
+	//("select o from OrcamentoEletricoModel o")
 	public List<OrcamentoEletricoEntity> listarTodos();
 	
 	@Query("select o from OrcamentoEletricoModel o")

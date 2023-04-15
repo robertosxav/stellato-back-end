@@ -11,7 +11,7 @@ public class LeadEntityFactory {
 	public LeadEntity create (LeadModel leadModel) {		
 		
 		LeadEntity leadEntity = new LeadEntity(leadModel.getId(),leadModel.getCodigo(),leadModel.getNome(),
-				leadModel.getTelefone(),leadModel.getWhatsapp(), leadModel.getEmail(),
+				leadModel.getTelefone(),leadModel.getWhatsApp(), leadModel.getEmail(),
 				leadModel.getCidade(),leadModel.getOrigem(),leadModel.getTipoLead(),
 				leadModel.getIdPessoa(),leadModel.getStatus(), leadModel.getCriadoEm(),
 				leadModel.getCriadoPor(), leadModel.getAlteradoEm(),leadModel.getAlteradoPor());

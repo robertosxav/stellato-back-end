@@ -35,7 +35,8 @@ public class LeadModel extends BaseModel implements Serializable {
 	
 	private String telefone;
 	
-	private String whatsapp;
+	@Column(name = "WHATSAPP")
+	private String whatsApp;
 	
 	private String email;
 	
@@ -47,14 +48,14 @@ public class LeadModel extends BaseModel implements Serializable {
 	
 	private Long idPessoa;
 
-	public LeadModel(Long id, String codigo, String nome, String telefone, String whatsapp, String email, String cidade,
+	public LeadModel(Long id, String codigo, String nome, String telefone, String whatsApp, String email, String cidade,
 			Integer origem, Integer tipoLead, Long idPessoa, Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
 		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
-		this.whatsapp = whatsapp;
+		this.whatsApp = whatsApp;
 		this.email = email;
 		this.cidade = cidade;
 		this.origem = origem;
@@ -62,13 +63,13 @@ public class LeadModel extends BaseModel implements Serializable {
 		this.idPessoa = idPessoa;
 	}
 	
-	public LeadModel(String nome, String codigo,String telefone, String whatsapp, String email, String cidade,
+	public LeadModel(String nome, String codigo,String telefone, String whatsApp, String email, String cidade,
 			Integer origem, Integer tipoLead, Long idPessoa, Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
 		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.nome = nome;
 		this.telefone = telefone;
-		this.whatsapp = whatsapp;
+		this.whatsApp = whatsApp;
 		this.email = email;
 		this.cidade = cidade;
 		this.origem = origem;

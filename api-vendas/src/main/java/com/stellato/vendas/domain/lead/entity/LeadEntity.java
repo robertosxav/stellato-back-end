@@ -10,10 +10,13 @@ import com.stellato.vendas.domain.shared.BaseEntity;
 import com.stellato.vendas.domain.shared.enumerated.StatusEnum;
 import com.stellato.vendas.exceptions.StellatoException;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class LeadEntity extends BaseEntity {
 
@@ -96,5 +99,12 @@ public class LeadEntity extends BaseEntity {
 		this.tipoLead = TipoLeadEnum.toEnum(tipoLeadNumero);
 		this.idPessoa = idPessoa;
 	}
-
+	public LeadEntity(Long id,String nome, String telefone,String email, String whatsApp) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.email = email;
+		this.whatsApp = whatsApp;
+	}
 }
