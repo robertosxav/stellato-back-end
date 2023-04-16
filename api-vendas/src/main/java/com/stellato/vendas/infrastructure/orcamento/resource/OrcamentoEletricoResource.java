@@ -68,6 +68,18 @@ public class OrcamentoEletricoResource {
 		return orcamentoEletricoService.findAllActivesPage(pageable);
 	}
 	
+	@ApiOperation(value = "Buscar orçamento através do Lead")
+	@GetMapping("/lead/{idLead}")
+	public List<OrcamentoEletricoEntity> findByLead(@PathVariable Long idLead) throws Exception {
+		return orcamentoEletricoService.findByLead(idLead);
+	}
+	
+	@ApiOperation(value = "Buscar orçamento através do Lead")
+	@GetMapping("/lead/paginado/{idLead}")
+	public Page<OrcamentoEletricoEntity> findByLeadPaginado(@PathVariable Long idLead, Pageable pageable) throws Exception {
+		return orcamentoEletricoService.findByLead(idLead,pageable);
+	}
+	
 	@ApiOperation(value = "Deletar Orçamentos Elétrico")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteMaterialCotado(@PathVariable Long id) throws Exception {

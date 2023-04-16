@@ -90,17 +90,34 @@ public class OrcamentoEletricoService implements RepositoryInterface<OrcamentoEl
 	
 	@Override
 	public List<OrcamentoEletricoEntity> findAllActives(){
-		return null;
+		List<OrcamentoEletricoEntity> listaOrcamentoEletricoEntity = orcamentoEletricoRepository.listarAtivos();
+		
+		if (listaOrcamentoEletricoEntity.isEmpty()) {
+			throw new StellatoException("Não foi encontrado nenhum orçamento ativo"); 
+		}
+		
+		return listaOrcamentoEletricoEntity;
 	}
 	
 	@Override
 	public Page<OrcamentoEletricoEntity> findAllActivesPage(Pageable pageable) {
-		return null;
+		return orcamentoEletricoRepository.listarAtivos(pageable);
 	}
 	
+
+	public List<OrcamentoEletricoEntity> findByLead(Long idLead) {
+		return orcamentoEletricoRepository.listarPorLead(idLead);
+	}
+	
+	public Page<OrcamentoEletricoEntity> findByLead(Long idLead, Pageable pageable) {
+		return orcamentoEletricoRepository.listarPorLead(idLead,pageable);
+	}
 	
 	public void deleteOrcamentoEletrico(Long id) {
-	
+		OrcamentoEletricoEntity orcamentoEletricoEntityBanco = findById(id);
+		orcamentoEletricoEntityBanco.Inativar();	
+		OrcamentoEletricoModel orcamentoEletricoModel	= factory.create(orcamentoEletricoEntityBanco);
+		orcamentoEletricoRepository.save(orcamentoEletricoModel);
 	}
 	
 

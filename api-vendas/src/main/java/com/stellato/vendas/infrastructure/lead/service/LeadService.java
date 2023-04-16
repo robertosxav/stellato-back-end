@@ -105,7 +105,6 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 		}
 		
 		return listaLeadEntity;
-				//listaLeaModel.stream().map(e->(entityFactory.create(e))).collect(Collectors.toList());
 		
 	}
 	
@@ -119,7 +118,6 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 		}
 	
 		return listaLeadEntity;
-				//listaLeadModel.stream().map(e->(entityFactory.create(e))).collect(Collectors.toList());
 	}
 	
 	@Override
