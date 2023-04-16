@@ -19,7 +19,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.stellato.vendas.infrastructure.lead.LeadModel;
-import com.stellato.vendas.infrastructure.materialCotado.MaterialCotadoModel;
+import com.stellato.vendas.infrastructure.materialCotado.model.MaterialCotadoModel;
 import com.stellato.vendas.infrastructure.shared.BaseModel;
 
 import lombok.AllArgsConstructor;

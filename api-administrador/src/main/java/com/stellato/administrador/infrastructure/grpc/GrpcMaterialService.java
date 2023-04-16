@@ -18,13 +18,15 @@ public class GrpcMaterialService extends MaterialServiceGrpc.MaterialServiceImpl
 	
 	@Override
 	public void verificaMaterial(MaterialRequest request, StreamObserver<MaterialResponse> responseObserver) {
-		int resposta =0;
 		MaterialEntity materialEntity= materialService.findById(Long.valueOf(request.getIdenMaterial()));
 		if(materialEntity !=null) {
-			resposta=1;
+			MaterialResponse response = MaterialResponse.newBuilder()
+					.setResposta(materialEntity.getId().intValue())
+					.setDescricaoMaterial(materialEntity.getDescricao())
+					.build();
+			responseObserver.onNext(response);
+			responseObserver.onCompleted();
 		}
-		MaterialResponse response = MaterialResponse.newBuilder().setResposta(resposta).build();
-		responseObserver.onNext(response);
-		responseObserver.onCompleted();
+		
 	}
 }

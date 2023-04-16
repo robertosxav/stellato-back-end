@@ -18,13 +18,16 @@ public class GrpcFornecedorService extends FornecedorServiceGrpc.FornecedorServi
 	
 	@Override
 	public void verificaFornecedor(FornecedorRequest request, StreamObserver<FornecedorResponse> responseObserver) {
-		int resposta =0;
 		FornecedorEntity fornecedorEntity= fornecedorService.findById(Long.valueOf(request.getIdenFornecedor()));
 		if(fornecedorEntity !=null) {
-			resposta=1;
+			FornecedorResponse response = FornecedorResponse.newBuilder()
+					.setResposta(fornecedorEntity.getId().intValue())
+					.setRazaoSocial(fornecedorEntity.getRazaoSocial())
+					.setCnpj(fornecedorEntity.getCnpj())
+					.build();
+			responseObserver.onNext(response);
+			responseObserver.onCompleted();
 		}
-		FornecedorResponse response = FornecedorResponse.newBuilder().setResposta(resposta).build();
-		responseObserver.onNext(response);
-		responseObserver.onCompleted();
+		
 	}
 }

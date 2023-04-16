@@ -14,8 +14,8 @@ import com.stellato.vendas.domain.materialCotado.entity.MaterialCotadoEntity;
 import com.stellato.vendas.domain.materialCotado.factory.MaterialCotadoEntityFactory;
 import com.stellato.vendas.domain.shared.repository.RepositoryInterface;
 import com.stellato.vendas.exceptions.StellatoException;
-import com.stellato.vendas.infrastructure.materialCotado.MaterialCotadoModel;
 import com.stellato.vendas.infrastructure.materialCotado.factory.MaterialCotadoFactory;
+import com.stellato.vendas.infrastructure.materialCotado.model.MaterialCotadoModel;
 import com.stellato.vendas.infrastructure.materialCotado.repository.MaterialCotadoRepository;
 import com.stellato.vendas.infrastructure.materialCotado.service.grpc.GrpcMaterialRequestImpl;
 
@@ -37,23 +37,19 @@ public class MaterialCotadoService implements RepositoryInterface<MaterialCotado
 	@Override
 	@Transactional
 	public MaterialCotadoEntity create(MaterialCotadoEntity materialCotadoEntityFront) {
-		boolean retornoMaterial = materialRequestImpl.verificaMaterial(materialCotadoEntityFront);
-		boolean retornoFornecedor = materialRequestImpl.verificaFornecedor(materialCotadoEntityFront);
+		materialCotadoEntityFront = materialRequestImpl.verificaMaterial(materialCotadoEntityFront);
+		materialCotadoEntityFront = materialRequestImpl.verificaFornecedor(materialCotadoEntityFront);
 
-		if (retornoMaterial && retornoFornecedor) {
+		if (materialCotadoEntityFront.validar()) {
+			materialCotadoEntityFront.Ativar();
+			MaterialCotadoModel materialCotadoModel = factory.create(materialCotadoEntityFront);
 
-			if (materialCotadoEntityFront.validar()) {
-				materialCotadoEntityFront.Ativar();
-				MaterialCotadoModel materialCotadoModel = factory.create(materialCotadoEntityFront);
+			materialCotadoRepository.save(materialCotadoModel);
 
-				materialCotadoRepository.save(materialCotadoModel);
+			materialCotadoEntityFront.SetId(materialCotadoModel.getId());
 
-				materialCotadoEntityFront.SetId(materialCotadoModel.getId());
-
-				return materialCotadoEntityFront;
-			}
 		}
-		return null;
+		return materialCotadoEntityFront;
 	}
 
 	@Override
@@ -97,7 +93,7 @@ public class MaterialCotadoService implements RepositoryInterface<MaterialCotado
 	@Override
 	public List<MaterialCotadoEntity> findAll() {
 
-		List<MaterialCotadoEntity> listaMaterialCotadoEntity =  materialCotadoRepository.listarTodos();
+		List<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.listarTodos();
 
 		if (listaMaterialCotadoEntity.isEmpty()) {
 			throw new StellatoException("Não foi encontrado nenhum lead cadastrado");
@@ -120,7 +116,7 @@ public class MaterialCotadoService implements RepositoryInterface<MaterialCotado
 
 	@Override
 	public Page<MaterialCotadoEntity> findAllActivesPage(Pageable pageable) {
-		Page<MaterialCotadoEntity> listaMaterialCotadoEntity =  materialCotadoRepository.listarAtivos(pageable);
+		Page<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.listarAtivos(pageable);
 		return listaMaterialCotadoEntity;
 	}
 
@@ -131,37 +127,39 @@ public class MaterialCotadoService implements RepositoryInterface<MaterialCotado
 		materialCotadoRepository.save(materialCotadoModel);
 
 	}
-	
+
 	public List<MaterialCotadoEntity> findByFornecedor(Long idFornecedor) {
-		List<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.findByIdFornecedor(idFornecedor);
+		List<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository
+				.findByIdFornecedor(idFornecedor);
 
 		if (listaMaterialCotadoEntity.isEmpty()) {
-			throw new StellatoException("Não foi encontrado nenhum material cotado para o fornecedor: "+ idFornecedor);
+			throw new StellatoException("Não foi encontrado nenhum material cotado para o fornecedor: " + idFornecedor);
 		}
 
 		return listaMaterialCotadoEntity;
 
 	}
-	
-	public Page<MaterialCotadoEntity> findByFornecedorPage(Long idFornecedor,Pageable pageable) {
-		Page<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.findByIdFornecedor(idFornecedor,pageable);
+
+	public Page<MaterialCotadoEntity> findByFornecedorPage(Long idFornecedor, Pageable pageable) {
+		Page<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.findByIdFornecedor(idFornecedor,
+				pageable);
 		return listaMaterialCotadoEntity;
 	}
 
-	
 	public List<MaterialCotadoEntity> findByMaterial(Long idMaterial) {
 		List<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.findByIdMaterial(idMaterial);
 
 		if (listaMaterialCotadoEntity.isEmpty()) {
-			throw new StellatoException("Não foi encontrado nenhum material cotado para o material: "+ idMaterial);
+			throw new StellatoException("Não foi encontrado nenhum material cotado para o material: " + idMaterial);
 		}
 
 		return listaMaterialCotadoEntity;
 
 	}
-	
-	public Page<MaterialCotadoEntity> findByMaterialPage(Long idMaterial,Pageable pageable) {
-		Page<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.findByIdMaterial(idMaterial,pageable);
+
+	public Page<MaterialCotadoEntity> findByMaterialPage(Long idMaterial, Pageable pageable) {
+		Page<MaterialCotadoEntity> listaMaterialCotadoEntity = materialCotadoRepository.findByIdMaterial(idMaterial,
+				pageable);
 		return listaMaterialCotadoEntity;
 	}
 }

@@ -1,4 +1,4 @@
-package com.stellato.vendas.infrastructure.materialCotado;
+package com.stellato.vendas.infrastructure.materialCotado.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -42,25 +42,40 @@ public class MaterialCotadoModel extends BaseModel implements Serializable {
 	@Column(name= "ID_FORNECEDOR")
 	private Long idFornecedor;
 	
+	@Column(name= "RAZAO_SOCIAL")
+	private String razaoSocial;
+	
+	@Column(name= "CNPJ")
+	private String cnpj;
+	
 	@Column(name= "ID_MATERIAL")
 	private Long idMaterial;
 	
-	public MaterialCotadoModel(Long id, String codigo, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial, Integer status, LocalDate criadoEm, Long criadoPor,
-			LocalDate alteradoEm, Long alteradoPor) {
+	@Column(name= "DESCRICAO_MATERIAL")
+	private String descricaoMaterial;
+	
+	public MaterialCotadoModel(Long id, String codigo, String observacao, BigDecimal valor, Long idFornecedor, String razaoSocial,String cnpj, Long idMaterial, String descricaoMaterial,
+			Integer status, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.observacao = observacao;
 		this.valor = valor;
 		this.idFornecedor = idFornecedor;
+		this.razaoSocial = razaoSocial;
+		this.cnpj = cnpj;
 		this.idMaterial = idMaterial;
+		this.descricaoMaterial = descricaoMaterial;
 	}
 	
-	public MaterialCotadoModel(String codigo, String observacao, BigDecimal valor, Long idFornecedor, Long idMaterial, Integer status, LocalDate criadoEm, Long criadoPor,
-			LocalDate alteradoEm, Long alteradoPor) {
+	public MaterialCotadoModel(String codigo, String observacao, BigDecimal valor, Long idFornecedor, String razaoSocial,String cnpj, Long idMaterial, String descricaoMaterial,
+			Integer status, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.observacao = observacao;
 		this.valor = valor;
 		this.idFornecedor = idFornecedor;
+		this.razaoSocial = razaoSocial;
+		this.cnpj = cnpj;
 		this.idMaterial = idMaterial;
+		this.descricaoMaterial = descricaoMaterial;
 	}
 }

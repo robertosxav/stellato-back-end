@@ -14,12 +14,14 @@ message FornecedorRequest {
 }
 
 message FornecedorResponse {
-  int32 resposta = 1;
+  int32 resposta =1;
+  string razao_social = 2;
+  string cnpj = 3;
 }
 
 enum FornecedorErrorCode {
   INVALID_FORNECEDOR_ID_VALUE = 0;
-  FORNEECDOR_ID_CANNOT_BE_NULL = 1;
+  FORNECEDOR_ID_CANNOT_BE_NULL = 1;
 }
 
 message FornecedorExceptionResponse {

@@ -15,6 +15,7 @@ message MaterialRequest {
 
 message MaterialResponse {
   int32 resposta = 1;
+  string descricao_material = 2;
 }
 
 enum MaterialErrorCode {

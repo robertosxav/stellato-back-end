@@ -24,32 +24,31 @@ public class GrpcMaterialRequestImpl implements GrpcMaterialRequest{
 	private FornecedorServiceBlockingStub fornecedorStub;
 
 	@Override
-	public boolean verificaMaterial(MaterialCotadoEntity materialCotadoEntity) {
-		boolean isExisteMaterial = false;
+	public MaterialCotadoEntity verificaMaterial(MaterialCotadoEntity materialCotadoEntity) {
 		MaterialRequest materialRequest = MaterialRequest
 				.newBuilder().setIdenMaterial(materialCotadoEntity.getIdMaterial().intValue()).build();
 
 		try {
 			MaterialResponse materialResponse = materialStub.verificaMaterial(materialRequest);
-			isExisteMaterial = materialResponse.getResposta() > 0;
+			materialCotadoEntity.setDescricaoMaterial(materialResponse.getDescricaoMaterial());
 		} catch (StatusRuntimeException e) {
 			 throw new StellatoException("Material não encontrado");
 		}
-		return isExisteMaterial;
+		return materialCotadoEntity;
 	}
 
 	@Override
-	public boolean verificaFornecedor(MaterialCotadoEntity materialCotadoEntity) {
-		boolean isExisteFornecedor = false;
+	public MaterialCotadoEntity verificaFornecedor(MaterialCotadoEntity materialCotadoEntity) {
 		FornecedorRequest fornecedorRequest = FornecedorRequest
 				.newBuilder().setIdenFornecedor(materialCotadoEntity.getIdFornecedor().intValue()).build();
 
 		try {
 			FornecedorResponse fornecedorResponse = fornecedorStub.verificaFornecedor(fornecedorRequest);
-			isExisteFornecedor = fornecedorResponse.getResposta() > 0;
+			materialCotadoEntity.setRazaoSocial(fornecedorResponse.getRazaoSocial());
+			materialCotadoEntity.setCnpj(fornecedorResponse.getCnpj());
 		} catch (StatusRuntimeException e) {
 			 throw new StellatoException("Fornecedor não encontrado");
 		}
-		return isExisteFornecedor;
+		return materialCotadoEntity;
 	}
 }
