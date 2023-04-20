@@ -105,7 +105,7 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
 			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadrao,
 			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacao,
-			Integer tipoEstrutura, LeadModel lead,Integer status, LocalDate criadoEm, Long criadoPor,
+			Integer tipoEstrutura, LeadModel lead, /*List<MaterialCotadoModel> listaMateriais,*/ Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
 		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
@@ -126,13 +126,15 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 		this.tipoInstalacao = tipoInstalacao;
 		this.tipoEstrutura = tipoEstrutura;
 		this.lead = lead;
+		this.listaMateriais = listaMateriais;
+
 	}
 	
 	public OrcamentoEletricoModel(String codigo, String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
 			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadrao,
 			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacao,
-			Integer tipoEstrutura, LeadModel lead,Integer status, LocalDate criadoEm, Long criadoPor,
+			Integer tipoEstrutura, LeadModel lead/*,List<MaterialCotadoModel> listaMateriais*/,Integer status, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
 		super(codigo, status, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.titulo = titulo;
@@ -152,6 +154,7 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 		this.tipoInstalacao = tipoInstalacao;
 		this.tipoEstrutura = tipoEstrutura;
 		this.lead = lead;
+		//this.listaMateriais = listaMateriais;
 	}
 
 }

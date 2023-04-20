@@ -58,21 +58,28 @@ public class MaterialCotadoService implements RepositoryInterface<MaterialCotado
 
 		materialCotadoEntityFront.Alterar(null);
 
-		Optional<MaterialCotadoModel> materialCotadoModelBanco = materialCotadoRepository.findById(id);
-
+		MaterialCotadoModel materialCotadoModelBanco = materialCotadoRepository
+				.findById(id).orElseThrow(()->new StellatoException("Não foi encontrado nenhum material cotado com o código: " + id));
+				
 		materialCotadoEntityFront.SetId(id);
+		
+		materialCotadoEntityFront = materialRequestImpl.verificaMaterial(materialCotadoEntityFront);
+		materialCotadoEntityFront = materialRequestImpl.verificaFornecedor(materialCotadoEntityFront);
 
-		materialCotadoModelBanco.get().setId(materialCotadoEntityFront.getId());
-		materialCotadoModelBanco.get().setObservacao(materialCotadoEntityFront.getObservacao());
-		materialCotadoModelBanco.get().setValor(materialCotadoEntityFront.getValor());
-		materialCotadoModelBanco.get().setIdFornecedor(materialCotadoEntityFront.getIdFornecedor());
-		materialCotadoModelBanco.get().setIdMaterial(materialCotadoEntityFront.getIdMaterial());
-		materialCotadoModelBanco.get().setStatus(materialCotadoEntityFront.getStatus().getNumero());
-		materialCotadoModelBanco.get().setCriadoEm(materialCotadoEntityFront.getCriadoEm());
-		materialCotadoModelBanco.get().setCriadoPor(materialCotadoEntityFront.getCriadoPor());
-		materialCotadoModelBanco.get().setAlteradoEm(materialCotadoEntityFront.getAlteradoEm());
-		materialCotadoModelBanco.get().setAlteradoPor(materialCotadoEntityFront.getAlteradoPor());
-		materialCotadoRepository.save(materialCotadoModelBanco.get());
+		materialCotadoModelBanco.setId(materialCotadoEntityFront.getId());
+		materialCotadoModelBanco.setObservacao(materialCotadoEntityFront.getObservacao());
+		materialCotadoModelBanco.setValor(materialCotadoEntityFront.getValor());
+		materialCotadoModelBanco.setIdFornecedor(materialCotadoEntityFront.getIdFornecedor());
+		materialCotadoModelBanco.setRazaoSocial(materialCotadoEntityFront.getRazaoSocial());
+		materialCotadoModelBanco.setCnpj(materialCotadoEntityFront.getCnpj());
+		materialCotadoModelBanco.setIdMaterial(materialCotadoEntityFront.getIdMaterial());
+		materialCotadoModelBanco.setDescricaoMaterial(materialCotadoEntityFront.getDescricaoMaterial());
+		materialCotadoModelBanco.setStatus(materialCotadoEntityFront.getStatus().getNumero());
+		materialCotadoModelBanco.setCriadoEm(materialCotadoEntityFront.getCriadoEm());
+		materialCotadoModelBanco.setCriadoPor(materialCotadoEntityFront.getCriadoPor());
+		materialCotadoModelBanco.setAlteradoEm(materialCotadoEntityFront.getAlteradoEm());
+		materialCotadoModelBanco.setAlteradoPor(materialCotadoEntityFront.getAlteradoPor());
+		materialCotadoRepository.save(materialCotadoModelBanco);
 
 		return materialCotadoEntityFront;
 
