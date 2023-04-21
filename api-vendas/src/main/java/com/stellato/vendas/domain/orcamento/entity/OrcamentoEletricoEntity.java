@@ -2,14 +2,17 @@ package com.stellato.vendas.domain.orcamento.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.stellato.vendas.domain.lead.entity.LeadEntity;
 import com.stellato.vendas.domain.orcamento.entity.enumerated.TipoEstruturaEnum;
 import com.stellato.vendas.domain.orcamento.entity.enumerated.TipoInstalacaoEnum;
 import com.stellato.vendas.domain.orcamento.entity.enumerated.TipoPadraoEnum;
+import com.stellato.vendas.domain.orcamentoMaterial.entity.OrcamentoMaterialEntity;
 import com.stellato.vendas.domain.shared.BaseEntity;
 import com.stellato.vendas.infrastructure.materialCotado.model.MaterialCotadoModel;
+import com.stellato.vendas.infrastructure.orcamentoMaterial.OrcamentoMaterialModel;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -57,7 +60,7 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 	@Setter
 	private LeadEntity lead;
 	
-	private List<MaterialCotadoModel>listaMateriais;
+	private List<OrcamentoMaterialEntity>listaMateriais = new ArrayList<OrcamentoMaterialEntity>();
 	
 	@Override
 	public Long getId() {
@@ -75,11 +78,15 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 		return true;
 	}
 	
+	public void addMaterial(OrcamentoMaterialEntity orcamentoMaterialEntity) {
+		listaMateriais.add(orcamentoMaterialEntity);
+	}
+	
 	public OrcamentoEletricoEntity(Long id, String codigo,String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
 			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadraoNumero,
 			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacaoNumero,
-			Integer tipoEstruturaNumero, LeadEntity lead/*, List<MaterialCotadoModel>listaMateriais*/, Integer statusNumero, LocalDate criadoEm, Long criadoPor,
+			Integer tipoEstruturaNumero, LeadEntity lead, Integer statusNumero, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
 		super(codigo,statusNumero, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
@@ -99,6 +106,8 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 		this.precoKwh = precoKwh;
 		this.tipoInstalacao = TipoInstalacaoEnum.toEnum(tipoInstalacaoNumero);
 		this.tipoEstrutura = TipoEstruturaEnum.toEnum(tipoEstruturaNumero);
+		this.lead = lead;
+
 	}
 
 	

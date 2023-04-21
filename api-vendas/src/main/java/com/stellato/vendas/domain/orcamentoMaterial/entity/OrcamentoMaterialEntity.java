@@ -1,6 +1,7 @@
 package com.stellato.vendas.domain.orcamentoMaterial.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import com.stellato.vendas.domain.materialCotado.entity.MaterialCotadoEntity;
 import com.stellato.vendas.domain.orcamento.entity.OrcamentoEletricoEntity;
@@ -32,4 +33,17 @@ public class OrcamentoMaterialEntity extends BaseEntity {
 	public Boolean validar() {
 		return true;
 	}
+
+	public OrcamentoMaterialEntity(String codigo, Integer statusNumero, LocalDate criadoEm, Long criadoPor,
+			LocalDate alteradoEm, Long alteradoPor, Long id, MaterialCotadoEntity materialCotado,
+			OrcamentoEletricoEntity orcamentoEletrico, Long quantidade, BigDecimal valor) {
+		super(codigo, statusNumero, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		this.id = id;
+		this.materialCotado = materialCotado;
+		this.orcamentoEletrico = orcamentoEletrico;
+		this.quantidade = quantidade;
+		this.valor = valor;
+	}
+	
+	
 }

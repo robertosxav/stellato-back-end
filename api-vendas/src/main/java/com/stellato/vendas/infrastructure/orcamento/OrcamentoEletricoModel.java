@@ -20,6 +20,7 @@ import javax.persistence.Table;
 
 import com.stellato.vendas.infrastructure.lead.LeadModel;
 import com.stellato.vendas.infrastructure.materialCotado.model.MaterialCotadoModel;
+import com.stellato.vendas.infrastructure.orcamentoMaterial.OrcamentoMaterialModel;
 import com.stellato.vendas.infrastructure.shared.BaseModel;
 
 import lombok.AllArgsConstructor;
@@ -93,13 +94,8 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 	@JoinColumn(name = "ID_LEAD")
 	private LeadModel lead;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="TB_ORCAMENTO_MATERIAL", schema = "vendas",
-            joinColumns={@JoinColumn(name="ID_ORCAMENTO", 
-            referencedColumnName="id")},  
-            inverseJoinColumns={@JoinColumn(name="ID_MATERIAL_COTADO", 
-            referencedColumnName="id")})
-	private List<MaterialCotadoModel>listaMateriais;
+	@OneToMany(cascade=CascadeType.ALL,mappedBy = "orcamentoEletrico")
+	private List<OrcamentoMaterialModel>listaMateriais;
 	
 	public OrcamentoEletricoModel(Long id, String codigo, String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
@@ -126,7 +122,7 @@ public class OrcamentoEletricoModel extends BaseModel implements Serializable {
 		this.tipoInstalacao = tipoInstalacao;
 		this.tipoEstrutura = tipoEstrutura;
 		this.lead = lead;
-		this.listaMateriais = listaMateriais;
+		//this.listaMateriais = listaMateriais;
 
 	}
 	

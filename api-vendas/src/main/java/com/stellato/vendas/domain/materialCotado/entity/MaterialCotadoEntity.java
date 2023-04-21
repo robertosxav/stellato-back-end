@@ -93,5 +93,6 @@ public class MaterialCotadoEntity extends BaseEntity {
 		this.idMaterial = idMaterial;
 		this.descricaoMaterial = descricaoMaterial;
 	}
-
+	
+	
 }

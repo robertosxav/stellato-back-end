@@ -1,7 +1,6 @@
 package com.stellato.vendas.infrastructure.orcamento.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -15,7 +14,6 @@ import com.stellato.vendas.domain.orcamento.entity.OrcamentoEletricoEntity;
 import com.stellato.vendas.domain.orcamento.factory.OrcamentoEntityFactory;
 import com.stellato.vendas.domain.shared.repository.RepositoryInterface;
 import com.stellato.vendas.exceptions.StellatoException;
-import com.stellato.vendas.infrastructure.lead.LeadModel;
 import com.stellato.vendas.infrastructure.lead.service.LeadService;
 import com.stellato.vendas.infrastructure.orcamento.OrcamentoEletricoModel;
 import com.stellato.vendas.infrastructure.orcamento.factory.OrcamentoFactory;

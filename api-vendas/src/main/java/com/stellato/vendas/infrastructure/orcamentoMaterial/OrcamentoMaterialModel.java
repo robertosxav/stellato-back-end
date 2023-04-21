@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.stellato.vendas.infrastructure.materialCotado.model.MaterialCotadoModel;
 import com.stellato.vendas.infrastructure.orcamento.OrcamentoEletricoModel;
 import com.stellato.vendas.infrastructure.shared.BaseModel;
@@ -40,6 +43,8 @@ public class OrcamentoMaterialModel extends BaseModel implements Serializable {
 	@JoinColumn(name = "ID_MATERIAL_COTADO",referencedColumnName = "ID")
 	private MaterialCotadoModel materialCotado;
 	
+	@JsonIgnore
+	@JsonIgnoreProperties(allowSetters = true)
 	@ManyToOne
 	@JoinColumn(name = "ID_ORCAMENTO",referencedColumnName = "ID")
 	private OrcamentoEletricoModel orcamentoEletrico;

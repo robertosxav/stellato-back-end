@@ -27,6 +27,7 @@ public class BaseModel {
 	
 	private Long criadoPor;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate alteradoEm;
 	
 	private Long alteradoPor;
