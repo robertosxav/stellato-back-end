@@ -9,8 +9,10 @@ import com.stellato.vendas.domain.shared.BaseEntity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class OrcamentoMaterialEntity extends BaseEntity {
 	
@@ -34,9 +36,8 @@ public class OrcamentoMaterialEntity extends BaseEntity {
 		return true;
 	}
 
-	public OrcamentoMaterialEntity(String codigo, Integer statusNumero, LocalDate criadoEm, Long criadoPor,
-			LocalDate alteradoEm, Long alteradoPor, Long id, MaterialCotadoEntity materialCotado,
-			OrcamentoEletricoEntity orcamentoEletrico, Long quantidade, BigDecimal valor) {
+	public OrcamentoMaterialEntity( Long id, MaterialCotadoEntity materialCotado,OrcamentoEletricoEntity orcamentoEletrico, Long quantidade, 
+			BigDecimal valor,String codigo, Integer statusNumero, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super(codigo, statusNumero, criadoEm, criadoPor, alteradoEm, alteradoPor);
 		this.id = id;
 		this.materialCotado = materialCotado;

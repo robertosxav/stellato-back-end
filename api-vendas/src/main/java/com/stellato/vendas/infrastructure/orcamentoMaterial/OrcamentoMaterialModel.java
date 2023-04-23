@@ -2,6 +2,7 @@ package com.stellato.vendas.infrastructure.orcamentoMaterial;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.stellato.vendas.infrastructure.materialCotado.model.MaterialCotadoModel;
 import com.stellato.vendas.infrastructure.orcamento.OrcamentoEletricoModel;
 import com.stellato.vendas.infrastructure.shared.BaseModel;
@@ -54,4 +54,16 @@ public class OrcamentoMaterialModel extends BaseModel implements Serializable {
 	
 	@Column(name = "VALOR")
 	private BigDecimal valor;
+
+	public OrcamentoMaterialModel( Long id, MaterialCotadoModel materialCotado,OrcamentoEletricoModel orcamentoEletrico, Long quantidade, 
+			BigDecimal valor,String codigo, Integer statusNumero, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
+		super(codigo, statusNumero, criadoEm, criadoPor, alteradoEm, alteradoPor);
+		this.id = id;
+		this.materialCotado = materialCotado;
+		this.orcamentoEletrico = orcamentoEletrico;
+		this.quantidade = quantidade;
+		this.valor = valor;
+	}
+	
+	
 }

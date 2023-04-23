@@ -10,14 +10,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.stellato.vendas.domain.lead.entity.LeadEntity;
+import com.stellato.vendas.domain.materialCotado.entity.MaterialCotadoEntity;
 import com.stellato.vendas.domain.orcamento.entity.OrcamentoEletricoEntity;
 import com.stellato.vendas.domain.orcamento.factory.OrcamentoEntityFactory;
+import com.stellato.vendas.domain.orcamentoMaterial.entity.OrcamentoMaterialEntity;
 import com.stellato.vendas.domain.shared.repository.RepositoryInterface;
 import com.stellato.vendas.exceptions.StellatoException;
 import com.stellato.vendas.infrastructure.lead.service.LeadService;
+import com.stellato.vendas.infrastructure.materialCotado.service.MaterialCotadoService;
 import com.stellato.vendas.infrastructure.orcamento.OrcamentoEletricoModel;
 import com.stellato.vendas.infrastructure.orcamento.factory.OrcamentoFactory;
 import com.stellato.vendas.infrastructure.orcamento.repository.OrcamentoEletricoRepository;
+import com.stellato.vendas.infrastructure.orcamentoMaterial.OrcamentoMaterialModel;
+import com.stellato.vendas.infrastructure.orcamentoMaterial.factory.OrcamentoMaterialFactory;
+import com.stellato.vendas.infrastructure.orcamentoMaterial.repository.OrcamentoMaterialRepository;
 
 
 @Service
@@ -33,7 +39,16 @@ public class OrcamentoEletricoService implements RepositoryInterface<OrcamentoEl
 	private OrcamentoEntityFactory entityFactory;
 	
 	@Autowired
+	private OrcamentoMaterialFactory orcMatFactory;
+	
+	@Autowired
 	private LeadService leadService;
+	
+	@Autowired
+	private MaterialCotadoService materialCotadoService;
+	
+	@Autowired
+	private OrcamentoMaterialRepository orcamentoMaterialRepository;
 	
 	@Override
 	@Transactional
@@ -129,5 +144,25 @@ public class OrcamentoEletricoService implements RepositoryInterface<OrcamentoEl
 		
 		return listaOrcamentoEletricoModel;
 	}
+	
+	public void addListaMateriaisOrcamento(List<OrcamentoMaterialEntity> listaOrcamentoMaterial) {
+		for(OrcamentoMaterialEntity orcamentoMaterialEntity : listaOrcamentoMaterial) {
+			
+			validarDados(orcamentoMaterialEntity);
+			orcamentoMaterialEntity.gerarUUID();
+			orcamentoMaterialEntity.Ativar();
+			
+			OrcamentoMaterialModel orcamentoMaterialModel	= orcMatFactory.create(orcamentoMaterialEntity);
+		    orcamentoMaterialRepository.save(orcamentoMaterialModel);
+		}
+	}
 
+	private void validarDados(OrcamentoMaterialEntity orcamentoMaterialEntity) {
+		
+		OrcamentoEletricoEntity orcamentoEletricoEntity = findById(orcamentoMaterialEntity.getOrcamentoEletrico().getId());
+		orcamentoMaterialEntity.setOrcamentoEletrico(orcamentoEletricoEntity);
+		
+		MaterialCotadoEntity materialCotadoEntity = materialCotadoService.findById(orcamentoMaterialEntity.getMaterialCotado().getId());
+		orcamentoMaterialEntity.setMaterialCotado(materialCotadoEntity);
+	}
 }

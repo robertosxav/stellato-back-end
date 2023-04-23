@@ -11,8 +11,6 @@ import com.stellato.vendas.domain.orcamento.entity.enumerated.TipoInstalacaoEnum
 import com.stellato.vendas.domain.orcamento.entity.enumerated.TipoPadraoEnum;
 import com.stellato.vendas.domain.orcamentoMaterial.entity.OrcamentoMaterialEntity;
 import com.stellato.vendas.domain.shared.BaseEntity;
-import com.stellato.vendas.infrastructure.materialCotado.model.MaterialCotadoModel;
-import com.stellato.vendas.infrastructure.orcamentoMaterial.OrcamentoMaterialModel;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,9 +1,5 @@
 package com.stellato.vendas.domain.orcamento.factory;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Iterator;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,9 +35,9 @@ public class OrcamentoEntityFactory {
 					orcamentoMaterialModel.getMaterialCotado().getDescricaoMaterial(), orcamentoMaterialModel.getMaterialCotado().getCriadoEm(), orcamentoMaterialModel.getMaterialCotado().getCriadoPor(),
 					orcamentoMaterialModel.getMaterialCotado().getAlteradoEm(), orcamentoMaterialModel.getMaterialCotado().getAlteradoPor());
 			
-			OrcamentoMaterialEntity orcamentoMaterialEntity = new OrcamentoMaterialEntity(orcamentoMaterialModel.getCodigo(), orcamentoEletricoModel.getStatus(), 
-					orcamentoEletricoModel.getCriadoEm(), orcamentoEletricoModel.getCriadoPor(), orcamentoEletricoModel.getAlteradoEm(), orcamentoEletricoModel.getAlteradoPor(),
-					orcamentoEletricoModel.getId(), materialCotadoEntity, null, orcamentoMaterialModel.getQuantidade(), orcamentoMaterialModel.getValor());
+			OrcamentoMaterialEntity orcamentoMaterialEntity = new OrcamentoMaterialEntity(orcamentoEletricoModel.getId(), materialCotadoEntity, null, orcamentoMaterialModel.getQuantidade(), orcamentoMaterialModel.getValor(),
+					orcamentoMaterialModel.getCodigo(), orcamentoEletricoModel.getStatus(), orcamentoEletricoModel.getCriadoEm(), orcamentoEletricoModel.getCriadoPor(), orcamentoEletricoModel.getAlteradoEm(), 
+					orcamentoEletricoModel.getAlteradoPor());
 			orcamentoEletricoEntity.addMaterial(orcamentoMaterialEntity);
 		}
 		return orcamentoEletricoEntity;

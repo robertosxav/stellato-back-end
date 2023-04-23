@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.vendas.domain.orcamento.entity.OrcamentoEletricoEntity;
+import com.stellato.vendas.domain.orcamentoMaterial.entity.OrcamentoMaterialEntity;
 import com.stellato.vendas.infrastructure.orcamento.OrcamentoEletricoModel;
 import com.stellato.vendas.infrastructure.orcamento.service.OrcamentoEletricoService;
 
@@ -91,5 +92,13 @@ public class OrcamentoEletricoResource {
 	@GetMapping("/teste")
 	public List<OrcamentoEletricoModel> teste() throws Exception {
 		return orcamentoEletricoService.teste();
+	}
+	
+	
+	@ApiOperation(value = "Adicionar materiais no orçamento")
+	@PutMapping("/addmateriais")
+	public ResponseEntity<String> addMateriaisOrcamento(@RequestBody List<OrcamentoMaterialEntity> listaOrcamentoMaterial) throws Exception {
+		orcamentoEletricoService.addListaMateriaisOrcamento(listaOrcamentoMaterial);
+		return ResponseEntity.status(HttpStatus.OK).body("Materiais adicionados com sucesso");
 	}
 }
