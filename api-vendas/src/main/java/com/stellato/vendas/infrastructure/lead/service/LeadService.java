@@ -58,24 +58,26 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 			
 			leadEntityFront.Alterar(null);
 			
-			Optional<LeadModel> leadModelBanco = leadRepository.findById(id);
+			LeadModel leadModelBanco = leadRepository
+					.findById(id)
+					.orElseThrow(()-> new StellatoException("Não foi encontrado nenhum lead com o código: " + id));
 			
 			leadEntityFront.SetId(id);
 			
-			leadModelBanco.get().setId(leadEntityFront.getId());
-			leadModelBanco.get().setNome(leadEntityFront.getNome());
-			leadModelBanco.get().setTelefone(leadEntityFront.getTelefone());
-			leadModelBanco.get().setWhatsApp(leadEntityFront.getWhatsApp());
-			leadModelBanco.get().setCidade(leadEntityFront.getCidade());
-			leadModelBanco.get().setOrigem(leadEntityFront.getOrigem().getNumero());
-			leadModelBanco.get().setTipoLead(leadEntityFront.getTipoLead().getNumero());
-			leadModelBanco.get().setIdPessoa(leadEntityFront.getIdPessoa());
-			leadModelBanco.get().setStatus(leadEntityFront.getStatus().getNumero());
-			leadModelBanco.get().setCriadoEm(leadEntityFront.getCriadoEm());
-			leadModelBanco.get().setCriadoPor(leadEntityFront.getCriadoPor());
-			leadModelBanco.get().setAlteradoEm(leadEntityFront.getAlteradoEm());
-			leadModelBanco.get().setAlteradoPor(leadEntityFront.getAlteradoPor());
-			leadRepository.save(leadModelBanco.get());
+			leadModelBanco.setId(leadEntityFront.getId());
+			leadModelBanco.setNome(leadEntityFront.getNome());
+			leadModelBanco.setTelefone(leadEntityFront.getTelefone());
+			leadModelBanco.setWhatsApp(leadEntityFront.getWhatsApp());
+			leadModelBanco.setCidade(leadEntityFront.getCidade());
+			leadModelBanco.setOrigem(leadEntityFront.getOrigem().getNumero());
+			leadModelBanco.setTipoLead(leadEntityFront.getTipoLead().getNumero());
+			leadModelBanco.setIdPessoa(leadEntityFront.getIdPessoa());
+			leadModelBanco.setStatus(leadEntityFront.getStatus().getNumero());
+			leadModelBanco.setCriadoEm(leadEntityFront.getCriadoEm());
+			leadModelBanco.setCriadoPor(leadEntityFront.getCriadoPor());
+			leadModelBanco.setAlteradoEm(leadEntityFront.getAlteradoEm());
+			leadModelBanco.setAlteradoPor(leadEntityFront.getAlteradoPor());
+			leadRepository.save(leadModelBanco);
 			
 		return leadEntityFront;
 
@@ -84,12 +86,11 @@ public class LeadService implements RepositoryInterface<LeadEntity>{
 
 	@Override
 	public LeadEntity findById(Long id) {
-		Optional<LeadModel> leadModelSave = leadRepository.findById(id);
+		LeadModel leadModelSave = leadRepository
+				.findById(id)
+				.orElseThrow(()-> new StellatoException("Não foi encontrado nenhum lead com o código: " + id));
 		
-		 if (!leadModelSave.isPresent()) {
-			 throw new StellatoException("Não foi encontrado nenhum lead com o código: " + id);
-		 }
-		LeadEntity leadEntity	=	entityFactory.create(leadModelSave.get());
+		LeadEntity leadEntity	=	entityFactory.create(leadModelSave);
 		return leadEntity;
 
 

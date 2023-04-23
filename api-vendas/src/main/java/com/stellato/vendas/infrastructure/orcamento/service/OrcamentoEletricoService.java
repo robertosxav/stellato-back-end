@@ -76,7 +76,34 @@ public class OrcamentoEletricoService implements RepositoryInterface<OrcamentoEl
 	@Override
 	@Transactional
 	public OrcamentoEletricoEntity update(Long id, OrcamentoEletricoEntity orcamentoEletricoEntityFront){	
-		return null;
+		orcamentoEletricoEntityFront.Alterar(null);
+		
+		OrcamentoEletricoModel orcamentoEletricoModelBanco = orcamentoEletricoRepository
+				.findById(id).orElseThrow(()->new StellatoException("Não foi encontrado nenhum orcamento com o código: " + id));
+		
+		orcamentoEletricoEntityFront.SetId(id);
+		
+		orcamentoEletricoModelBanco.setId(orcamentoEletricoEntityFront.getId());
+		orcamentoEletricoModelBanco.setTitulo(orcamentoEletricoEntityFront.getTitulo());
+		orcamentoEletricoModelBanco.setObservacao(orcamentoEletricoEntityFront.getObservacao());
+		orcamentoEletricoModelBanco.setObservacaoInterna(orcamentoEletricoEntityFront.getObservacaoInterna());
+		orcamentoEletricoModelBanco.setValidadeProposta(orcamentoEletricoEntityFront.getValidadeProposta());
+		orcamentoEletricoModelBanco.setPrazoEntrega(orcamentoEletricoEntityFront.getPrazoEntrega());
+		orcamentoEletricoModelBanco.setDistancia(orcamentoEletricoEntityFront.getDistancia());
+		orcamentoEletricoModelBanco.setPotenciaModulo(orcamentoEletricoEntityFront.getPotenciaModulo());
+		orcamentoEletricoModelBanco.setPercentualPerda(orcamentoEletricoEntityFront.getPercentualPerda());
+		orcamentoEletricoModelBanco.setDetalheProposta(orcamentoEletricoEntityFront.getDetalheProposta());
+		orcamentoEletricoModelBanco.setModalidadeTarifaria(orcamentoEletricoEntityFront.getModalidadeTarifaria());
+		orcamentoEletricoModelBanco.setTipoPadrao(orcamentoEletricoEntityFront.getTipoPadrao().getNumero());
+		orcamentoEletricoModelBanco.setUnidadeConsumidora(orcamentoEletricoEntityFront.getUnidadeConsumidora());
+		orcamentoEletricoModelBanco.setConsumoMedio(orcamentoEletricoEntityFront.getConsumoMedio());
+		orcamentoEletricoModelBanco.setPrecoKwh(orcamentoEletricoEntityFront.getPrecoKwh());
+		orcamentoEletricoModelBanco.setTipoInstalacao(orcamentoEletricoEntityFront.getTipoInstalacao().getNumero());
+		orcamentoEletricoModelBanco.setTipoEstrutura(orcamentoEletricoEntityFront.getTipoEstrutura().getNumero());
+		
+		orcamentoEletricoRepository.save(orcamentoEletricoModelBanco);
+		
+		return orcamentoEletricoEntityFront;
 
 	}
 	
