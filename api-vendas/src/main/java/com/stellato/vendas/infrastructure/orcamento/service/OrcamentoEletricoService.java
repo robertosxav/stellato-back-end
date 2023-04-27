@@ -93,7 +93,7 @@ public class OrcamentoEletricoService implements RepositoryInterface<OrcamentoEl
 		orcamentoEletricoModelBanco.setPotenciaModulo(orcamentoEletricoEntityFront.getPotenciaModulo());
 		orcamentoEletricoModelBanco.setPercentualPerda(orcamentoEletricoEntityFront.getPercentualPerda());
 		orcamentoEletricoModelBanco.setDetalheProposta(orcamentoEletricoEntityFront.getDetalheProposta());
-		orcamentoEletricoModelBanco.setModalidadeTarifaria(orcamentoEletricoEntityFront.getModalidadeTarifaria());
+		orcamentoEletricoModelBanco.setModalidadeTarifaria(orcamentoEletricoEntityFront.getModalidadeTarifaria().getNumero());
 		orcamentoEletricoModelBanco.setTipoPadrao(orcamentoEletricoEntityFront.getTipoPadrao().getNumero());
 		orcamentoEletricoModelBanco.setUnidadeConsumidora(orcamentoEletricoEntityFront.getUnidadeConsumidora());
 		orcamentoEletricoModelBanco.setConsumoMedio(orcamentoEletricoEntityFront.getConsumoMedio());

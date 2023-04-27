@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.stellato.vendas.domain.lead.entity.LeadEntity;
+import com.stellato.vendas.domain.orcamento.entity.enumerated.ModalidadeTarifariaEnum;
 import com.stellato.vendas.domain.orcamento.entity.enumerated.TipoEstruturaEnum;
 import com.stellato.vendas.domain.orcamento.entity.enumerated.TipoInstalacaoEnum;
 import com.stellato.vendas.domain.orcamento.entity.enumerated.TipoPadraoEnum;
@@ -41,7 +42,7 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 	
 	private String detalheProposta;
 	
-	private Integer modalidadeTarifaria;
+	private ModalidadeTarifariaEnum modalidadeTarifaria;
 	
 	private TipoPadraoEnum tipoPadrao;
 	
@@ -71,6 +72,10 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 		
 	}
 
+	public String getModalidadeTarifariaDesc() {
+		return this.modalidadeTarifaria.getDescricao();
+	}
+	
 	@Override
 	public Boolean validar() {
 		return true;
@@ -82,7 +87,7 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 	
 	public OrcamentoEletricoEntity(Long id, String codigo,String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
-			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadraoNumero,
+			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifariaNumero, Integer tipoPadraoNumero,
 			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacaoNumero,
 			Integer tipoEstruturaNumero, LeadEntity lead, Integer statusNumero, LocalDate criadoEm, Long criadoPor,
 			LocalDate alteradoEm, Long alteradoPor) {
@@ -97,7 +102,7 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 		this.potenciaModulo = potenciaModulo;
 		this.percentualPerda = percentualPerda;
 		this.detalheProposta = detalheProposta;
-		this.modalidadeTarifaria = modalidadeTarifaria;
+		this.modalidadeTarifaria = ModalidadeTarifariaEnum.toEnum(modalidadeTarifariaNumero);
 		this.tipoPadrao = TipoPadraoEnum.toEnum(tipoPadraoNumero);
 		this.unidadeConsumidora = unidadeConsumidora;
 		this.consumoMedio = consumoMedio;
@@ -111,7 +116,7 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 	
 	public OrcamentoEletricoEntity(Long id, String codigo, String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
-			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadraoNumero,
+			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifariaNumero, Integer tipoPadraoNumero,
 			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacaoNumero,
 			Integer tipoEstruturaNumero, LeadEntity lead,/* List<MaterialCotadoModel>listaMateriais,*/LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
 		super(codigo, criadoEm, criadoPor, alteradoEm, alteradoPor);
@@ -125,7 +130,7 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 		this.potenciaModulo = potenciaModulo;
 		this.percentualPerda = percentualPerda;
 		this.detalheProposta = detalheProposta;
-		this.modalidadeTarifaria = modalidadeTarifaria;
+		this.modalidadeTarifaria = ModalidadeTarifariaEnum.toEnum(modalidadeTarifariaNumero);
 		this.tipoPadrao = TipoPadraoEnum.toEnum(tipoPadraoNumero);
 		this.unidadeConsumidora = unidadeConsumidora;
 		this.consumoMedio = consumoMedio;
@@ -138,7 +143,7 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 	
 	public OrcamentoEletricoEntity(Long id, String codigo, String titulo, String observacao, String observacaoInterna,
 			Integer validadeProposta, Integer prazoEntrega, Integer distancia, BigDecimal potenciaModulo,
-			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifaria, Integer tipoPadraoNumero,
+			Integer percentualPerda, String detalheProposta, Integer modalidadeTarifariaNumero, Integer tipoPadraoNumero,
 			String unidadeConsumidora, BigDecimal consumoMedio, BigDecimal precoKwh, Integer tipoInstalacaoNumero,
 			Integer tipoEstruturaNumero,Long idLead, String nomeLead,String telefoneLead, String emailLead,String whatsAppLead,
 			Integer statusNumero, LocalDate criadoEm, Long criadoPor,LocalDate alteradoEm, Long alteradoPor) {
@@ -153,7 +158,7 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 		this.potenciaModulo = potenciaModulo;
 		this.percentualPerda = percentualPerda;
 		this.detalheProposta = detalheProposta;
-		this.modalidadeTarifaria = modalidadeTarifaria;
+		this.modalidadeTarifaria = ModalidadeTarifariaEnum.toEnum(modalidadeTarifariaNumero);
 		this.tipoPadrao = TipoPadraoEnum.toEnum(tipoPadraoNumero);
 		this.unidadeConsumidora = unidadeConsumidora;
 		this.consumoMedio = consumoMedio;
