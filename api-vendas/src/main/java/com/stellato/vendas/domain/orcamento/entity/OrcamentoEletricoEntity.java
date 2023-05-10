@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.stellato.vendas.domain.lead.entity.LeadEntity;
+import com.stellato.vendas.domain.orcamento.entity.enumerated.DistribuidoraEnum;
 import com.stellato.vendas.domain.orcamento.entity.enumerated.ModalidadeTarifariaEnum;
 import com.stellato.vendas.domain.orcamento.entity.enumerated.TipoEstruturaEnum;
 import com.stellato.vendas.domain.orcamento.entity.enumerated.TipoInstalacaoEnum;
@@ -47,6 +48,10 @@ public class OrcamentoEletricoEntity extends BaseEntity {
 	private TipoPadraoEnum tipoPadrao;
 	
 	private String unidadeConsumidora;
+	
+	//private String descUnidadeConsumidora;
+
+	//private DistribuidoraEnum distribuidora;
 	
 	private BigDecimal consumoMedio;
 	
