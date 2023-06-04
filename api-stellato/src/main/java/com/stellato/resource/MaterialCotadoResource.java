@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.MaterialCotado;
-import com.stellato.service.MaterialcotadoService;
+import com.stellato.service.MaterialCotadoService;
 
 @RestController
 @RequestMapping("/materialcotados")
 public class MaterialCotadoResource {
 
 	@Autowired
-	private MaterialcotadoService materialcotadoService;
+	private MaterialCotadoService materialcotadoService;
 
 	@PostMapping
 	public ResponseEntity<MaterialCotado> criar(@Valid @RequestBody MaterialCotado materialcotado, HttpServletResponse response) {

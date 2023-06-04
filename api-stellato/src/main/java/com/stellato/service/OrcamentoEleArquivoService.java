@@ -10,13 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.stellato.model.OrcamentoEleArquivo;
-import com.stellato.repository.OrcamentoelearquivoRepository;
+import com.stellato.repository.OrcamentoEleArquivoRepository;
 
 @Service
-public class OrcamentoelearquivoService {
+public class OrcamentoEleArquivoService {
 
 	@Autowired
-	private OrcamentoelearquivoRepository orcamentoelearquivoRepository;
+	private OrcamentoEleArquivoRepository orcamentoelearquivoRepository;
 
 	public OrcamentoEleArquivo salvar(OrcamentoEleArquivo orcamentoelearquivo) {
 		return orcamentoelearquivoRepository.save(orcamentoelearquivo);

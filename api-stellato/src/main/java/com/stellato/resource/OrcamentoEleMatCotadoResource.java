@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.OrcamentoEleMatCotado;
-import com.stellato.service.OrcamentoelematcotadoService;
+import com.stellato.service.OrcamentoEleMatCotadoService;
 
 @RestController
 @RequestMapping("/orcamentoelematcotados")
 public class OrcamentoEleMatCotadoResource {
 
 	@Autowired
-	private OrcamentoelematcotadoService orcamentoelematcotadoService;
+	private OrcamentoEleMatCotadoService orcamentoelematcotadoService;
 
 	@PostMapping
 	public ResponseEntity<OrcamentoEleMatCotado> criar(@Valid @RequestBody OrcamentoEleMatCotado orcamentoelematcotado, HttpServletResponse response) {

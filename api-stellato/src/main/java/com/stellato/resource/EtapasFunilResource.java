@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.EtapasFunil;
-import com.stellato.service.EtapasfunilService;
+import com.stellato.service.EtapasFunilService;
 
 @RestController
 @RequestMapping("/etapasfunils")
 public class EtapasFunilResource {
 
 	@Autowired
-	private EtapasfunilService etapasfunilService;
+	private EtapasFunilService etapasfunilService;
 
 	@PostMapping
 	public ResponseEntity<EtapasFunil> criar(@Valid @RequestBody EtapasFunil etapasfunil, HttpServletResponse response) {

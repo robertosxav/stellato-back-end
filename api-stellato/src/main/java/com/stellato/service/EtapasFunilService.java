@@ -10,13 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.stellato.model.EtapasFunil;
-import com.stellato.repository.EtapasfunilRepository;
+import com.stellato.repository.EtapasFunilRepository;
 
 @Service
-public class EtapasfunilService {
+public class EtapasFunilService {
 
 	@Autowired
-	private EtapasfunilRepository etapasfunilRepository;
+	private EtapasFunilRepository etapasfunilRepository;
 
 	public EtapasFunil salvar(EtapasFunil etapasfunil) {
 		return etapasfunilRepository.save(etapasfunil);

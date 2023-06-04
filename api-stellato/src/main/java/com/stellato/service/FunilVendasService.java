@@ -10,13 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.stellato.model.FunilVendas;
-import com.stellato.repository.FunilvendasRepository;
+import com.stellato.repository.FunilVendasRepository;
 
 @Service
-public class FunilvendasService {
+public class FunilVendasService {
 
 	@Autowired
-	private FunilvendasRepository funilvendasRepository;
+	private FunilVendasRepository funilvendasRepository;
 
 	public FunilVendas salvar(FunilVendas funilvendas) {
 		return funilvendasRepository.save(funilvendas);

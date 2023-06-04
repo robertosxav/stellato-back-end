@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.DadosContaEnergia;
-import com.stellato.service.DadoscontaenergiaService;
+import com.stellato.service.DadosContaEnergiaService;
 
 @RestController
 @RequestMapping("/dadoscontaenergias")
 public class DadosContaEnergiaResource {
 
 	@Autowired
-	private DadoscontaenergiaService dadoscontaenergiaService;
+	private DadosContaEnergiaService dadoscontaenergiaService;
 
 	@PostMapping
 	public ResponseEntity<DadosContaEnergia> criar(@Valid @RequestBody DadosContaEnergia dadoscontaenergia, HttpServletResponse response) {

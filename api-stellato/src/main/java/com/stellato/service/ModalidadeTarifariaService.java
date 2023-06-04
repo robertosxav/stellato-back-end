@@ -10,13 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.stellato.model.ModalidadeTarifaria;
-import com.stellato.repository.ModalidadetarifariaRepository;
+import com.stellato.repository.ModalidadeTarifariaRepository;
 
 @Service
-public class ModalidadetarifariaService {
+public class ModalidadeTarifariaService {
 
 	@Autowired
-	private ModalidadetarifariaRepository modalidadetarifariaRepository;
+	private ModalidadeTarifariaRepository modalidadetarifariaRepository;
 
 	public ModalidadeTarifaria salvar(ModalidadeTarifaria modalidadetarifaria) {
 		return modalidadetarifariaRepository.save(modalidadetarifaria);

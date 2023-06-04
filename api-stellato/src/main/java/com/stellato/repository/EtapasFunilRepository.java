@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.stellato.model.EtapasFunil;
 
 @Repository
-public interface EtapasfunilRepository extends JpaRepository<EtapasFunil, Long>{ 
+public interface EtapasFunilRepository extends JpaRepository<EtapasFunil, Long>{ 
 	
 } 

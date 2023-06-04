@@ -2,9 +2,9 @@ package com.stellato.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.stellato.model.ModalidadeTarifaria;
+import com.stellato.model.OrcamentoEleArquivo;
 
 @Repository
-public interface ModalidadetarifariaRepository extends JpaRepository<ModalidadeTarifaria, Long>{ 
+public interface OrcamentoEleArquivoRepository extends JpaRepository<OrcamentoEleArquivo, Long>{ 
 	
 } 

@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.stellato.model.DadosContaEnergia;
 
 @Repository
-public interface DadoscontaenergiaRepository extends JpaRepository<DadosContaEnergia, Long>{ 
+public interface DadosContaEnergiaRepository extends JpaRepository<DadosContaEnergia, Long>{ 
 	
 } 

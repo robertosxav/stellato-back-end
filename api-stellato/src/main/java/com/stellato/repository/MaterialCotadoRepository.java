@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.stellato.model.MaterialCotado;
 
 @Repository
-public interface MaterialcotadoRepository extends JpaRepository<MaterialCotado, Long>{ 
+public interface MaterialCotadoRepository extends JpaRepository<MaterialCotado, Long>{ 
 	
 } 

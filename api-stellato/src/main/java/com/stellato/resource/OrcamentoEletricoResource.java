@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.OrcamentoEletrico;
-import com.stellato.service.OrcamentoeletricoService;
+import com.stellato.service.OrcamentoEletricoService;
 
 @RestController
 @RequestMapping("/orcamentoeletricos")
 public class OrcamentoEletricoResource {
 
 	@Autowired
-	private OrcamentoeletricoService orcamentoeletricoService;
+	private OrcamentoEletricoService orcamentoeletricoService;
 
 	@PostMapping
 	public ResponseEntity<OrcamentoEletrico> criar(@Valid @RequestBody OrcamentoEletrico orcamentoeletrico, HttpServletResponse response) {

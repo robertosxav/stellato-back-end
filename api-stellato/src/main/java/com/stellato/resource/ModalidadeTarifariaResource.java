@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.ModalidadeTarifaria;
-import com.stellato.service.ModalidadetarifariaService;
+import com.stellato.service.ModalidadeTarifariaService;
 
 @RestController
 @RequestMapping("/modalidadetarifarias")
 public class ModalidadeTarifariaResource {
 
 	@Autowired
-	private ModalidadetarifariaService modalidadetarifariaService;
+	private ModalidadeTarifariaService modalidadetarifariaService;
 
 	@PostMapping
 	public ResponseEntity<ModalidadeTarifaria> criar(@Valid @RequestBody ModalidadeTarifaria modalidadetarifaria, HttpServletResponse response) {

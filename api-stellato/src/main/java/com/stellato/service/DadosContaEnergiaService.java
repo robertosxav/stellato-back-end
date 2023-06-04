@@ -10,13 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.stellato.model.DadosContaEnergia;
-import com.stellato.repository.DadoscontaenergiaRepository;
+import com.stellato.repository.DadosContaEnergiaRepository;
 
 @Service
-public class DadoscontaenergiaService {
+public class DadosContaEnergiaService {
 
 	@Autowired
-	private DadoscontaenergiaRepository dadoscontaenergiaRepository;
+	private DadosContaEnergiaRepository dadoscontaenergiaRepository;
 
 	public DadosContaEnergia salvar(DadosContaEnergia dadoscontaenergia) {
 		return dadoscontaenergiaRepository.save(dadoscontaenergia);

@@ -10,13 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.stellato.model.MaterialCotado;
-import com.stellato.repository.MaterialcotadoRepository;
+import com.stellato.repository.MaterialCotadoRepository;
 
 @Service
-public class MaterialcotadoService {
+public class MaterialCotadoService {
 
 	@Autowired
-	private MaterialcotadoRepository materialcotadoRepository;
+	private MaterialCotadoRepository materialcotadoRepository;
 
 	public MaterialCotado salvar(MaterialCotado materialcotado) {
 		return materialcotadoRepository.save(materialcotado);
