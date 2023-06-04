@@ -1,11 +1,11 @@
 package com.stellato.resource;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.Material;
 import com.stellato.service.MaterialService;
-import br.gov.mt.gestao.thanos.event.RecursoCriadoEvent;
 
 @RestController
 @RequestMapping("/materials")
@@ -30,14 +29,10 @@ public class MaterialResource {
 
 	@Autowired
 	private MaterialService materialService;
-
-	@Autowired
-	private ApplicationEventPublisher publisher;
-
+	
 	@PostMapping
 	public ResponseEntity<Material> criar(@Valid @RequestBody Material material, HttpServletResponse response) {
 		 Material materialSalva = materialService.salvar(material);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, materialSalva.getMaterialid()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(materialSalva);
 	}
 

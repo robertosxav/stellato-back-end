@@ -1,11 +1,11 @@
 package com.stellato.resource;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.Funilvendas;
 import com.stellato.service.FunilvendasService;
-import br.gov.mt.gestao.thanos.event.RecursoCriadoEvent;
 
 @RestController
 @RequestMapping("/funilvendas")
@@ -31,13 +30,9 @@ public class FunilvendasResource {
 	@Autowired
 	private FunilvendasService funilvendasService;
 
-	@Autowired
-	private ApplicationEventPublisher publisher;
-
 	@PostMapping
 	public ResponseEntity<Funilvendas> criar(@Valid @RequestBody Funilvendas funilvendas, HttpServletResponse response) {
 		 Funilvendas funilvendasSalva = funilvendasService.salvar(funilvendas);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, funilvendasSalva.getFunilvendasid()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(funilvendasSalva);
 	}
 

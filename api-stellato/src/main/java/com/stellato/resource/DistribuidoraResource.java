@@ -1,11 +1,11 @@
 package com.stellato.resource;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.Distribuidora;
 import com.stellato.service.DistribuidoraService;
-import br.gov.mt.gestao.thanos.event.RecursoCriadoEvent;
 
 @RestController
 @RequestMapping("/distribuidoras")
@@ -31,13 +30,9 @@ public class DistribuidoraResource {
 	@Autowired
 	private DistribuidoraService distribuidoraService;
 
-	@Autowired
-	private ApplicationEventPublisher publisher;
-
 	@PostMapping
 	public ResponseEntity<Distribuidora> criar(@Valid @RequestBody Distribuidora distribuidora, HttpServletResponse response) {
 		 Distribuidora distribuidoraSalva = distribuidoraService.salvar(distribuidora);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, distribuidoraSalva.getDistribuidoraid()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(distribuidoraSalva);
 	}
 

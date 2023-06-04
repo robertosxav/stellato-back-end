@@ -1,11 +1,11 @@
 package com.stellato.resource;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.Fornecedor;
 import com.stellato.service.FornecedorService;
-import br.gov.mt.gestao.thanos.event.RecursoCriadoEvent;
 
 @RestController
 @RequestMapping("/fornecedors")
@@ -31,13 +30,9 @@ public class FornecedorResource {
 	@Autowired
 	private FornecedorService fornecedorService;
 
-	@Autowired
-	private ApplicationEventPublisher publisher;
-
 	@PostMapping
 	public ResponseEntity<Fornecedor> criar(@Valid @RequestBody Fornecedor fornecedor, HttpServletResponse response) {
 		 Fornecedor fornecedorSalva = fornecedorService.salvar(fornecedor);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, fornecedorSalva.getFornecedorid()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(fornecedorSalva);
 	}
 
