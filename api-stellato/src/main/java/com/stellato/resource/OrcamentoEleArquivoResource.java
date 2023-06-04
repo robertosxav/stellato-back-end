@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stellato.model.Orcamentoelearquivo;
+import com.stellato.model.OrcamentoEleArquivo;
 import com.stellato.service.OrcamentoelearquivoService;
 
 @RestController
@@ -31,30 +31,30 @@ public class OrcamentoEleArquivoResource {
 	private OrcamentoelearquivoService orcamentoelearquivoService;
 
 	@PostMapping
-	public ResponseEntity<Orcamentoelearquivo> criar(@Valid @RequestBody Orcamentoelearquivo orcamentoelearquivo, HttpServletResponse response) {
-		 Orcamentoelearquivo orcamentoelearquivoSalva = orcamentoelearquivoService.salvar(orcamentoelearquivo);
+	public ResponseEntity<OrcamentoEleArquivo> criar(@Valid @RequestBody OrcamentoEleArquivo orcamentoelearquivo, HttpServletResponse response) {
+		 OrcamentoEleArquivo orcamentoelearquivoSalva = orcamentoelearquivoService.salvar(orcamentoelearquivo);
 		return ResponseEntity.status(HttpStatus.CREATED).body(orcamentoelearquivoSalva);
 	}
 
 	@GetMapping("/{codigo}")
-	public ResponseEntity<Orcamentoelearquivo> buscarPeloCodigo(@PathVariable Long codigo) {
-		Orcamentoelearquivo orcamentoelearquivo = orcamentoelearquivoService.buscarPeloCodigo(codigo);
+	public ResponseEntity<OrcamentoEleArquivo> buscarPeloCodigo(@PathVariable Long codigo) {
+		OrcamentoEleArquivo orcamentoelearquivo = orcamentoelearquivoService.buscarPeloCodigo(codigo);
 		return orcamentoelearquivo != null ? ResponseEntity.ok(orcamentoelearquivo) : ResponseEntity.notFound().build();
 	}
 
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Orcamentoelearquivo> atualizar(@PathVariable Long codigo, @Valid @RequestBody Orcamentoelearquivo orcamentoelearquivo) {
-		Orcamentoelearquivo orcamentoelearquivoSalva = orcamentoelearquivoService.atualizar(codigo, orcamentoelearquivo);
+	public ResponseEntity<OrcamentoEleArquivo> atualizar(@PathVariable Long codigo, @Valid @RequestBody OrcamentoEleArquivo orcamentoelearquivo) {
+		OrcamentoEleArquivo orcamentoelearquivoSalva = orcamentoelearquivoService.atualizar(codigo, orcamentoelearquivo);
 		return ResponseEntity.ok(orcamentoelearquivoSalva);
 	}
 
 	@GetMapping
-	public Page<Orcamentoelearquivo> pesquisar(Pageable pageable) {
+	public Page<OrcamentoEleArquivo> pesquisar(Pageable pageable) {
 		return orcamentoelearquivoService.pesquisar(pageable);
 	}
 
 	@GetMapping("/all")
-	public List<Orcamentoelearquivo> pesquisar() {
+	public List<OrcamentoEleArquivo> pesquisar() {
 		return orcamentoelearquivoService.listarTodos();
 	}
 

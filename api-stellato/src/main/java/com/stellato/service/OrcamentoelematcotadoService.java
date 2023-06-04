@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.stellato.model.Orcamentoelematcotado;
+import com.stellato.model.OrcamentoEleMatCotado;
 import com.stellato.repository.OrcamentoelematcotadoRepository;
 
 @Service
@@ -18,29 +18,29 @@ public class OrcamentoelematcotadoService {
 	@Autowired
 	private OrcamentoelematcotadoRepository orcamentoelematcotadoRepository;
 
-	public Orcamentoelematcotado salvar(Orcamentoelematcotado orcamentoelematcotado) {
+	public OrcamentoEleMatCotado salvar(OrcamentoEleMatCotado orcamentoelematcotado) {
 		return orcamentoelematcotadoRepository.save(orcamentoelematcotado);
 	}
 
-	public Orcamentoelematcotado buscarPeloCodigo(Long codigo) {
-		Orcamentoelematcotado orcamentoelematcotadoSalva = orcamentoelematcotadoRepository.findById(codigo).get();
+	public OrcamentoEleMatCotado buscarPeloCodigo(Long codigo) {
+		OrcamentoEleMatCotado orcamentoelematcotadoSalva = orcamentoelematcotadoRepository.findById(codigo).get();
 		if (orcamentoelematcotadoSalva == null) {
 		throw new EmptyResultDataAccessException(1);
 			}
 		return orcamentoelematcotadoSalva;
 	}
 
-	public Orcamentoelematcotado atualizar(Long codigo, Orcamentoelematcotado orcamentoelematcotado) {
-		Orcamentoelematcotado orcamentoelematcotadoSave = buscarPeloCodigo(codigo);
+	public OrcamentoEleMatCotado atualizar(Long codigo, OrcamentoEleMatCotado orcamentoelematcotado) {
+		OrcamentoEleMatCotado orcamentoelematcotadoSave = buscarPeloCodigo(codigo);
 		BeanUtils.copyProperties(orcamentoelematcotado, orcamentoelematcotadoSave, "orcamentoelematcotadoid");
 		return orcamentoelematcotadoRepository.save(orcamentoelematcotadoSave);
 	}
 
-	public Page<Orcamentoelematcotado> pesquisar(Pageable pageable){
+	public Page<OrcamentoEleMatCotado> pesquisar(Pageable pageable){
 		return orcamentoelematcotadoRepository.findAll(pageable);
 	}
 
-	public List<Orcamentoelematcotado> listarTodos() {
+	public List<OrcamentoEleMatCotado> listarTodos() {
 		return orcamentoelematcotadoRepository.findAll();
 	}
 

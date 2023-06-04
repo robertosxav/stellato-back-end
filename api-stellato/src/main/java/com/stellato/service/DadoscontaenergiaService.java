@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.stellato.model.Dadoscontaenergia;
+import com.stellato.model.DadosContaEnergia;
 import com.stellato.repository.DadoscontaenergiaRepository;
 
 @Service
@@ -18,29 +18,29 @@ public class DadoscontaenergiaService {
 	@Autowired
 	private DadoscontaenergiaRepository dadoscontaenergiaRepository;
 
-	public Dadoscontaenergia salvar(Dadoscontaenergia dadoscontaenergia) {
+	public DadosContaEnergia salvar(DadosContaEnergia dadoscontaenergia) {
 		return dadoscontaenergiaRepository.save(dadoscontaenergia);
 	}
 
-	public Dadoscontaenergia buscarPeloCodigo(Long codigo) {
-		Dadoscontaenergia dadoscontaenergiaSalva = dadoscontaenergiaRepository.findById(codigo).get();
+	public DadosContaEnergia buscarPeloCodigo(Long codigo) {
+		DadosContaEnergia dadoscontaenergiaSalva = dadoscontaenergiaRepository.findById(codigo).get();
 		if (dadoscontaenergiaSalva == null) {
 		throw new EmptyResultDataAccessException(1);
 			}
 		return dadoscontaenergiaSalva;
 	}
 
-	public Dadoscontaenergia atualizar(Long codigo, Dadoscontaenergia dadoscontaenergia) {
-		Dadoscontaenergia dadoscontaenergiaSave = buscarPeloCodigo(codigo);
+	public DadosContaEnergia atualizar(Long codigo, DadosContaEnergia dadoscontaenergia) {
+		DadosContaEnergia dadoscontaenergiaSave = buscarPeloCodigo(codigo);
 		BeanUtils.copyProperties(dadoscontaenergia, dadoscontaenergiaSave, "dadoscontaenergiaid");
 		return dadoscontaenergiaRepository.save(dadoscontaenergiaSave);
 	}
 
-	public Page<Dadoscontaenergia> pesquisar(Pageable pageable){
+	public Page<DadosContaEnergia> pesquisar(Pageable pageable){
 		return dadoscontaenergiaRepository.findAll(pageable);
 	}
 
-	public List<Dadoscontaenergia> listarTodos() {
+	public List<DadosContaEnergia> listarTodos() {
 		return dadoscontaenergiaRepository.findAll();
 	}
 

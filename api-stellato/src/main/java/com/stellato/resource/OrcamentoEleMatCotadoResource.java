@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stellato.model.Orcamentoelematcotado;
+import com.stellato.model.OrcamentoEleMatCotado;
 import com.stellato.service.OrcamentoelematcotadoService;
 
 @RestController
@@ -31,30 +31,30 @@ public class OrcamentoEleMatCotadoResource {
 	private OrcamentoelematcotadoService orcamentoelematcotadoService;
 
 	@PostMapping
-	public ResponseEntity<Orcamentoelematcotado> criar(@Valid @RequestBody Orcamentoelematcotado orcamentoelematcotado, HttpServletResponse response) {
-		 Orcamentoelematcotado orcamentoelematcotadoSalva = orcamentoelematcotadoService.salvar(orcamentoelematcotado);
+	public ResponseEntity<OrcamentoEleMatCotado> criar(@Valid @RequestBody OrcamentoEleMatCotado orcamentoelematcotado, HttpServletResponse response) {
+		 OrcamentoEleMatCotado orcamentoelematcotadoSalva = orcamentoelematcotadoService.salvar(orcamentoelematcotado);
 		return ResponseEntity.status(HttpStatus.CREATED).body(orcamentoelematcotadoSalva);
 	}
 
 	@GetMapping("/{codigo}")
-	public ResponseEntity<Orcamentoelematcotado> buscarPeloCodigo(@PathVariable Long codigo) {
-		Orcamentoelematcotado orcamentoelematcotado = orcamentoelematcotadoService.buscarPeloCodigo(codigo);
+	public ResponseEntity<OrcamentoEleMatCotado> buscarPeloCodigo(@PathVariable Long codigo) {
+		OrcamentoEleMatCotado orcamentoelematcotado = orcamentoelematcotadoService.buscarPeloCodigo(codigo);
 		return orcamentoelematcotado != null ? ResponseEntity.ok(orcamentoelematcotado) : ResponseEntity.notFound().build();
 	}
 
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Orcamentoelematcotado> atualizar(@PathVariable Long codigo, @Valid @RequestBody Orcamentoelematcotado orcamentoelematcotado) {
-		Orcamentoelematcotado orcamentoelematcotadoSalva = orcamentoelematcotadoService.atualizar(codigo, orcamentoelematcotado);
+	public ResponseEntity<OrcamentoEleMatCotado> atualizar(@PathVariable Long codigo, @Valid @RequestBody OrcamentoEleMatCotado orcamentoelematcotado) {
+		OrcamentoEleMatCotado orcamentoelematcotadoSalva = orcamentoelematcotadoService.atualizar(codigo, orcamentoelematcotado);
 		return ResponseEntity.ok(orcamentoelematcotadoSalva);
 	}
 
 	@GetMapping
-	public Page<Orcamentoelematcotado> pesquisar(Pageable pageable) {
+	public Page<OrcamentoEleMatCotado> pesquisar(Pageable pageable) {
 		return orcamentoelematcotadoService.pesquisar(pageable);
 	}
 
 	@GetMapping("/all")
-	public List<Orcamentoelematcotado> pesquisar() {
+	public List<OrcamentoEleMatCotado> pesquisar() {
 		return orcamentoelematcotadoService.listarTodos();
 	}
 

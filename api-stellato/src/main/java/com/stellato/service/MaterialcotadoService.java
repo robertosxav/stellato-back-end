@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.stellato.model.Materialcotado;
+import com.stellato.model.MaterialCotado;
 import com.stellato.repository.MaterialcotadoRepository;
 
 @Service
@@ -18,29 +18,29 @@ public class MaterialcotadoService {
 	@Autowired
 	private MaterialcotadoRepository materialcotadoRepository;
 
-	public Materialcotado salvar(Materialcotado materialcotado) {
+	public MaterialCotado salvar(MaterialCotado materialcotado) {
 		return materialcotadoRepository.save(materialcotado);
 	}
 
-	public Materialcotado buscarPeloCodigo(Long codigo) {
-		Materialcotado materialcotadoSalva = materialcotadoRepository.findById(codigo).get();
+	public MaterialCotado buscarPeloCodigo(Long codigo) {
+		MaterialCotado materialcotadoSalva = materialcotadoRepository.findById(codigo).get();
 		if (materialcotadoSalva == null) {
 		throw new EmptyResultDataAccessException(1);
 			}
 		return materialcotadoSalva;
 	}
 
-	public Materialcotado atualizar(Long codigo, Materialcotado materialcotado) {
-		Materialcotado materialcotadoSave = buscarPeloCodigo(codigo);
+	public MaterialCotado atualizar(Long codigo, MaterialCotado materialcotado) {
+		MaterialCotado materialcotadoSave = buscarPeloCodigo(codigo);
 		BeanUtils.copyProperties(materialcotado, materialcotadoSave, "materialcotadoid");
 		return materialcotadoRepository.save(materialcotadoSave);
 	}
 
-	public Page<Materialcotado> pesquisar(Pageable pageable){
+	public Page<MaterialCotado> pesquisar(Pageable pageable){
 		return materialcotadoRepository.findAll(pageable);
 	}
 
-	public List<Materialcotado> listarTodos() {
+	public List<MaterialCotado> listarTodos() {
 		return materialcotadoRepository.findAll();
 	}
 

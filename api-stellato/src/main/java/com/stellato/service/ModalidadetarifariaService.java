@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.stellato.model.Modalidadetarifaria;
+import com.stellato.model.ModalidadeTarifaria;
 import com.stellato.repository.ModalidadetarifariaRepository;
 
 @Service
@@ -18,29 +18,29 @@ public class ModalidadetarifariaService {
 	@Autowired
 	private ModalidadetarifariaRepository modalidadetarifariaRepository;
 
-	public Modalidadetarifaria salvar(Modalidadetarifaria modalidadetarifaria) {
+	public ModalidadeTarifaria salvar(ModalidadeTarifaria modalidadetarifaria) {
 		return modalidadetarifariaRepository.save(modalidadetarifaria);
 	}
 
-	public Modalidadetarifaria buscarPeloCodigo(Long codigo) {
-		Modalidadetarifaria modalidadetarifariaSalva = modalidadetarifariaRepository.findById(codigo).get();
+	public ModalidadeTarifaria buscarPeloCodigo(Long codigo) {
+		ModalidadeTarifaria modalidadetarifariaSalva = modalidadetarifariaRepository.findById(codigo).get();
 		if (modalidadetarifariaSalva == null) {
 		throw new EmptyResultDataAccessException(1);
 			}
 		return modalidadetarifariaSalva;
 	}
 
-	public Modalidadetarifaria atualizar(Long codigo, Modalidadetarifaria modalidadetarifaria) {
-		Modalidadetarifaria modalidadetarifariaSave = buscarPeloCodigo(codigo);
+	public ModalidadeTarifaria atualizar(Long codigo, ModalidadeTarifaria modalidadetarifaria) {
+		ModalidadeTarifaria modalidadetarifariaSave = buscarPeloCodigo(codigo);
 		BeanUtils.copyProperties(modalidadetarifaria, modalidadetarifariaSave, "modalidadetarifariaid");
 		return modalidadetarifariaRepository.save(modalidadetarifariaSave);
 	}
 
-	public Page<Modalidadetarifaria> pesquisar(Pageable pageable){
+	public Page<ModalidadeTarifaria> pesquisar(Pageable pageable){
 		return modalidadetarifariaRepository.findAll(pageable);
 	}
 
-	public List<Modalidadetarifaria> listarTodos() {
+	public List<ModalidadeTarifaria> listarTodos() {
 		return modalidadetarifariaRepository.findAll();
 	}
 

@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.stellato.model.Orcamentoeletrico;
+import com.stellato.model.OrcamentoEletrico;
 import com.stellato.repository.OrcamentoeletricoRepository;
 
 @Service
@@ -18,29 +18,29 @@ public class OrcamentoeletricoService {
 	@Autowired
 	private OrcamentoeletricoRepository orcamentoeletricoRepository;
 
-	public Orcamentoeletrico salvar(Orcamentoeletrico orcamentoeletrico) {
+	public OrcamentoEletrico salvar(OrcamentoEletrico orcamentoeletrico) {
 		return orcamentoeletricoRepository.save(orcamentoeletrico);
 	}
 
-	public Orcamentoeletrico buscarPeloCodigo(Long codigo) {
-		Orcamentoeletrico orcamentoeletricoSalva = orcamentoeletricoRepository.findById(codigo).get();
+	public OrcamentoEletrico buscarPeloCodigo(Long codigo) {
+		OrcamentoEletrico orcamentoeletricoSalva = orcamentoeletricoRepository.findById(codigo).get();
 		if (orcamentoeletricoSalva == null) {
 		throw new EmptyResultDataAccessException(1);
 			}
 		return orcamentoeletricoSalva;
 	}
 
-	public Orcamentoeletrico atualizar(Long codigo, Orcamentoeletrico orcamentoeletrico) {
-		Orcamentoeletrico orcamentoeletricoSave = buscarPeloCodigo(codigo);
+	public OrcamentoEletrico atualizar(Long codigo, OrcamentoEletrico orcamentoeletrico) {
+		OrcamentoEletrico orcamentoeletricoSave = buscarPeloCodigo(codigo);
 		BeanUtils.copyProperties(orcamentoeletrico, orcamentoeletricoSave, "orcamentoeletricoid");
 		return orcamentoeletricoRepository.save(orcamentoeletricoSave);
 	}
 
-	public Page<Orcamentoeletrico> pesquisar(Pageable pageable){
+	public Page<OrcamentoEletrico> pesquisar(Pageable pageable){
 		return orcamentoeletricoRepository.findAll(pageable);
 	}
 
-	public List<Orcamentoeletrico> listarTodos() {
+	public List<OrcamentoEletrico> listarTodos() {
 		return orcamentoeletricoRepository.findAll();
 	}
 

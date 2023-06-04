@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.stellato.model.Orcamentoelearquivo;
+import com.stellato.model.OrcamentoEleArquivo;
 import com.stellato.repository.OrcamentoelearquivoRepository;
 
 @Service
@@ -18,29 +18,29 @@ public class OrcamentoelearquivoService {
 	@Autowired
 	private OrcamentoelearquivoRepository orcamentoelearquivoRepository;
 
-	public Orcamentoelearquivo salvar(Orcamentoelearquivo orcamentoelearquivo) {
+	public OrcamentoEleArquivo salvar(OrcamentoEleArquivo orcamentoelearquivo) {
 		return orcamentoelearquivoRepository.save(orcamentoelearquivo);
 	}
 
-	public Orcamentoelearquivo buscarPeloCodigo(Long codigo) {
-		Orcamentoelearquivo orcamentoelearquivoSalva = orcamentoelearquivoRepository.findById(codigo).get();
+	public OrcamentoEleArquivo buscarPeloCodigo(Long codigo) {
+		OrcamentoEleArquivo orcamentoelearquivoSalva = orcamentoelearquivoRepository.findById(codigo).get();
 		if (orcamentoelearquivoSalva == null) {
 		throw new EmptyResultDataAccessException(1);
 			}
 		return orcamentoelearquivoSalva;
 	}
 
-	public Orcamentoelearquivo atualizar(Long codigo, Orcamentoelearquivo orcamentoelearquivo) {
-		Orcamentoelearquivo orcamentoelearquivoSave = buscarPeloCodigo(codigo);
+	public OrcamentoEleArquivo atualizar(Long codigo, OrcamentoEleArquivo orcamentoelearquivo) {
+		OrcamentoEleArquivo orcamentoelearquivoSave = buscarPeloCodigo(codigo);
 		BeanUtils.copyProperties(orcamentoelearquivo, orcamentoelearquivoSave, "orcamentoelearquivoid");
 		return orcamentoelearquivoRepository.save(orcamentoelearquivoSave);
 	}
 
-	public Page<Orcamentoelearquivo> pesquisar(Pageable pageable){
+	public Page<OrcamentoEleArquivo> pesquisar(Pageable pageable){
 		return orcamentoelearquivoRepository.findAll(pageable);
 	}
 
-	public List<Orcamentoelearquivo> listarTodos() {
+	public List<OrcamentoEleArquivo> listarTodos() {
 		return orcamentoelearquivoRepository.findAll();
 	}
 

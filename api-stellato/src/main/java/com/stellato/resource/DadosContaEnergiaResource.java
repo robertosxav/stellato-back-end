@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stellato.model.Dadoscontaenergia;
+import com.stellato.model.DadosContaEnergia;
 import com.stellato.service.DadoscontaenergiaService;
 
 @RestController
@@ -31,30 +31,30 @@ public class DadosContaEnergiaResource {
 	private DadoscontaenergiaService dadoscontaenergiaService;
 
 	@PostMapping
-	public ResponseEntity<Dadoscontaenergia> criar(@Valid @RequestBody Dadoscontaenergia dadoscontaenergia, HttpServletResponse response) {
-		 Dadoscontaenergia dadoscontaenergiaSalva = dadoscontaenergiaService.salvar(dadoscontaenergia);
+	public ResponseEntity<DadosContaEnergia> criar(@Valid @RequestBody DadosContaEnergia dadoscontaenergia, HttpServletResponse response) {
+		 DadosContaEnergia dadoscontaenergiaSalva = dadoscontaenergiaService.salvar(dadoscontaenergia);
 		return ResponseEntity.status(HttpStatus.CREATED).body(dadoscontaenergiaSalva);
 	}
 
 	@GetMapping("/{codigo}")
-	public ResponseEntity<Dadoscontaenergia> buscarPeloCodigo(@PathVariable Long codigo) {
-		Dadoscontaenergia dadoscontaenergia = dadoscontaenergiaService.buscarPeloCodigo(codigo);
+	public ResponseEntity<DadosContaEnergia> buscarPeloCodigo(@PathVariable Long codigo) {
+		DadosContaEnergia dadoscontaenergia = dadoscontaenergiaService.buscarPeloCodigo(codigo);
 		return dadoscontaenergia != null ? ResponseEntity.ok(dadoscontaenergia) : ResponseEntity.notFound().build();
 	}
 
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Dadoscontaenergia> atualizar(@PathVariable Long codigo, @Valid @RequestBody Dadoscontaenergia dadoscontaenergia) {
-		Dadoscontaenergia dadoscontaenergiaSalva = dadoscontaenergiaService.atualizar(codigo, dadoscontaenergia);
+	public ResponseEntity<DadosContaEnergia> atualizar(@PathVariable Long codigo, @Valid @RequestBody DadosContaEnergia dadoscontaenergia) {
+		DadosContaEnergia dadoscontaenergiaSalva = dadoscontaenergiaService.atualizar(codigo, dadoscontaenergia);
 		return ResponseEntity.ok(dadoscontaenergiaSalva);
 	}
 
 	@GetMapping
-	public Page<Dadoscontaenergia> pesquisar(Pageable pageable) {
+	public Page<DadosContaEnergia> pesquisar(Pageable pageable) {
 		return dadoscontaenergiaService.pesquisar(pageable);
 	}
 
 	@GetMapping("/all")
-	public List<Dadoscontaenergia> pesquisar() {
+	public List<DadosContaEnergia> pesquisar() {
 		return dadoscontaenergiaService.listarTodos();
 	}
 

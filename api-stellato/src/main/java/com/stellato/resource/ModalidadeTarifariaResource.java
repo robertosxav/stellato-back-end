@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stellato.model.Modalidadetarifaria;
+import com.stellato.model.ModalidadeTarifaria;
 import com.stellato.service.ModalidadetarifariaService;
 
 @RestController
@@ -31,30 +31,30 @@ public class ModalidadeTarifariaResource {
 	private ModalidadetarifariaService modalidadetarifariaService;
 
 	@PostMapping
-	public ResponseEntity<Modalidadetarifaria> criar(@Valid @RequestBody Modalidadetarifaria modalidadetarifaria, HttpServletResponse response) {
-		 Modalidadetarifaria modalidadetarifariaSalva = modalidadetarifariaService.salvar(modalidadetarifaria);
+	public ResponseEntity<ModalidadeTarifaria> criar(@Valid @RequestBody ModalidadeTarifaria modalidadetarifaria, HttpServletResponse response) {
+		 ModalidadeTarifaria modalidadetarifariaSalva = modalidadetarifariaService.salvar(modalidadetarifaria);
 		return ResponseEntity.status(HttpStatus.CREATED).body(modalidadetarifariaSalva);
 	}
 
 	@GetMapping("/{codigo}")
-	public ResponseEntity<Modalidadetarifaria> buscarPeloCodigo(@PathVariable Long codigo) {
-		Modalidadetarifaria modalidadetarifaria = modalidadetarifariaService.buscarPeloCodigo(codigo);
+	public ResponseEntity<ModalidadeTarifaria> buscarPeloCodigo(@PathVariable Long codigo) {
+		ModalidadeTarifaria modalidadetarifaria = modalidadetarifariaService.buscarPeloCodigo(codigo);
 		return modalidadetarifaria != null ? ResponseEntity.ok(modalidadetarifaria) : ResponseEntity.notFound().build();
 	}
 
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Modalidadetarifaria> atualizar(@PathVariable Long codigo, @Valid @RequestBody Modalidadetarifaria modalidadetarifaria) {
-		Modalidadetarifaria modalidadetarifariaSalva = modalidadetarifariaService.atualizar(codigo, modalidadetarifaria);
+	public ResponseEntity<ModalidadeTarifaria> atualizar(@PathVariable Long codigo, @Valid @RequestBody ModalidadeTarifaria modalidadetarifaria) {
+		ModalidadeTarifaria modalidadetarifariaSalva = modalidadetarifariaService.atualizar(codigo, modalidadetarifaria);
 		return ResponseEntity.ok(modalidadetarifariaSalva);
 	}
 
 	@GetMapping
-	public Page<Modalidadetarifaria> pesquisar(Pageable pageable) {
+	public Page<ModalidadeTarifaria> pesquisar(Pageable pageable) {
 		return modalidadetarifariaService.pesquisar(pageable);
 	}
 
 	@GetMapping("/all")
-	public List<Modalidadetarifaria> pesquisar() {
+	public List<ModalidadeTarifaria> pesquisar() {
 		return modalidadetarifariaService.listarTodos();
 	}
 

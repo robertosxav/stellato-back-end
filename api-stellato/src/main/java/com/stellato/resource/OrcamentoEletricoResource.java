@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stellato.model.Orcamentoeletrico;
+import com.stellato.model.OrcamentoEletrico;
 import com.stellato.service.OrcamentoeletricoService;
 
 @RestController
@@ -31,30 +31,30 @@ public class OrcamentoEletricoResource {
 	private OrcamentoeletricoService orcamentoeletricoService;
 
 	@PostMapping
-	public ResponseEntity<Orcamentoeletrico> criar(@Valid @RequestBody Orcamentoeletrico orcamentoeletrico, HttpServletResponse response) {
-		 Orcamentoeletrico orcamentoeletricoSalva = orcamentoeletricoService.salvar(orcamentoeletrico);
+	public ResponseEntity<OrcamentoEletrico> criar(@Valid @RequestBody OrcamentoEletrico orcamentoeletrico, HttpServletResponse response) {
+		 OrcamentoEletrico orcamentoeletricoSalva = orcamentoeletricoService.salvar(orcamentoeletrico);
 		return ResponseEntity.status(HttpStatus.CREATED).body(orcamentoeletricoSalva);
 	}
 
 	@GetMapping("/{codigo}")
-	public ResponseEntity<Orcamentoeletrico> buscarPeloCodigo(@PathVariable Long codigo) {
-		Orcamentoeletrico orcamentoeletrico = orcamentoeletricoService.buscarPeloCodigo(codigo);
+	public ResponseEntity<OrcamentoEletrico> buscarPeloCodigo(@PathVariable Long codigo) {
+		OrcamentoEletrico orcamentoeletrico = orcamentoeletricoService.buscarPeloCodigo(codigo);
 		return orcamentoeletrico != null ? ResponseEntity.ok(orcamentoeletrico) : ResponseEntity.notFound().build();
 	}
 
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Orcamentoeletrico> atualizar(@PathVariable Long codigo, @Valid @RequestBody Orcamentoeletrico orcamentoeletrico) {
-		Orcamentoeletrico orcamentoeletricoSalva = orcamentoeletricoService.atualizar(codigo, orcamentoeletrico);
+	public ResponseEntity<OrcamentoEletrico> atualizar(@PathVariable Long codigo, @Valid @RequestBody OrcamentoEletrico orcamentoeletrico) {
+		OrcamentoEletrico orcamentoeletricoSalva = orcamentoeletricoService.atualizar(codigo, orcamentoeletrico);
 		return ResponseEntity.ok(orcamentoeletricoSalva);
 	}
 
 	@GetMapping
-	public Page<Orcamentoeletrico> pesquisar(Pageable pageable) {
+	public Page<OrcamentoEletrico> pesquisar(Pageable pageable) {
 		return orcamentoeletricoService.pesquisar(pageable);
 	}
 
 	@GetMapping("/all")
-	public List<Orcamentoeletrico> pesquisar() {
+	public List<OrcamentoEletrico> pesquisar() {
 		return orcamentoeletricoService.listarTodos();
 	}
 

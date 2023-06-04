@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.stellato.model.Funilvendas;
+import com.stellato.model.FunilVendas;
 import com.stellato.repository.FunilvendasRepository;
 
 @Service
@@ -18,29 +18,29 @@ public class FunilvendasService {
 	@Autowired
 	private FunilvendasRepository funilvendasRepository;
 
-	public Funilvendas salvar(Funilvendas funilvendas) {
+	public FunilVendas salvar(FunilVendas funilvendas) {
 		return funilvendasRepository.save(funilvendas);
 	}
 
-	public Funilvendas buscarPeloCodigo(Long codigo) {
-		Funilvendas funilvendasSalva = funilvendasRepository.findById(codigo).get();
+	public FunilVendas buscarPeloCodigo(Long codigo) {
+		FunilVendas funilvendasSalva = funilvendasRepository.findById(codigo).get();
 		if (funilvendasSalva == null) {
 		throw new EmptyResultDataAccessException(1);
 			}
 		return funilvendasSalva;
 	}
 
-	public Funilvendas atualizar(Long codigo, Funilvendas funilvendas) {
-		Funilvendas funilvendasSave = buscarPeloCodigo(codigo);
+	public FunilVendas atualizar(Long codigo, FunilVendas funilvendas) {
+		FunilVendas funilvendasSave = buscarPeloCodigo(codigo);
 		BeanUtils.copyProperties(funilvendas, funilvendasSave, "funilvendasid");
 		return funilvendasRepository.save(funilvendasSave);
 	}
 
-	public Page<Funilvendas> pesquisar(Pageable pageable){
+	public Page<FunilVendas> pesquisar(Pageable pageable){
 		return funilvendasRepository.findAll(pageable);
 	}
 
-	public List<Funilvendas> listarTodos() {
+	public List<FunilVendas> listarTodos() {
 		return funilvendasRepository.findAll();
 	}
 

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stellato.model.Etapasfunil;
+import com.stellato.model.EtapasFunil;
 import com.stellato.service.EtapasfunilService;
 
 @RestController
@@ -31,30 +31,30 @@ public class EtapasFunilResource {
 	private EtapasfunilService etapasfunilService;
 
 	@PostMapping
-	public ResponseEntity<Etapasfunil> criar(@Valid @RequestBody Etapasfunil etapasfunil, HttpServletResponse response) {
-		 Etapasfunil etapasfunilSalva = etapasfunilService.salvar(etapasfunil);
+	public ResponseEntity<EtapasFunil> criar(@Valid @RequestBody EtapasFunil etapasfunil, HttpServletResponse response) {
+		 EtapasFunil etapasfunilSalva = etapasfunilService.salvar(etapasfunil);
 		return ResponseEntity.status(HttpStatus.CREATED).body(etapasfunilSalva);
 	}
 
 	@GetMapping("/{codigo}")
-	public ResponseEntity<Etapasfunil> buscarPeloCodigo(@PathVariable Long codigo) {
-		Etapasfunil etapasfunil = etapasfunilService.buscarPeloCodigo(codigo);
+	public ResponseEntity<EtapasFunil> buscarPeloCodigo(@PathVariable Long codigo) {
+		EtapasFunil etapasfunil = etapasfunilService.buscarPeloCodigo(codigo);
 		return etapasfunil != null ? ResponseEntity.ok(etapasfunil) : ResponseEntity.notFound().build();
 	}
 
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Etapasfunil> atualizar(@PathVariable Long codigo, @Valid @RequestBody Etapasfunil etapasfunil) {
-		Etapasfunil etapasfunilSalva = etapasfunilService.atualizar(codigo, etapasfunil);
+	public ResponseEntity<EtapasFunil> atualizar(@PathVariable Long codigo, @Valid @RequestBody EtapasFunil etapasfunil) {
+		EtapasFunil etapasfunilSalva = etapasfunilService.atualizar(codigo, etapasfunil);
 		return ResponseEntity.ok(etapasfunilSalva);
 	}
 
 	@GetMapping
-	public Page<Etapasfunil> pesquisar(Pageable pageable) {
+	public Page<EtapasFunil> pesquisar(Pageable pageable) {
 		return etapasfunilService.pesquisar(pageable);
 	}
 
 	@GetMapping("/all")
-	public List<Etapasfunil> pesquisar() {
+	public List<EtapasFunil> pesquisar() {
 		return etapasfunilService.listarTodos();
 	}
 

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stellato.model.Materialcotado;
+import com.stellato.model.MaterialCotado;
 import com.stellato.service.MaterialcotadoService;
 
 @RestController
@@ -31,30 +31,30 @@ public class MaterialCotadoResource {
 	private MaterialcotadoService materialcotadoService;
 
 	@PostMapping
-	public ResponseEntity<Materialcotado> criar(@Valid @RequestBody Materialcotado materialcotado, HttpServletResponse response) {
-		 Materialcotado materialcotadoSalva = materialcotadoService.salvar(materialcotado);
+	public ResponseEntity<MaterialCotado> criar(@Valid @RequestBody MaterialCotado materialcotado, HttpServletResponse response) {
+		 MaterialCotado materialcotadoSalva = materialcotadoService.salvar(materialcotado);
 		return ResponseEntity.status(HttpStatus.CREATED).body(materialcotadoSalva);
 	}
 
 	@GetMapping("/{codigo}")
-	public ResponseEntity<Materialcotado> buscarPeloCodigo(@PathVariable Long codigo) {
-		Materialcotado materialcotado = materialcotadoService.buscarPeloCodigo(codigo);
+	public ResponseEntity<MaterialCotado> buscarPeloCodigo(@PathVariable Long codigo) {
+		MaterialCotado materialcotado = materialcotadoService.buscarPeloCodigo(codigo);
 		return materialcotado != null ? ResponseEntity.ok(materialcotado) : ResponseEntity.notFound().build();
 	}
 
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Materialcotado> atualizar(@PathVariable Long codigo, @Valid @RequestBody Materialcotado materialcotado) {
-		Materialcotado materialcotadoSalva = materialcotadoService.atualizar(codigo, materialcotado);
+	public ResponseEntity<MaterialCotado> atualizar(@PathVariable Long codigo, @Valid @RequestBody MaterialCotado materialcotado) {
+		MaterialCotado materialcotadoSalva = materialcotadoService.atualizar(codigo, materialcotado);
 		return ResponseEntity.ok(materialcotadoSalva);
 	}
 
 	@GetMapping
-	public Page<Materialcotado> pesquisar(Pageable pageable) {
+	public Page<MaterialCotado> pesquisar(Pageable pageable) {
 		return materialcotadoService.pesquisar(pageable);
 	}
 
 	@GetMapping("/all")
-	public List<Materialcotado> pesquisar() {
+	public List<MaterialCotado> pesquisar() {
 		return materialcotadoService.listarTodos();
 	}
 
