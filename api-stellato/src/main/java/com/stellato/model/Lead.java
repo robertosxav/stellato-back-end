@@ -1,117 +1,156 @@
 package com.stellato.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(name = "public.lead") 
+@Table(name = "lead") 
 public class Lead implements Serializable{ 
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "leadid")
-	private Long leadid;
+	@Column(name = "lead_id")
+	private Long id;
 
-	@Column(name = "leadnome")
-	private String leadnome;
+	@Column(name = "lead_nome")
+	private String nome;
 
-	@Column(name = "leadtelefone")
-	private String leadtelefone;
+	@Column(name = "lead_telefone")
+	private String telefone;
 
-	@Column(name = "pessoaid")
-	private Integer pessoaid;
+	@OneToOne()
+	@JoinColumn(name = "pessoa_id",referencedColumnName = "pessoa_id")
+	private Pessoa pessoa;
 
-	@Column(name = "leadwhatsapp")
-	private String leadwhatsapp;
+	@Column(name = "lead_whatsapp")
+	private String whatsapp;
 
-	@Column(name = "leademail")
-	private String leademail;
+	@Column(name = "lead_email")
+	private String email;
 
-	@Column(name = "leadcidade")
-	private String leadcidade;
+	@Column(name = "lead_cidade")
+	private String cidade;
 
-	@Column(name = "leadorigem")
-	private Integer leadorigem;
+	@Column(name = "lead_origem")
+	private Integer origem;
 
-	@Column(name = "leadtipo")
-	private Integer leadtipo;
+	@Column(name = "lead_tipo")
+	private Integer tipo;
+	
+	@Column(name = "lead_status")
+	private Integer status;
 
-	public Long getLeadid() {
-		return leadid;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "lead_criado_em")
+	private LocalDate criadoEm;
+
+	@Column(name = "lead_criado_por")
+	private Integer criadoPor;
+
+	public Long getId() {
+		return id;
 	}
-	 
-	public void setLeadid(Long leadid) {
-		this.leadid = leadid;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	 
-	public String getLeadnome() {
-		return leadnome;
+
+	public String getNome() {
+		return nome;
 	}
-	 
-	public void setLeadnome(String leadnome) {
-		this.leadnome = leadnome;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	 
-	public String getLeadtelefone() {
-		return leadtelefone;
+
+	public String getTelefone() {
+		return telefone;
 	}
-	 
-	public void setLeadtelefone(String leadtelefone) {
-		this.leadtelefone = leadtelefone;
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
-	 
-	public Integer getPessoaid() {
-		return pessoaid;
+
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
-	 
-	public void setPessoaid(Integer pessoaid) {
-		this.pessoaid = pessoaid;
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
-	 
-	public String getLeadwhatsapp() {
-		return leadwhatsapp;
+
+	public String getWhatsapp() {
+		return whatsapp;
 	}
-	 
-	public void setLeadwhatsapp(String leadwhatsapp) {
-		this.leadwhatsapp = leadwhatsapp;
+
+	public void setWhatsapp(String whatsapp) {
+		this.whatsapp = whatsapp;
 	}
-	 
-	public String getLeademail() {
-		return leademail;
+
+	public String getEmail() {
+		return email;
 	}
-	 
-	public void setLeademail(String leademail) {
-		this.leademail = leademail;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	 
-	public String getLeadcidade() {
-		return leadcidade;
+
+	public String getCidade() {
+		return cidade;
 	}
-	 
-	public void setLeadcidade(String leadcidade) {
-		this.leadcidade = leadcidade;
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
-	 
-	public Integer getLeadorigem() {
-		return leadorigem;
+
+	public Integer getOrigem() {
+		return origem;
 	}
-	 
-	public void setLeadorigem(Integer leadorigem) {
-		this.leadorigem = leadorigem;
+
+	public void setOrigem(Integer origem) {
+		this.origem = origem;
 	}
-	 
-	public Integer getLeadtipo() {
-		return leadtipo;
+
+	public Integer getTipo() {
+		return tipo;
 	}
-	 
-	public void setLeadtipo(Integer leadtipo) {
-		this.leadtipo = leadtipo;
+
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
 	}
-	 
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public LocalDate getCriadoEm() {
+		return criadoEm;
+	}
+
+	public void setCriadoEm(LocalDate criadoEm) {
+		this.criadoEm = criadoEm;
+	}
+
+	public Integer getCriadoPor() {
+		return criadoPor;
+	}
+
+	public void setCriadoPor(Integer criadoPor) {
+		this.criadoPor = criadoPor;
+	}
 
 } 

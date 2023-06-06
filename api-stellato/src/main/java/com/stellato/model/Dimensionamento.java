@@ -1,84 +1,114 @@
 package com.stellato.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(name = "public.dimensionamento") 
+@Table(name = "dimensionamento") 
 public class Dimensionamento implements Serializable{ 
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "dimensionamentoid")
-	private Long dimensionamentoid;
+	@Column(name = "dimensionamento_id")
+	private Long id;
 
-	@Column(name = "orcamentoeletricoid")
-	private Integer orcamentoeletricoid;
+	@ManyToOne()
+	@JoinColumn(name = "orcamento_eletrico_id",referencedColumnName = "orcamento_eletrico_id")
+	private OrcamentoEletrico orcamentoEletrico;
 
-	@Column(name = "dimensionamentopotmodulo")
-	private String dimensionamentopotmodulo;
+	@Column(name = "dimensionamento_potmodulo")
+	private String ptenciaModulo;
 
-	@Column(name = "dimensionamentopercperda")
-	private String dimensionamentopercperda;
+	@Column(name = "dimensionamento_percperda")
+	private String percentualPerda;
 
-	@Column(name = "dimensionamentoareamodu")
-	private String dimensionamentoareamodu;
+	@Column(name = "dimensionamento_area_modu")
+	private String areaModu;
 
-	@Column(name = "dimensionamentostatus")
-	private Integer dimensionamentostatus;
+	@Column(name = "dimensionamento_status")
+	private Integer status;
 
-	public Long getDimensionamentoid() {
-		return dimensionamentoid;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "dimensionamento_criado_em")
+	private LocalDate criadoEm;
+	
+	@Column(name = "dimensionamento_criado_por")
+	private Integer criadoPor;
+
+	public Long getId() {
+		return id;
 	}
-	 
-	public void setDimensionamentoid(Long dimensionamentoid) {
-		this.dimensionamentoid = dimensionamentoid;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	 
-	public Integer getOrcamentoeletricoid() {
-		return orcamentoeletricoid;
+
+	public OrcamentoEletrico getOrcamentoEletrico() {
+		return orcamentoEletrico;
 	}
-	 
-	public void setOrcamentoeletricoid(Integer orcamentoeletricoid) {
-		this.orcamentoeletricoid = orcamentoeletricoid;
+
+	public void setOrcamentoEletrico(OrcamentoEletrico orcamentoEletrico) {
+		this.orcamentoEletrico = orcamentoEletrico;
 	}
-	 
-	public String getDimensionamentopotmodulo() {
-		return dimensionamentopotmodulo;
+
+	public String getPtenciaModulo() {
+		return ptenciaModulo;
 	}
-	 
-	public void setDimensionamentopotmodulo(String dimensionamentopotmodulo) {
-		this.dimensionamentopotmodulo = dimensionamentopotmodulo;
+
+	public void setPtenciaModulo(String ptenciaModulo) {
+		this.ptenciaModulo = ptenciaModulo;
 	}
-	 
-	public String getDimensionamentopercperda() {
-		return dimensionamentopercperda;
+
+	public String getPercentualPerda() {
+		return percentualPerda;
 	}
-	 
-	public void setDimensionamentopercperda(String dimensionamentopercperda) {
-		this.dimensionamentopercperda = dimensionamentopercperda;
+
+	public void setPercentualPerda(String percentualPerda) {
+		this.percentualPerda = percentualPerda;
 	}
-	 
-	public String getDimensionamentoareamodu() {
-		return dimensionamentoareamodu;
+
+	public String getAreaModu() {
+		return areaModu;
 	}
-	 
-	public void setDimensionamentoareamodu(String dimensionamentoareamodu) {
-		this.dimensionamentoareamodu = dimensionamentoareamodu;
+
+	public void setAreaModu(String areaModu) {
+		this.areaModu = areaModu;
 	}
-	 
-	public Integer getDimensionamentostatus() {
-		return dimensionamentostatus;
+
+	public Integer getStatus() {
+		return status;
 	}
-	 
-	public void setDimensionamentostatus(Integer dimensionamentostatus) {
-		this.dimensionamentostatus = dimensionamentostatus;
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
-	 
+
+	public LocalDate getCriadoEm() {
+		return criadoEm;
+	}
+
+	public void setCriadoEm(LocalDate criadoEm) {
+		this.criadoEm = criadoEm;
+	}
+
+	public Integer getCriadoPor() {
+		return criadoPor;
+	}
+
+	public void setCriadoPor(Integer criadoPor) {
+		this.criadoPor = criadoPor;
+	}
+	
+	
 
 } 

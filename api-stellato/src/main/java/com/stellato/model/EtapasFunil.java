@@ -1,62 +1,92 @@
 package com.stellato.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(name = "public.etapasfunil") 
+@Table(name = "etapas_funil") 
 public class EtapasFunil implements Serializable{ 
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "etapasfunilid")
-	private Long etapasfunilid;
+	@Column(name = "etapas_funil_id")
+	private Long id;
 
-	@Column(name = "funilvendasid")
-	private Integer funilvendasid;
+	@ManyToOne()
+	@JoinColumn(name = "funil_vendas_id",referencedColumnName = "funil_vendas_id")
+	private FunilVendas funilVendas;
 
-	@Column(name = "etapasfuniletapa")
-	private String etapasfuniletapa;
+	@Column(name = "etapas_funil_etapa")
+	private String etapa;
 
-	@Column(name = "etapasfunilstatus")
-	private Integer etapasfunilstatus;
+	@Column(name = "etapas_funil_status")
+	private Integer status;
 
-	public Long getEtapasfunilid() {
-		return etapasfunilid;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "etapas_funil_criado_em")
+	private LocalDate criadoEm;
+
+	@Column(name = "etapas_funil_criado_por")
+	private Integer criadoPor;
+
+	public Long getId() {
+		return id;
 	}
-	 
-	public void setEtapasfunilid(Long etapasfunilid) {
-		this.etapasfunilid = etapasfunilid;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	 
-	public Integer getFunilvendasid() {
-		return funilvendasid;
+
+	public FunilVendas getFunilVendas() {
+		return funilVendas;
 	}
-	 
-	public void setFunilvendasid(Integer funilvendasid) {
-		this.funilvendasid = funilvendasid;
+
+	public void setFunilVendas(FunilVendas funilVendas) {
+		this.funilVendas = funilVendas;
 	}
-	 
-	public String getEtapasfuniletapa() {
-		return etapasfuniletapa;
+
+	public String getEtapa() {
+		return etapa;
 	}
-	 
-	public void setEtapasfuniletapa(String etapasfuniletapa) {
-		this.etapasfuniletapa = etapasfuniletapa;
+
+	public void setEtapa(String etapa) {
+		this.etapa = etapa;
 	}
-	 
-	public Integer getEtapasfunilstatus() {
-		return etapasfunilstatus;
+
+	public Integer getStatus() {
+		return status;
 	}
-	 
-	public void setEtapasfunilstatus(Integer etapasfunilstatus) {
-		this.etapasfunilstatus = etapasfunilstatus;
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
-	 
+
+	public LocalDate getCriadoEm() {
+		return criadoEm;
+	}
+
+	public void setCriadoEm(LocalDate criadoEm) {
+		this.criadoEm = criadoEm;
+	}
+
+	public Integer getCriadoPor() {
+		return criadoPor;
+	}
+
+	public void setCriadoPor(Integer criadoPor) {
+		this.criadoPor = criadoPor;
+	}
+
+	
 
 } 

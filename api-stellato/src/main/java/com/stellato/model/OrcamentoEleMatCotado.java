@@ -1,73 +1,49 @@
 package com.stellato.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(name = "public.orcamentoelematcotado") 
+@Table(name = "orcamento_ele_mat_cotado") 
 public class OrcamentoEleMatCotado implements Serializable{ 
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "orcamentoelematcotadoid")
-	private Long orcamentoelematcotadoid;
+	@Column(name = "orcamento_ele_mat_cotado_id")
+	private Long id;
 
-	@Column(name = "materialcotadoid")
-	private Integer materialcotadoid;
+	@ManyToOne()
+	@JoinColumn(name = "material_cotado_id",referencedColumnName = "material_cotado_id")
+	private MaterialCotado materialCotado;
 
-	@Column(name = "orcamentoeletricoid")
-	private Integer orcamentoeletricoid;
+	@ManyToOne()
+	@JoinColumn(name = "orcamento_eletrico_id",referencedColumnName = "orcamento_eletrico_id")
+	private OrcamentoEletrico orcamentoEletrico;
 
-	@Column(name = "orcamentoelematcotadoqtd")
-	private Integer orcamentoelematcotadoqtd;
+	@Column(name = "orcamento_ele_mat_cotado_qtd")
+	private Integer qtd;
 
-	@Column(name = "orcamentoelematcotadovalor")
-	private String orcamentoelematcotadovalor;
+	@Column(name = "orcamento_ele_mat_cotado_valor")
+	private String valor;
+	
+	@Column(name = "orcamento_ele_mat_status")
+	private Integer status;
 
-	public Long getOrcamentoelematcotadoid() {
-		return orcamentoelematcotadoid;
-	}
-	 
-	public void setOrcamentoelematcotadoid(Long orcamentoelematcotadoid) {
-		this.orcamentoelematcotadoid = orcamentoelematcotadoid;
-	}
-	 
-	public Integer getMaterialcotadoid() {
-		return materialcotadoid;
-	}
-	 
-	public void setMaterialcotadoid(Integer materialcotadoid) {
-		this.materialcotadoid = materialcotadoid;
-	}
-	 
-	public Integer getOrcamentoeletricoid() {
-		return orcamentoeletricoid;
-	}
-	 
-	public void setOrcamentoeletricoid(Integer orcamentoeletricoid) {
-		this.orcamentoeletricoid = orcamentoeletricoid;
-	}
-	 
-	public Integer getOrcamentoelematcotadoqtd() {
-		return orcamentoelematcotadoqtd;
-	}
-	 
-	public void setOrcamentoelematcotadoqtd(Integer orcamentoelematcotadoqtd) {
-		this.orcamentoelematcotadoqtd = orcamentoelematcotadoqtd;
-	}
-	 
-	public String getOrcamentoelematcotadovalor() {
-		return orcamentoelematcotadovalor;
-	}
-	 
-	public void setOrcamentoelematcotadovalor(String orcamentoelematcotadovalor) {
-		this.orcamentoelematcotadovalor = orcamentoelematcotadovalor;
-	}
-	 
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "orcamento_ele_mat_criado_em")
+	private LocalDate criadoEm;
 
-} 
+	@Column(name = "funil_vendas_criado_por")
+	private Integer criadoPor;
+
+}

@@ -1,51 +1,77 @@
 package com.stellato.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(name = "public.funilvendas") 
+@Table(name = "funil_vendas") 
 public class FunilVendas implements Serializable{ 
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "funilvendasid")
-	private Long funilvendasid;
+	@Column(name = "funil_vendas_id")
+	private Long id;
 
-	@Column(name = "funilvendasdescricao")
-	private String funilvendasdescricao;
+	@Column(name = "funil_vendas_descricao")
+	private String descricao;
 
-	@Column(name = "funilvendasstatus")
-	private Integer funilvendasstatus;
+	@Column(name = "funil_vendas_status")
+	private Integer status;
 
-	public Long getFunilvendasid() {
-		return funilvendasid;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "funil_vendas_criado_em")
+	private LocalDate criadoEm;
+
+	@Column(name = "funil_vendas_criado_por")
+	private Integer criadoPor;
+
+	public Long getId() {
+		return id;
 	}
-	 
-	public void setFunilvendasid(Long funilvendasid) {
-		this.funilvendasid = funilvendasid;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	 
-	public String getFunilvendasdescricao() {
-		return funilvendasdescricao;
+
+	public String getDescricao() {
+		return descricao;
 	}
-	 
-	public void setFunilvendasdescricao(String funilvendasdescricao) {
-		this.funilvendasdescricao = funilvendasdescricao;
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-	 
-	public Integer getFunilvendasstatus() {
-		return funilvendasstatus;
+
+	public Integer getStatus() {
+		return status;
 	}
-	 
-	public void setFunilvendasstatus(Integer funilvendasstatus) {
-		this.funilvendasstatus = funilvendasstatus;
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
-	 
+
+	public LocalDate getCriadoEm() {
+		return criadoEm;
+	}
+
+	public void setCriadoEm(LocalDate criadoEm) {
+		this.criadoEm = criadoEm;
+	}
+
+	public Integer getCriadoPor() {
+		return criadoPor;
+	}
+
+	public void setCriadoPor(Integer criadoPor) {
+		this.criadoPor = criadoPor;
+	}
+	
 
 } 

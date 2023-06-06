@@ -1,73 +1,119 @@
 package com.stellato.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
+import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(name = "public.arquivo") 
+@Table(name = "arquivo") 
 public class Arquivo implements Serializable{ 
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "arquivoid")
-	private Long arquivoid;
+	@Column(name = "arquivo_id")
+	private Long id;
 
-	@Column(name = "arquivonome")
-	private String arquivonome;
+	@Column(name = "arquivo_nome")
+	private String nomeArquivo;
 
-	@Column(name = "arquivoextensao")
-	private String arquivoextensao;
+	@Column(name = "arquivo_extensao")
+	private String extensao;
 
-	@Column(name = "arquivostatus")
-	private Integer arquivostatus;
+	@Column(name = "arquivo_blob")
+	private Blob blob;
+	
+	@Column(name = "arquivo_status")
+	private Integer status;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "arquivo_criado_em")
+	private LocalDate criadoEm;
+	
+	@Column(name = "arquivo_criado_por")
+	private Integer criadoPor;
+	
+	public Long getId() {
+		return id;
+	}
 
-	@Column(name = "arquivoblob")
-	private String arquivoblob;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public Long getArquivoid() {
-		return arquivoid;
+	public String getNomeArquivo() {
+		return nomeArquivo;
 	}
-	 
-	public void setArquivoid(Long arquivoid) {
-		this.arquivoid = arquivoid;
+
+	public void setNomeArquivo(String nomeArquivo) {
+		this.nomeArquivo = nomeArquivo;
 	}
-	 
-	public String getArquivonome() {
-		return arquivonome;
+
+	public String getExtensao() {
+		return extensao;
 	}
-	 
-	public void setArquivonome(String arquivonome) {
-		this.arquivonome = arquivonome;
+
+	public void setExtensao(String extensao) {
+		this.extensao = extensao;
 	}
-	 
-	public String getArquivoextensao() {
-		return arquivoextensao;
+
+	public Integer getStatus() {
+		return status;
 	}
-	 
-	public void setArquivoextensao(String arquivoextensao) {
-		this.arquivoextensao = arquivoextensao;
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
-	 
-	public Integer getArquivostatus() {
-		return arquivostatus;
+
+	public Blob getBlob() {
+		return blob;
 	}
-	 
-	public void setArquivostatus(Integer arquivostatus) {
-		this.arquivostatus = arquivostatus;
+
+	public void setBlob(Blob blob) {
+		this.blob = blob;
 	}
-	 
-	public String getArquivoblob() {
-		return arquivoblob;
+
+	public LocalDate getCriadoEm() {
+		return criadoEm;
 	}
-	 
-	public void setArquivoblob(String arquivoblob) {
-		this.arquivoblob = arquivoblob;
+
+	public void setCriadoEm(LocalDate criadoEm) {
+		this.criadoEm = criadoEm;
 	}
-	 
+
+	public Integer getCriadoPor() {
+		return criadoPor;
+	}
+
+	public void setCriadoPor(Integer criadoPor) {
+		this.criadoPor = criadoPor;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Arquivo other = (Arquivo) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	
 
 } 

@@ -1,6 +1,7 @@
 package com.stellato.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,121 +9,76 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "public.distribuidora") 
+@Table(name = "distribuidora") 
 public class Distribuidora implements Serializable{ 
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "distribuidoraid")
-	private Long distribuidoraid;
+	@Column(name = "distribuidora_id")
+	private Long id;
 
-	@Column(name = "distribuidoranome")
-	private String distribuidoranome;
+	@Column(name = "distribuidora_nome")
+	private String nome;
 
-	@Column(name = "distribuidorasigla")
-	private String distribuidorasigla;
+	@Column(name = "distribuidora_sigla")
+	private String sigla;
 
-	@Column(name = "distribuidorastatus")
-	private Integer distribuidorastatus;
+	@Column(name = "distribuidora_status")
+	private Integer status;
 
-	@Column(name = "distribuidoracriadopor")
-	private Integer distribuidoracriadopor;
+	@Column(name = "distribuidora_criado_por")
+	private Integer criadoPor;
 
-	@Column(name = "distribuidoracriadoem")
-	private String distribuidoracriadoem;
+	@Column(name = "distribuidora_criado_em")
+	private LocalDate criadoEm;
 
-	@Column(name = "distribuidoracriardoporn")
-	private String distribuidoracriardoporn;
+	public Long getId() {
+		return id;
+	}
 
-	@Column(name = "distribuidoraalteradoem")
-	private String distribuidoraalteradoem;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	@Column(name = "distribuidoraalteradopor")
-	private Integer distribuidoraalteradopor;
+	public String getNome() {
+		return nome;
+	}
 
-	@Column(name = "distribuidoraalteradoporn")
-	private String distribuidoraalteradoporn;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-	public Long getDistribuidoraid() {
-		return distribuidoraid;
+	public String getSigla() {
+		return sigla;
 	}
-	 
-	public void setDistribuidoraid(Long distribuidoraid) {
-		this.distribuidoraid = distribuidoraid;
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
-	 
-	public String getDistribuidoranome() {
-		return distribuidoranome;
+
+	public Integer getStatus() {
+		return status;
 	}
-	 
-	public void setDistribuidoranome(String distribuidoranome) {
-		this.distribuidoranome = distribuidoranome;
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
-	 
-	public String getDistribuidorasigla() {
-		return distribuidorasigla;
+
+	public Integer getCriadoPor() {
+		return criadoPor;
 	}
-	 
-	public void setDistribuidorasigla(String distribuidorasigla) {
-		this.distribuidorasigla = distribuidorasigla;
+
+	public void setCriadoPor(Integer criadoPor) {
+		this.criadoPor = criadoPor;
 	}
-	 
-	public Integer getDistribuidorastatus() {
-		return distribuidorastatus;
+
+	public LocalDate getCriadoEm() {
+		return criadoEm;
 	}
-	 
-	public void setDistribuidorastatus(Integer distribuidorastatus) {
-		this.distribuidorastatus = distribuidorastatus;
+
+	public void setCriadoEm(LocalDate criadoEm) {
+		this.criadoEm = criadoEm;
 	}
-	 
-	public Integer getDistribuidoracriadopor() {
-		return distribuidoracriadopor;
-	}
-	 
-	public void setDistribuidoracriadopor(Integer distribuidoracriadopor) {
-		this.distribuidoracriadopor = distribuidoracriadopor;
-	}
-	 
-	public String getDistribuidoracriadoem() {
-		return distribuidoracriadoem;
-	}
-	 
-	public void setDistribuidoracriadoem(String distribuidoracriadoem) {
-		this.distribuidoracriadoem = distribuidoracriadoem;
-	}
-	 
-	public String getDistribuidoracriardoporn() {
-		return distribuidoracriardoporn;
-	}
-	 
-	public void setDistribuidoracriardoporn(String distribuidoracriardoporn) {
-		this.distribuidoracriardoporn = distribuidoracriardoporn;
-	}
-	 
-	public String getDistribuidoraalteradoem() {
-		return distribuidoraalteradoem;
-	}
-	 
-	public void setDistribuidoraalteradoem(String distribuidoraalteradoem) {
-		this.distribuidoraalteradoem = distribuidoraalteradoem;
-	}
-	 
-	public Integer getDistribuidoraalteradopor() {
-		return distribuidoraalteradopor;
-	}
-	 
-	public void setDistribuidoraalteradopor(Integer distribuidoraalteradopor) {
-		this.distribuidoraalteradopor = distribuidoraalteradopor;
-	}
-	 
-	public String getDistribuidoraalteradoporn() {
-		return distribuidoraalteradoporn;
-	}
-	 
-	public void setDistribuidoraalteradoporn(String distribuidoraalteradoporn) {
-		this.distribuidoraalteradoporn = distribuidoraalteradoporn;
-	}
-	 
 
 } 

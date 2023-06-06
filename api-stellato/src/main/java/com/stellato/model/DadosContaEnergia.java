@@ -1,106 +1,145 @@
 package com.stellato.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(name = "public.dadoscontaenergia") 
-public class DadosContaEnergia implements Serializable{ 
-	
+@Table(name = "dados_conta_energia")
+public class DadosContaEnergia implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "dadoscontaenergiaid")
-	private Long dadoscontaenergiaid;
+	@Column(name = "dados_conta_energia_id")
+	private Long id;
 
-	@Column(name = "orcamentoeletricoid")
-	private Integer orcamentoeletricoid;
+	@ManyToOne()
+	@JoinColumn(name = "orcamento_eletrico_id", referencedColumnName = "orcamento_eletrico_id")
+	private OrcamentoEletrico orcamentoEletrico;
 
-	@Column(name = "dadoscontaenergiauc")
-	private String dadoscontaenergiauc;
+	@Column(name = "dados_conta_energia_uc")
+	private String uc;
 
-	@Column(name = "dadoscontaenergiadescricaouc")
-	private String dadoscontaenergiadescricaouc;
+	@Column(name = "dados_conta_energia_descricao_uc")
+	private String descricaoUc;
 
-	@Column(name = "dadoscontaenergiatipopadrao")
-	private Integer dadoscontaenergiatipopadrao;
+	@Column(name = "dados_conta_energia_tipo_padrao")
+	private Integer tipoPadrao;
 
-	@Column(name = "dadoscontaenergiamodtarifa")
-	private Integer dadoscontaenergiamodtarifa;
+	@Column(name = "dados_conta_energiamodtarifa")
+	private Integer modalidadeTarifa;
 
-	@Column(name = "dadoscontaenergiaprecokwh")
-	private String dadoscontaenergiaprecokwh;
+	@Column(name = "dados_conta_energiaprecokwh")
+	private String precoKwh;
 
-	@Column(name = "dadoscontaenergiaconsumomedio")
-	private String dadoscontaenergiaconsumomedio;
+	@Column(name = "dados_conta_energiaconsumomedio")
+	private String consumoMedio;
 
-	public Long getDadoscontaenergiaid() {
-		return dadoscontaenergiaid;
-	}
-	 
-	public void setDadoscontaenergiaid(Long dadoscontaenergiaid) {
-		this.dadoscontaenergiaid = dadoscontaenergiaid;
-	}
-	 
-	public Integer getOrcamentoeletricoid() {
-		return orcamentoeletricoid;
-	}
-	 
-	public void setOrcamentoeletricoid(Integer orcamentoeletricoid) {
-		this.orcamentoeletricoid = orcamentoeletricoid;
-	}
-	 
-	public String getDadoscontaenergiauc() {
-		return dadoscontaenergiauc;
-	}
-	 
-	public void setDadoscontaenergiauc(String dadoscontaenergiauc) {
-		this.dadoscontaenergiauc = dadoscontaenergiauc;
-	}
-	 
-	public String getDadoscontaenergiadescricaouc() {
-		return dadoscontaenergiadescricaouc;
-	}
-	 
-	public void setDadoscontaenergiadescricaouc(String dadoscontaenergiadescricaouc) {
-		this.dadoscontaenergiadescricaouc = dadoscontaenergiadescricaouc;
-	}
-	 
-	public Integer getDadoscontaenergiatipopadrao() {
-		return dadoscontaenergiatipopadrao;
-	}
-	 
-	public void setDadoscontaenergiatipopadrao(Integer dadoscontaenergiatipopadrao) {
-		this.dadoscontaenergiatipopadrao = dadoscontaenergiatipopadrao;
-	}
-	 
-	public Integer getDadoscontaenergiamodtarifa() {
-		return dadoscontaenergiamodtarifa;
-	}
-	 
-	public void setDadoscontaenergiamodtarifa(Integer dadoscontaenergiamodtarifa) {
-		this.dadoscontaenergiamodtarifa = dadoscontaenergiamodtarifa;
-	}
-	 
-	public String getDadoscontaenergiaprecokwh() {
-		return dadoscontaenergiaprecokwh;
-	}
-	 
-	public void setDadoscontaenergiaprecokwh(String dadoscontaenergiaprecokwh) {
-		this.dadoscontaenergiaprecokwh = dadoscontaenergiaprecokwh;
-	}
-	 
-	public String getDadoscontaenergiaconsumomedio() {
-		return dadoscontaenergiaconsumomedio;
-	}
-	 
-	public void setDadoscontaenergiaconsumomedio(String dadoscontaenergiaconsumomedio) {
-		this.dadoscontaenergiaconsumomedio = dadoscontaenergiaconsumomedio;
-	}
-	 
+	@Column(name = "dados_conta_status")
+	private Integer status;
 
-} 
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "dados_conta_criado_em")
+	private LocalDate criadoEm;
+
+	@Column(name = "dados_conta_criado_por")
+	private Integer criadoPor;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public OrcamentoEletrico getOrcamentoEletrico() {
+		return orcamentoEletrico;
+	}
+
+	public void setOrcamentoEletrico(OrcamentoEletrico orcamentoEletrico) {
+		this.orcamentoEletrico = orcamentoEletrico;
+	}
+
+	public String getUc() {
+		return uc;
+	}
+
+	public void setUc(String uc) {
+		this.uc = uc;
+	}
+
+	public String getDescricaoUc() {
+		return descricaoUc;
+	}
+
+	public void setDescricaoUc(String descricaoUc) {
+		this.descricaoUc = descricaoUc;
+	}
+
+	public Integer getTipoPadrao() {
+		return tipoPadrao;
+	}
+
+	public void setTipoPadrao(Integer tipoPadrao) {
+		this.tipoPadrao = tipoPadrao;
+	}
+
+	public Integer getModalidadeTarifa() {
+		return modalidadeTarifa;
+	}
+
+	public void setModalidadeTarifa(Integer modalidadeTarifa) {
+		this.modalidadeTarifa = modalidadeTarifa;
+	}
+
+	public String getPrecoKwh() {
+		return precoKwh;
+	}
+
+	public void setPrecoKwh(String precoKwh) {
+		this.precoKwh = precoKwh;
+	}
+
+	public String getConsumoMedio() {
+		return consumoMedio;
+	}
+
+	public void setConsumoMedio(String consumoMedio) {
+		this.consumoMedio = consumoMedio;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public LocalDate getCriadoEm() {
+		return criadoEm;
+	}
+
+	public void setCriadoEm(LocalDate criadoEm) {
+		this.criadoEm = criadoEm;
+	}
+
+	public Integer getCriadoPor() {
+		return criadoPor;
+	}
+
+	public void setCriadoPor(Integer criadoPor) {
+		this.criadoPor = criadoPor;
+	}
+
+}

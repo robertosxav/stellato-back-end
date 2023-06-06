@@ -1,117 +1,153 @@
 package com.stellato.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(name = "public.pessoa") 
+@Table(name = "pessoa") 
 public class Pessoa implements Serializable{ 
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "pessoaid")
-	private Long pessoaid;
+	@Column(name = "pessoa_id")
+	private Long id;
 
-	@Column(name = "pessoanome")
-	private String pessoanome;
+	@Column(name = "pessoa_nome")
+	private String nome;
 
-	@Column(name = "pessoacpf")
-	private String pessoacpf;
+	@Column(name = "pessoa_cpf")
+	private String cpf;
 
-	@Column(name = "pessoanomefantasia")
-	private String pessoanomefantasia;
+	@Column(name = "pessoa_nome_fantasia")
+	private String nomeFantasia;
 
-	@Column(name = "pessoacnpj")
-	private String pessoacnpj;
+	@Column(name = "pessoa_cnpj")
+	private String cnpj;
 
-	@Column(name = "pessoatelefone")
-	private String pessoatelefone;
+	@Column(name = "pessoa_telefone")
+	private String telefone;
 
-	@Column(name = "pessoawhatsapp")
-	private String pessoawhatsapp;
+	@Column(name = "pessoa_whatsapp")
+	private String whatsapp;
 
-	@Column(name = "pessoaemail")
-	private String pessoaemail;
+	@Column(name = "pessoa_email")
+	private String email;
 
-	@Column(name = "pessoatipopessoa")
-	private Integer pessoatipopessoa;
+	@Column(name = "pessoa_tipo_pessoa")
+	private Integer tipoPessoa;
 
-	public Long getPessoaid() {
-		return pessoaid;
-	}
-	 
-	public void setPessoaid(Long pessoaid) {
-		this.pessoaid = pessoaid;
-	}
-	 
-	public String getPessoanome() {
-		return pessoanome;
-	}
-	 
-	public void setPessoanome(String pessoanome) {
-		this.pessoanome = pessoanome;
-	}
-	 
-	public String getPessoacpf() {
-		return pessoacpf;
-	}
-	 
-	public void setPessoacpf(String pessoacpf) {
-		this.pessoacpf = pessoacpf;
-	}
-	 
-	public String getPessoanomefantasia() {
-		return pessoanomefantasia;
-	}
-	 
-	public void setPessoanomefantasia(String pessoanomefantasia) {
-		this.pessoanomefantasia = pessoanomefantasia;
-	}
-	 
-	public String getPessoacnpj() {
-		return pessoacnpj;
-	}
-	 
-	public void setPessoacnpj(String pessoacnpj) {
-		this.pessoacnpj = pessoacnpj;
-	}
-	 
-	public String getPessoatelefone() {
-		return pessoatelefone;
-	}
-	 
-	public void setPessoatelefone(String pessoatelefone) {
-		this.pessoatelefone = pessoatelefone;
-	}
-	 
-	public String getPessoawhatsapp() {
-		return pessoawhatsapp;
-	}
-	 
-	public void setPessoawhatsapp(String pessoawhatsapp) {
-		this.pessoawhatsapp = pessoawhatsapp;
-	}
-	 
-	public String getPessoaemail() {
-		return pessoaemail;
-	}
-	 
-	public void setPessoaemail(String pessoaemail) {
-		this.pessoaemail = pessoaemail;
-	}
-	 
-	public Integer getPessoatipopessoa() {
-		return pessoatipopessoa;
-	}
-	 
-	public void setPessoatipopessoa(Integer pessoatipopessoa) {
-		this.pessoatipopessoa = pessoatipopessoa;
-	}
-	 
+	@Column(name = "pessoa_status")
+	private Integer status;
 
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "pessoa_criado_em")
+	private LocalDate criadoEm;
+
+	@Column(name = "pessoa_criado_por")
+	private Integer criadoPor;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getNomeFantasia() {
+		return nomeFantasia;
+	}
+
+	public void setNomeFantasia(String nomeFantasia) {
+		this.nomeFantasia = nomeFantasia;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getWhatsapp() {
+		return whatsapp;
+	}
+
+	public void setWhatsapp(String whatsapp) {
+		this.whatsapp = whatsapp;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Integer getTipoPessoa() {
+		return tipoPessoa;
+	}
+
+	public void setTipoPessoa(Integer tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public LocalDate getCriadoEm() {
+		return criadoEm;
+	}
+
+	public void setCriadoEm(LocalDate criadoEm) {
+		this.criadoEm = criadoEm;
+	}
+
+	public Integer getCriadoPor() {
+		return criadoPor;
+	}
+
+	public void setCriadoPor(Integer criadoPor) {
+		this.criadoPor = criadoPor;
+	}
+	
 } 

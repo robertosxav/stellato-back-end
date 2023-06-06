@@ -8,22 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "public.historico") 
+@Table(name = "historico") 
 public class Historico implements Serializable{ 
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "historicoid")
-	private Long historicoid;
+	@Column(name = "historico_id")
+	private Long id;
 
-	public Long getHistoricoid() {
-		return historicoid;
+	public Long getId() {
+		return id;
 	}
-	 
-	public void setHistoricoid(Long historicoid) {
-		this.historicoid = historicoid;
-	}
-	 
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 } 
