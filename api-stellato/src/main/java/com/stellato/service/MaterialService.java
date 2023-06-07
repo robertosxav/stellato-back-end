@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.stellato.exceptions.StellatoException;
 import com.stellato.model.Material;
 import com.stellato.repository.MaterialRepository;
 
@@ -19,14 +19,15 @@ public class MaterialService {
 	private MaterialRepository materialRepository;
 
 	public Material salvar(Material material) {
+		material.ativar();
 		return materialRepository.save(material);
 	}
 
 	public Material buscarPeloCodigo(Long codigo) {
-		Material materialSalva = materialRepository.findById(codigo).get();
-		if (materialSalva == null) {
-		throw new EmptyResultDataAccessException(1);
-			}
+		Material materialSalva = materialRepository
+				.findById(codigo)
+				.orElseThrow(()->new StellatoException("Id não encontrado"));
+		
 		return materialSalva;
 	}
 
@@ -45,7 +46,9 @@ public class MaterialService {
 	}
 
 	public void remover(Long codigo) {
-		materialRepository.deleteById(codigo);
+		Material materialBanco = buscarPeloCodigo(codigo);
+		materialBanco.inativar();
+		materialRepository.save(materialBanco);
 	}
 
 }

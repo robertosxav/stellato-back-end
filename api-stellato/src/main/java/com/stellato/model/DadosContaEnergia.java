@@ -35,13 +35,13 @@ public class DadosContaEnergia implements Serializable {
 	@Column(name = "dados_conta_energia_tipo_padrao")
 	private Integer tipoPadrao;
 
-	@Column(name = "dados_conta_energiamodtarifa")
+	@Column(name = "dados_conta_energia_mod_tarifa")
 	private Integer modalidadeTarifa;
 
-	@Column(name = "dados_conta_energiaprecokwh")
+	@Column(name = "dados_conta_energia_preco_kwh")
 	private String precoKwh;
 
-	@Column(name = "dados_conta_energiaconsumomedio")
+	@Column(name = "dados_conta_energia_consumo_medio")
 	private String consumoMedio;
 
 	@Column(name = "dados_conta_status")

@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.Material;
 import com.stellato.service.MaterialService;
 
 @RestController
-@RequestMapping("/materials")
+@RequestMapping("/material")
 public class MaterialResource {
 
 	@Autowired
@@ -39,7 +38,7 @@ public class MaterialResource {
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Material> buscarPeloCodigo(@PathVariable Long codigo) {
 		Material material = materialService.buscarPeloCodigo(codigo);
-		return material != null ? ResponseEntity.ok(material) : ResponseEntity.notFound().build();
+		return ResponseEntity.ok(material);
 	}
 
 	@PutMapping("/{codigo}")
@@ -59,9 +58,9 @@ public class MaterialResource {
 	}
 
 	@DeleteMapping("/{codigo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remover(@PathVariable Long codigo) {
+	public ResponseEntity<String> remover(@PathVariable Long codigo) {
 		materialService.remover(codigo);
+		return ResponseEntity.ok("Registro excluído com sucesso");
 	}
 
 }

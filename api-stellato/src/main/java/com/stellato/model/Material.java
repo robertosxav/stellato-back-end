@@ -5,10 +5,16 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.model.enumerated.StatusEnum;
+import com.stellato.model.enumerated.TipoMaterialEnum;
+import com.stellato.model.enumerated.UnidadeMedidaEnum;
 
 @Entity
 @Table(name = "material") 
@@ -17,6 +23,8 @@ public class Material implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_MATERIAL")
+	@SequenceGenerator(name = "SEQUENCE_MATERIAL",sequenceName = "seq_material",allocationSize = 1)
 	@Column(name = "material_id")
 	private Long id;
 
@@ -24,13 +32,13 @@ public class Material implements Serializable{
 	private String descricao;
 
 	@Column(name = "material_tipo")
-	private Integer tipo;
+	private TipoMaterialEnum tipo;
 
 	@Column(name = "material_unidade_medida")
-	private Integer unidadeMedida;
+	private UnidadeMedidaEnum unidadeMedida;
 
 	@Column(name = "material_status")
-	private Integer status;
+	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "material_criado_em")
@@ -55,36 +63,28 @@ public class Material implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public Integer getTipo() {
+	public TipoMaterialEnum getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Integer tipo) {
+	public void setTipo(TipoMaterialEnum tipo) {
 		this.tipo = tipo;
 	}
 
-	public Integer getUnidadeMedida() {
+	public UnidadeMedidaEnum getUnidadeMedida() {
 		return unidadeMedida;
 	}
 
-	public void setUnidadeMedida(Integer unidadeMedida) {
+	public void setUnidadeMedida(UnidadeMedidaEnum unidadeMedida) {
 		this.unidadeMedida = unidadeMedida;
 	}
 
-	public Integer getStatus() {
+	public StatusEnum getStatus() {
 		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 
 	public LocalDate getCriadoEm() {
 		return criadoEm;
-	}
-
-	public void setCriadoEm(LocalDate criadoEm) {
-		this.criadoEm = criadoEm;
 	}
 
 	public Integer getCriadoPor() {
@@ -95,4 +95,12 @@ public class Material implements Serializable{
 		this.criadoPor = criadoPor;
 	}
 
+	public void ativar() {
+		this.status = StatusEnum.ATIVO;
+		this.criadoEm = LocalDate.now();
+	}
+	
+	public void inativar() {
+		this.status = StatusEnum.INATIVO;
+	}
 } 
