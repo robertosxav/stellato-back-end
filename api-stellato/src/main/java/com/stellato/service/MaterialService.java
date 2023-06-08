@@ -33,7 +33,7 @@ public class MaterialService {
 
 	public Material atualizar(Long codigo, Material material) {
 		Material materialSave = buscarPeloCodigo(codigo);
-		BeanUtils.copyProperties(material, materialSave, "materialid");
+		BeanUtils.copyProperties(material, materialSave, "id","status");
 		return materialRepository.save(materialSave);
 	}
 

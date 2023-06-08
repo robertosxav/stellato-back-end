@@ -5,8 +5,14 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.model.enumerated.StatusEnum;
 
 @Entity
 @Table(name = "distribuidora") 
@@ -15,6 +21,8 @@ public class Distribuidora implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_DISTRIBUIDORA")
+	@SequenceGenerator(name = "SEQUENCE_DISTRIBUIDORA",sequenceName = "seq_distribuidora",allocationSize = 1)
 	@Column(name = "distribuidora_id")
 	private Long id;
 
@@ -25,11 +33,12 @@ public class Distribuidora implements Serializable{
 	private String sigla;
 
 	@Column(name = "distribuidora_status")
-	private Integer status;
+	private StatusEnum status;
 
 	@Column(name = "distribuidora_criado_por")
 	private Integer criadoPor;
 
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "distribuidora_criado_em")
 	private LocalDate criadoEm;
 
@@ -57,12 +66,9 @@ public class Distribuidora implements Serializable{
 		this.sigla = sigla;
 	}
 
-	public Integer getStatus() {
-		return status;
-	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
+	public StatusEnum getStatus() {
+		return status;
 	}
 
 	public Integer getCriadoPor() {
@@ -76,9 +82,14 @@ public class Distribuidora implements Serializable{
 	public LocalDate getCriadoEm() {
 		return criadoEm;
 	}
-
-	public void setCriadoEm(LocalDate criadoEm) {
-		this.criadoEm = criadoEm;
+	
+	public void ativar() {
+		this.status = StatusEnum.ATIVO;
+		this.criadoEm = LocalDate.now();
+	}
+	
+	public void inativar() {
+		this.status = StatusEnum.INATIVO;
 	}
 
 } 

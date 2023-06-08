@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.stellato.exceptions.StellatoException;
 import com.stellato.model.Distribuidora;
 import com.stellato.repository.DistribuidoraRepository;
 
@@ -19,20 +19,20 @@ public class DistribuidoraService {
 	private DistribuidoraRepository distribuidoraRepository;
 
 	public Distribuidora salvar(Distribuidora distribuidora) {
+		distribuidora.ativar();
 		return distribuidoraRepository.save(distribuidora);
 	}
 
 	public Distribuidora buscarPeloCodigo(Long codigo) {
-		Distribuidora distribuidoraSalva = distribuidoraRepository.findById(codigo).get();
-		if (distribuidoraSalva == null) {
-		throw new EmptyResultDataAccessException(1);
-			}
+		Distribuidora distribuidoraSalva = distribuidoraRepository
+				.findById(codigo)
+				.orElseThrow(()->new StellatoException("Id não encontrado"));
 		return distribuidoraSalva;
 	}
 
 	public Distribuidora atualizar(Long codigo, Distribuidora distribuidora) {
 		Distribuidora distribuidoraSave = buscarPeloCodigo(codigo);
-		BeanUtils.copyProperties(distribuidora, distribuidoraSave, "distribuidoraid");
+		BeanUtils.copyProperties(distribuidora, distribuidoraSave, "id","status");
 		return distribuidoraRepository.save(distribuidoraSave);
 	}
 
@@ -45,7 +45,22 @@ public class DistribuidoraService {
 	}
 
 	public void remover(Long codigo) {
-		distribuidoraRepository.deleteById(codigo);
+		Distribuidora distribuidora = buscarPeloCodigo(codigo);
+		distribuidora.inativar();
+		distribuidoraRepository.save(distribuidora);
 	}
+
+	public List<Distribuidora> listarTodosAtivos() {
+		return distribuidoraRepository.listarTodosAtivos();
+	}
+
+	public Page<Distribuidora> listarTodosAtivos(Pageable pageable) {
+		return distribuidoraRepository.listarTodosAtivos(pageable);
+	}
+	
+	public Page<Distribuidora> buscaGenerica(String pesquisa, Pageable pageable) {
+		return distribuidoraRepository.buscaGenerica(pesquisa,pageable);
+	}
+
 
 }

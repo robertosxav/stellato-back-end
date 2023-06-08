@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.Distribuidora;
 import com.stellato.service.DistribuidoraService;
 
 @RestController
-@RequestMapping("/distribuidoras")
+@RequestMapping("/distribuidora")
 public class DistribuidoraResource {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class DistribuidoraResource {
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Distribuidora> buscarPeloCodigo(@PathVariable Long codigo) {
 		Distribuidora distribuidora = distribuidoraService.buscarPeloCodigo(codigo);
-		return distribuidora != null ? ResponseEntity.ok(distribuidora) : ResponseEntity.notFound().build();
+		return ResponseEntity.ok(distribuidora);
 	}
 
 	@PutMapping("/{codigo}")
@@ -59,9 +59,23 @@ public class DistribuidoraResource {
 	}
 
 	@DeleteMapping("/{codigo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
 		distribuidoraService.remover(codigo);
+	}
+	
+	@GetMapping("/ativos/paginado")
+	public Page<Distribuidora> listarTodosAtivos(Pageable pageable) {
+		return distribuidoraService.listarTodosAtivos(pageable);
+	}
+
+	@GetMapping("/ativos")
+	public List<Distribuidora> listarTodosAtivos() {
+		return distribuidoraService.listarTodosAtivos();
+	}
+	
+	@GetMapping("/buscagenerica")
+	public Page<Distribuidora> buscaGenerica(@RequestParam String pesquisa,Pageable pageable) {
+		return distribuidoraService.buscaGenerica(pesquisa,pageable);
 	}
 
 }
