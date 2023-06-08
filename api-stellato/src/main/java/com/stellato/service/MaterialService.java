@@ -51,4 +51,16 @@ public class MaterialService {
 		materialRepository.save(materialBanco);
 	}
 
+	public List<Material> listarTodosAtivos() {
+		return materialRepository.listarTodosAtivos();
+	}
+
+	public Page<Material> listarTodosAtivos(Pageable pageable) {
+		return materialRepository.listarTodosAtivos(pageable);
+	}
+
+	public Page<Material> buscaGenerica(String pesquisa, Pageable pageable) {
+		return materialRepository.buscaGenerica(pesquisa.toUpperCase(),pageable);
+	}
+
 }

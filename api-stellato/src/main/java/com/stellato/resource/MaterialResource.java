@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.Material;
@@ -62,5 +63,19 @@ public class MaterialResource {
 		materialService.remover(codigo);
 		return ResponseEntity.ok("Registro excluído com sucesso");
 	}
+	
+	@GetMapping("/ativos/paginado")
+	public Page<Material> listarTodosAtivos(Pageable pageable) {
+		return materialService.listarTodosAtivos(pageable);
+	}
 
+	@GetMapping("/ativos")
+	public List<Material> listarTodosAtivos() {
+		return materialService.listarTodosAtivos();
+	}
+	
+	@GetMapping("/buscagenerica")
+	public Page<Material> buscaGenerica(@RequestParam String pesquisa,Pageable pageable) {
+		return materialService.buscaGenerica(pesquisa,pageable);
+	}
 }
