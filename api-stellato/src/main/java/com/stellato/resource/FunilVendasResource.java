@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.FunilVendas;
 import com.stellato.service.FunilVendasService;
 
 @RestController
-@RequestMapping("/funilvendas")
+@RequestMapping("/funilvenda")
 public class FunilVendasResource {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class FunilVendasResource {
 	@GetMapping("/{codigo}")
 	public ResponseEntity<FunilVendas> buscarPeloCodigo(@PathVariable Long codigo) {
 		FunilVendas funilvendas = funilvendasService.buscarPeloCodigo(codigo);
-		return funilvendas != null ? ResponseEntity.ok(funilvendas) : ResponseEntity.notFound().build();
+		return ResponseEntity.ok(funilvendas);
 	}
 
 	@PutMapping("/{codigo}")
@@ -59,9 +59,22 @@ public class FunilVendasResource {
 	}
 
 	@DeleteMapping("/{codigo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
 		funilvendasService.remover(codigo);
+	}
+	@GetMapping("/ativos/paginado")
+	public Page<FunilVendas> listarTodosAtivos(Pageable pageable) {
+		return funilvendasService.listarTodosAtivos(pageable);
+	}
+
+	@GetMapping("/ativos")
+	public List<FunilVendas> listarTodosAtivos() {
+		return funilvendasService.listarTodosAtivos();
+	}
+	
+	@GetMapping("/buscagenerica")
+	public Page<FunilVendas> buscaGenerica(@RequestParam String pesquisa,Pageable pageable) {
+		return funilvendasService.buscaGenerica(pesquisa,pageable);
 	}
 
 }
