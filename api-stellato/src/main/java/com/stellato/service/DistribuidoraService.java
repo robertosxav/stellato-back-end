@@ -59,7 +59,7 @@ public class DistribuidoraService {
 	}
 	
 	public Page<Distribuidora> buscaGenerica(String pesquisa, Pageable pageable) {
-		return distribuidoraRepository.buscaGenerica(pesquisa,pageable);
+		return distribuidoraRepository.buscaGenerica(pesquisa.toUpperCase(),pageable);
 	}
 
 

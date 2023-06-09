@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.Fornecedor;
 import com.stellato.service.FornecedorService;
 
 @RestController
-@RequestMapping("/fornecedors")
+@RequestMapping("/fornecedor")
 public class FornecedorResource {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class FornecedorResource {
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Fornecedor> buscarPeloCodigo(@PathVariable Long codigo) {
 		Fornecedor fornecedor = fornecedorService.buscarPeloCodigo(codigo);
-		return fornecedor != null ? ResponseEntity.ok(fornecedor) : ResponseEntity.notFound().build();
+		return ResponseEntity.ok(fornecedor);
 	}
 
 	@PutMapping("/{codigo}")
@@ -59,9 +59,24 @@ public class FornecedorResource {
 	}
 
 	@DeleteMapping("/{codigo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
 		fornecedorService.remover(codigo);
 	}
+	
+	@GetMapping("/ativos/paginado")
+	public Page<Fornecedor> listarTodosAtivos(Pageable pageable) {
+		return fornecedorService.listarTodosAtivos(pageable);
+	}
+
+	@GetMapping("/ativos")
+	public List<Fornecedor> listarTodosAtivos() {
+		return fornecedorService.listarTodosAtivos();
+	}
+	
+	@GetMapping("/buscagenerica")
+	public Page<Fornecedor> buscaGenerica(@RequestParam String pesquisa,Pageable pageable) {
+		return fornecedorService.buscaGenerica(pesquisa,pageable);
+	}
+
 
 }
