@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.stellato.exceptions.StellatoException;
 import com.stellato.model.Pessoa;
 import com.stellato.repository.PessoaRepository;
 
@@ -19,20 +19,20 @@ public class PessoaService {
 	private PessoaRepository pessoaRepository;
 
 	public Pessoa salvar(Pessoa pessoa) {
+		pessoa.ativar();
 		return pessoaRepository.save(pessoa);
 	}
 
 	public Pessoa buscarPeloCodigo(Long codigo) {
-		Pessoa pessoaSalva = pessoaRepository.findById(codigo).get();
-		if (pessoaSalva == null) {
-		throw new EmptyResultDataAccessException(1);
-			}
+		Pessoa pessoaSalva = pessoaRepository
+				.findById(codigo)
+				.orElseThrow(()-> new StellatoException("Id não encontrado"));
 		return pessoaSalva;
 	}
 
 	public Pessoa atualizar(Long codigo, Pessoa pessoa) {
 		Pessoa pessoaSave = buscarPeloCodigo(codigo);
-		BeanUtils.copyProperties(pessoa, pessoaSave, "pessoaid");
+		BeanUtils.copyProperties(pessoa, pessoaSave, "id","status");
 		return pessoaRepository.save(pessoaSave);
 	}
 
@@ -45,7 +45,21 @@ public class PessoaService {
 	}
 
 	public void remover(Long codigo) {
-		pessoaRepository.deleteById(codigo);
+		Pessoa pessoa =  buscarPeloCodigo(codigo);
+		pessoa.inativar();
+		pessoaRepository.save(pessoa);
+	}
+
+	public Page<Pessoa> listarTodosAtivos(Pageable pageable) {
+		return pessoaRepository.listarTodosAtivos(pageable);
+	}
+
+	public List<Pessoa> listarTodosAtivos() {
+		return pessoaRepository.listarTodosAtivos();
+	}
+
+	public Page<Pessoa> buscaGenerica(String pesquisa, Pageable pageable) {
+		return pessoaRepository.buscaGenerica(pesquisa,pageable);
 	}
 
 }

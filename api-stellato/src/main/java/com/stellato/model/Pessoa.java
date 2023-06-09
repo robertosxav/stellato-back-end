@@ -12,6 +12,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.model.enumerated.StatusEnum;
+import com.stellato.model.enumerated.TipoPessoaEnum;
 
 @Entity
 @Table(name = "pessoa") 
@@ -20,8 +22,8 @@ public class Pessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_ALMOXARIFADO")
-	//@SequenceGenerator(name = "SEQUENCE_ALMOXARIFADO", sequenceName = "public.almoxarifado_id", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_PESSOA")
+	@SequenceGenerator(name = "SEQUENCE_PESSOA", sequenceName = "seq_pessoa", allocationSize = 1)
 	@Column(name = "pessoa_id")
 	private Long id;
 
@@ -47,10 +49,10 @@ public class Pessoa implements Serializable{
 	private String email;
 
 	@Column(name = "pessoa_tipo_pessoa")
-	private Integer tipoPessoa;
+	private TipoPessoaEnum tipoPessoa;
 
 	@Column(name = "pessoa_status")
-	private Integer status;
+	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "pessoa_criado_em")
@@ -122,29 +124,21 @@ public class Pessoa implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public Integer getTipoPessoa() {
+	
+	public TipoPessoaEnum getTipoPessoa() {
 		return tipoPessoa;
 	}
 
-	public void setTipoPessoa(Integer tipoPessoa) {
+	public void setTipoPessoa(TipoPessoaEnum tipoPessoa) {
 		this.tipoPessoa = tipoPessoa;
 	}
 
-	public Integer getStatus() {
+	public StatusEnum getStatus() {
 		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 
 	public LocalDate getCriadoEm() {
 		return criadoEm;
-	}
-
-	public void setCriadoEm(LocalDate criadoEm) {
-		this.criadoEm = criadoEm;
 	}
 
 	public Integer getCriadoPor() {
@@ -153,6 +147,15 @@ public class Pessoa implements Serializable{
 
 	public void setCriadoPor(Integer criadoPor) {
 		this.criadoPor = criadoPor;
+	}
+	
+	public void ativar() {
+		this.status = StatusEnum.ATIVO;
+		this.criadoEm = LocalDate.now();
+	}
+	
+	public void inativar() {
+		this.status = StatusEnum.INATIVO;
 	}
 	
 } 

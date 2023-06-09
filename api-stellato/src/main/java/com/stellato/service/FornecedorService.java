@@ -45,7 +45,9 @@ public class FornecedorService {
 	}
 
 	public void remover(Long codigo) {
-		fornecedorRepository.deleteById(codigo);
+		Fornecedor fornecedor = buscarPeloCodigo(codigo);
+		fornecedor.inativar();
+		fornecedorRepository.save(fornecedor);
 	}
 
 	public List<Fornecedor> listarTodosAtivos() {
