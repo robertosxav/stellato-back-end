@@ -11,6 +11,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.model.enumerated.OrigemEnum;
+import com.stellato.model.enumerated.StatusEnum;
+import com.stellato.model.enumerated.TipoPessoaEnum;
 
 @Entity
 @Table(name = "lead") 
@@ -42,13 +45,13 @@ public class Lead implements Serializable{
 	private String cidade;
 
 	@Column(name = "lead_origem")
-	private Integer origem;
+	private OrigemEnum origem;
 
 	@Column(name = "lead_tipo")
-	private Integer tipo;
+	private TipoPessoaEnum tipo;
 	
 	@Column(name = "lead_status")
-	private Integer status;
+	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "lead_criado_em")
@@ -113,28 +116,25 @@ public class Lead implements Serializable{
 		this.cidade = cidade;
 	}
 
-	public Integer getOrigem() {
+
+	public OrigemEnum getOrigem() {
 		return origem;
 	}
 
-	public void setOrigem(Integer origem) {
+	public void setOrigem(OrigemEnum origem) {
 		this.origem = origem;
 	}
 
-	public Integer getTipo() {
+	public TipoPessoaEnum getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Integer tipo) {
+	public void setTipo(TipoPessoaEnum tipo) {
 		this.tipo = tipo;
 	}
 
-	public Integer getStatus() {
+	public StatusEnum getStatus() {
 		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 
 	public LocalDate getCriadoEm() {
@@ -151,6 +151,15 @@ public class Lead implements Serializable{
 
 	public void setCriadoPor(Integer criadoPor) {
 		this.criadoPor = criadoPor;
+	}
+	
+	public void ativar() {
+		this.status = StatusEnum.ATIVO;
+		this.criadoEm = LocalDate.now();
+	}
+	
+	public void inativar() {
+		this.status = StatusEnum.INATIVO;
 	}
 
 } 

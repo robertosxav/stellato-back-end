@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.Lead;
@@ -39,7 +39,7 @@ public class LeadResource {
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Lead> buscarPeloCodigo(@PathVariable Long codigo) {
 		Lead lead = leadService.buscarPeloCodigo(codigo);
-		return lead != null ? ResponseEntity.ok(lead) : ResponseEntity.notFound().build();
+		return ResponseEntity.ok(lead);
 	}
 
 	@PutMapping("/{codigo}")
@@ -59,9 +59,24 @@ public class LeadResource {
 	}
 
 	@DeleteMapping("/{codigo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
 		leadService.remover(codigo);
 	}
+	
+	@GetMapping("/ativos/paginado")
+	public Page<Lead> listarTodosAtivos(Pageable pageable) {
+		return leadService.listarTodosAtivos(pageable);
+	}
+
+	@GetMapping("/ativos")
+	public List<Lead> listarTodosAtivos() {
+		return leadService.listarTodosAtivos();
+	}
+	
+	@GetMapping("/buscagenerica")
+	public Page<Lead> buscaGenerica(@RequestParam String pesquisa,Pageable pageable) {
+		return leadService.buscaGenerica(pesquisa,pageable);
+	}
+
 
 }
