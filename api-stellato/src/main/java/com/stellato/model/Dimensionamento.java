@@ -27,7 +27,7 @@ public class Dimensionamento implements Serializable{
 	private OrcamentoEletrico orcamentoEletrico;
 
 	@Column(name = "dimensionamento_potmodulo")
-	private String ptenciaModulo;
+	private String potenciaModulo;
 
 	@Column(name = "dimensionamento_percperda")
 	private String percentualPerda;
@@ -61,12 +61,12 @@ public class Dimensionamento implements Serializable{
 		this.orcamentoEletrico = orcamentoEletrico;
 	}
 
-	public String getPtenciaModulo() {
-		return ptenciaModulo;
+	public String getPotenciaModulo() {
+		return potenciaModulo;
 	}
 
-	public void setPtenciaModulo(String ptenciaModulo) {
-		this.ptenciaModulo = ptenciaModulo;
+	public void setPtenciaModulo(String potenciaModulo) {
+		this.potenciaModulo = potenciaModulo;
 	}
 
 	public String getPercentualPerda() {

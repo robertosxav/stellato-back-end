@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.ModalidadeTarifaria;
 import com.stellato.service.ModalidadeTarifariaService;
 
 @RestController
-@RequestMapping("/modalidadetarifarias")
+@RequestMapping("/modalidadetarifaria")
 public class ModalidadeTarifariaResource {
 
 	@Autowired
@@ -39,7 +38,7 @@ public class ModalidadeTarifariaResource {
 	@GetMapping("/{codigo}")
 	public ResponseEntity<ModalidadeTarifaria> buscarPeloCodigo(@PathVariable Long codigo) {
 		ModalidadeTarifaria modalidadetarifaria = modalidadetarifariaService.buscarPeloCodigo(codigo);
-		return modalidadetarifaria != null ? ResponseEntity.ok(modalidadetarifaria) : ResponseEntity.notFound().build();
+		return ResponseEntity.ok(modalidadetarifaria);
 	}
 
 	@PutMapping("/{codigo}")
@@ -59,9 +58,23 @@ public class ModalidadeTarifariaResource {
 	}
 
 	@DeleteMapping("/{codigo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
 		modalidadetarifariaService.remover(codigo);
 	}
+	
+	@GetMapping("/ativos/paginado")
+	public Page<ModalidadeTarifaria> listarTodosAtivos(Pageable pageable) {
+		return modalidadetarifariaService.listarTodosAtivos(pageable);
+	}
 
+	@GetMapping("/ativos")
+	public List<ModalidadeTarifaria> listarTodosAtivos() {
+		return modalidadetarifariaService.listarTodosAtivos();
+	}
+	
+	@GetMapping("/buscarpeladistribuidora/{id}")
+	public List<ModalidadeTarifaria> buscarPelaDistribuidora(@PathVariable Long id) {
+		return modalidadetarifariaService.buscarPelaDistribuidora(id);
+	}
+	
 }
