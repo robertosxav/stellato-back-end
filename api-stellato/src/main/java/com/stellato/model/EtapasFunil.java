@@ -5,12 +5,16 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.model.enumerated.StatusEnum;
 
 @Entity
 @Table(name = "etapas_funil") 
@@ -19,6 +23,8 @@ public class EtapasFunil implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_ETAPAS_FUNIL")
+	@SequenceGenerator(name = "SEQUENCE_ETAPAS_FUNIL",sequenceName = "seq_etapas_funil",allocationSize = 1)
 	@Column(name = "etapas_funil_id")
 	private Long id;
 
@@ -30,7 +36,7 @@ public class EtapasFunil implements Serializable{
 	private String etapa;
 
 	@Column(name = "etapas_funil_status")
-	private Integer status;
+	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "etapas_funil_criado_em")
@@ -63,20 +69,12 @@ public class EtapasFunil implements Serializable{
 		this.etapa = etapa;
 	}
 
-	public Integer getStatus() {
+	public StatusEnum getStatus() {
 		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 
 	public LocalDate getCriadoEm() {
 		return criadoEm;
-	}
-
-	public void setCriadoEm(LocalDate criadoEm) {
-		this.criadoEm = criadoEm;
 	}
 
 	public Integer getCriadoPor() {
@@ -87,6 +85,13 @@ public class EtapasFunil implements Serializable{
 		this.criadoPor = criadoPor;
 	}
 
+	public void ativar() {
+		this.status = StatusEnum.ATIVO;
+		this.criadoEm = LocalDate.now();
+	}
 	
+	public void inativar() {
+		this.status = StatusEnum.INATIVO;
+	}
 
 } 
