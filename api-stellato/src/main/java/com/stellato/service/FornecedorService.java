@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.stellato.exceptions.StellatoException;
 import com.stellato.model.Fornecedor;
+import com.stellato.model.Pessoa;
 import com.stellato.repository.FornecedorRepository;
 
 @Service
@@ -17,8 +18,12 @@ public class FornecedorService {
 
 	@Autowired
 	private FornecedorRepository fornecedorRepository;
+	
+	@Autowired
+	private PessoaService pessoaService;
 
 	public Fornecedor salvar(Fornecedor fornecedor) {
+		Pessoa pessoaBanco = pessoaService.buscarPeloCodigo(fornecedor.getId());
 		fornecedor.ativar();
 		return fornecedorRepository.save(fornecedor);
 	}

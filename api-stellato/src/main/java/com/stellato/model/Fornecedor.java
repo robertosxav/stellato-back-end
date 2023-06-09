@@ -21,8 +21,8 @@ public class Fornecedor implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_FORNECEDOR")
-	@SequenceGenerator(name = "SEQUENCE_FORNECEDOR",sequenceName = "seq_fornecedor",allocationSize = 1)
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_FORNECEDOR")
+//	@SequenceGenerator(name = "SEQUENCE_FORNECEDOR",sequenceName = "seq_fornecedor",allocationSize = 1)
 	@Column(name = "fornecedor_id")
 	private Long id;
 
