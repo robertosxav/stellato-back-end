@@ -1,16 +1,21 @@
 package com.stellato.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.model.enumerated.StatusEnum;
 
 @Entity
 @Table(name = "material_cotado") 
@@ -19,17 +24,19 @@ public class MaterialCotado implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_MATERIAL_COTADO")
+	@SequenceGenerator(name = "SEQUENCE_MATERIAL_COTADO",sequenceName = "seq_material_cotado",allocationSize = 1)
 	@Column(name = "material_cotado_id")
 	private Long id;
 	
 	@Column(name = "material_cotado_descricao")
-	private String material_cotado_descricao;
+	private String descricao;
 
 	@Column(name = "material_cotado_observacao")
 	private String observacao;
 
 	@Column(name = "material_cotado_valor")
-	private String valor;
+	private BigDecimal valor;
 
 	@ManyToOne()
 	@JoinColumn(name = "fornecedor_id",referencedColumnName = "fornecedor_id")
@@ -40,7 +47,7 @@ public class MaterialCotado implements Serializable{
 	private Material material;
 	
 	@Column(name = "material_status")
-	private Integer status;
+	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "material_criado_em")
@@ -57,12 +64,12 @@ public class MaterialCotado implements Serializable{
 		this.id = id;
 	}
 
-	public String getMaterial_cotado_descricao() {
-		return material_cotado_descricao;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setMaterial_cotado_descricao(String material_cotado_descricao) {
-		this.material_cotado_descricao = material_cotado_descricao;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getObservacao() {
@@ -73,11 +80,11 @@ public class MaterialCotado implements Serializable{
 		this.observacao = observacao;
 	}
 
-	public String getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(String valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 
@@ -97,22 +104,6 @@ public class MaterialCotado implements Serializable{
 		this.material = material;
 	}
 
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public LocalDate getCriadoEm() {
-		return criadoEm;
-	}
-
-	public void setCriadoEm(LocalDate criadoEm) {
-		this.criadoEm = criadoEm;
-	}
-
 	public Integer getCriadoPor() {
 		return criadoPor;
 	}
@@ -120,5 +111,21 @@ public class MaterialCotado implements Serializable{
 	public void setCriadoPor(Integer criadoPor) {
 		this.criadoPor = criadoPor;
 	}
+
+	public StatusEnum getStatus() {
+		return status;
+	}
+
+	public LocalDate getCriadoEm() {
+		return criadoEm;
+	}
+
+	public void ativar() {
+		this.status = StatusEnum.ATIVO;
+		this.criadoEm = LocalDate.now();
+	}
 	
+	public void inativar() {
+		this.status = StatusEnum.INATIVO;
+	}
 } 
