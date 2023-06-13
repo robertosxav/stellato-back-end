@@ -23,7 +23,7 @@ import com.stellato.model.Dimensionamento;
 import com.stellato.service.DimensionamentoService;
 
 @RestController
-@RequestMapping("/dimensionamentos")
+@RequestMapping("/dimensionamento")
 public class DimensionamentoResource {
 
 	@Autowired

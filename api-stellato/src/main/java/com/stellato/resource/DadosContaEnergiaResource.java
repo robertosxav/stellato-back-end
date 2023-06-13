@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.DadosContaEnergia;
@@ -39,7 +38,7 @@ public class DadosContaEnergiaResource {
 	@GetMapping("/{codigo}")
 	public ResponseEntity<DadosContaEnergia> buscarPeloCodigo(@PathVariable Long codigo) {
 		DadosContaEnergia dadoscontaenergia = dadoscontaenergiaService.buscarPeloCodigo(codigo);
-		return dadoscontaenergia != null ? ResponseEntity.ok(dadoscontaenergia) : ResponseEntity.notFound().build();
+		return ResponseEntity.ok(dadoscontaenergia);
 	}
 
 	@PutMapping("/{codigo}")
@@ -59,9 +58,18 @@ public class DadosContaEnergiaResource {
 	}
 
 	@DeleteMapping("/{codigo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
 		dadoscontaenergiaService.remover(codigo);
+	}
+	
+	@GetMapping("/ativos/paginado")
+	public Page<DadosContaEnergia> listarTodosAtivos(Pageable pageable) {
+		return dadoscontaenergiaService.listarTodosAtivos(pageable);
+	}
+
+	@GetMapping("/ativos")
+	public List<DadosContaEnergia> listarTodosAtivos() {
+		return dadoscontaenergiaService.listarTodosAtivos();
 	}
 
 }

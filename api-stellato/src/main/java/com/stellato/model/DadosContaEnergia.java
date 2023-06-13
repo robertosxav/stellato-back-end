@@ -1,16 +1,23 @@
 package com.stellato.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.model.enumerated.StatusEnum;
+import com.stellato.model.enumerated.TipoPadraoEnum;
 
 @Entity
 @Table(name = "dados_conta_energia")
@@ -19,6 +26,8 @@ public class DadosContaEnergia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_DADOS_CONTA_ENERGIA")
+	@SequenceGenerator(name = "SEQUENCE_DADOS_CONTA_ENERGIA",sequenceName = "seq_dados_conta_energia",allocationSize = 1)
 	@Column(name = "dados_conta_energia_id")
 	private Long id;
 
@@ -33,19 +42,20 @@ public class DadosContaEnergia implements Serializable {
 	private String descricaoUc;
 
 	@Column(name = "dados_conta_energia_tipo_padrao")
-	private Integer tipoPadrao;
+	private TipoPadraoEnum tipoPadrao;
 
-	@Column(name = "dados_conta_energia_mod_tarifa")
-	private Integer modalidadeTarifa;
+	@ManyToOne()
+	@JoinColumn(name = "modalidade_tarifaria_id",referencedColumnName = "modalidade_tarifaria_id")
+	private ModalidadeTarifaria modalidadeTarifa;
 
 	@Column(name = "dados_conta_energia_preco_kwh")
-	private String precoKwh;
+	private BigDecimal precoKwh;
 
 	@Column(name = "dados_conta_energia_consumo_medio")
-	private String consumoMedio;
+	private BigDecimal consumoMedio;
 
 	@Column(name = "dados_conta_status")
-	private Integer status;
+	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "dados_conta_criado_em")
@@ -86,52 +96,45 @@ public class DadosContaEnergia implements Serializable {
 		this.descricaoUc = descricaoUc;
 	}
 
-	public Integer getTipoPadrao() {
+	public TipoPadraoEnum getTipoPadrao() {
 		return tipoPadrao;
 	}
 
-	public void setTipoPadrao(Integer tipoPadrao) {
+	public void setTipoPadrao(TipoPadraoEnum tipoPadrao) {
 		this.tipoPadrao = tipoPadrao;
 	}
 
-	public Integer getModalidadeTarifa() {
+
+	public ModalidadeTarifaria getModalidadeTarifa() {
 		return modalidadeTarifa;
 	}
 
-	public void setModalidadeTarifa(Integer modalidadeTarifa) {
+	public void setModalidadeTarifa(ModalidadeTarifaria modalidadeTarifa) {
 		this.modalidadeTarifa = modalidadeTarifa;
 	}
 
-	public String getPrecoKwh() {
+	public BigDecimal getPrecoKwh() {
 		return precoKwh;
 	}
 
-	public void setPrecoKwh(String precoKwh) {
+	public void setPrecoKwh(BigDecimal precoKwh) {
 		this.precoKwh = precoKwh;
 	}
 
-	public String getConsumoMedio() {
+	public BigDecimal getConsumoMedio() {
 		return consumoMedio;
 	}
 
-	public void setConsumoMedio(String consumoMedio) {
+	public void setConsumoMedio(BigDecimal consumoMedio) {
 		this.consumoMedio = consumoMedio;
 	}
 
-	public Integer getStatus() {
+	public StatusEnum getStatus() {
 		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 
 	public LocalDate getCriadoEm() {
 		return criadoEm;
-	}
-
-	public void setCriadoEm(LocalDate criadoEm) {
-		this.criadoEm = criadoEm;
 	}
 
 	public Integer getCriadoPor() {
@@ -141,5 +144,40 @@ public class DadosContaEnergia implements Serializable {
 	public void setCriadoPor(Integer criadoPor) {
 		this.criadoPor = criadoPor;
 	}
+	
+	public void ativar() {
+		this.status = StatusEnum.ATIVO;
+		this.criadoEm = LocalDate.now();
+	}
+	
+	public void inativar() {
+		this.status = StatusEnum.INATIVO;
+	}
 
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DadosContaEnergia other = (DadosContaEnergia) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "DadosContaEnergia [id=" + id + ", orcamentoEletrico=" + orcamentoEletrico + ", uc=" + uc
+				+ ", descricaoUc=" + descricaoUc + ", tipoPadrao=" + tipoPadrao + ", modalidadeTarifa="
+				+ modalidadeTarifa + ", precoKwh=" + precoKwh + ", consumoMedio=" + consumoMedio + ", status=" + status
+				+ ", criadoEm=" + criadoEm + ", criadoPor=" + criadoPor + "]";
+	}
+	
 }
