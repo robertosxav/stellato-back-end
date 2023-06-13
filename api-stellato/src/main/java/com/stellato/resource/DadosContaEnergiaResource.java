@@ -24,7 +24,7 @@ import com.stellato.model.DadosContaEnergia;
 import com.stellato.service.DadosContaEnergiaService;
 
 @RestController
-@RequestMapping("/dadoscontaenergias")
+@RequestMapping("/dadoscontaenergia")
 public class DadosContaEnergiaResource {
 
 	@Autowired
