@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.stellato.exceptions.StellatoException;
 import com.stellato.model.Dimensionamento;
+import com.stellato.model.OrcamentoEletrico;
 import com.stellato.repository.DimensionamentoRepository;
 
 @Service
@@ -17,22 +18,35 @@ public class DimensionamentoService {
 
 	@Autowired
 	private DimensionamentoRepository dimensionamentoRepository;
+	
+	@Autowired
+	private OrcamentoEletricoService orcamentoEletricoService;
 
 	public Dimensionamento salvar(Dimensionamento dimensionamento) {
+		validar(dimensionamento);
+		dimensionamento.ativar();
 		return dimensionamentoRepository.save(dimensionamento);
 	}
 
+	private void validar(Dimensionamento dimensionamento) {
+		OrcamentoEletrico orcamentoEletrico = orcamentoEletricoService
+				.buscarPeloCodigo(dimensionamento.getOrcamentoEletrico().getId());
+		
+		dimensionamento.setOrcamentoEletrico(orcamentoEletrico);
+		
+	}
+
 	public Dimensionamento buscarPeloCodigo(Long codigo) {
-		Dimensionamento dimensionamentoSalva = dimensionamentoRepository.findById(codigo).get();
-		if (dimensionamentoSalva == null) {
-		throw new EmptyResultDataAccessException(1);
-			}
+		Dimensionamento dimensionamentoSalva = dimensionamentoRepository
+				.findById(codigo)
+				.orElseThrow(()-> new StellatoException("Id não encontrado"));
+		
 		return dimensionamentoSalva;
 	}
 
 	public Dimensionamento atualizar(Long codigo, Dimensionamento dimensionamento) {
 		Dimensionamento dimensionamentoSave = buscarPeloCodigo(codigo);
-		BeanUtils.copyProperties(dimensionamento, dimensionamentoSave, "dimensionamentoid");
+		BeanUtils.copyProperties(dimensionamento, dimensionamentoSave, "id","status");
 		return dimensionamentoRepository.save(dimensionamentoSave);
 	}
 
@@ -45,7 +59,17 @@ public class DimensionamentoService {
 	}
 
 	public void remover(Long codigo) {
-		dimensionamentoRepository.deleteById(codigo);
+		Dimensionamento dimensionamentoSalvo = buscarPeloCodigo(codigo);
+		dimensionamentoSalvo.inativar();
+		dimensionamentoRepository.save(dimensionamentoSalvo);
+	}
+
+	public Page<Dimensionamento> listarTodosAtivos(Pageable pageable) {
+		return dimensionamentoRepository.listarTodosAtivos(pageable);
+	}
+
+	public List<Dimensionamento> listarTodosAtivos() {
+		return dimensionamentoRepository.listarTodosAtivos();
 	}
 
 }

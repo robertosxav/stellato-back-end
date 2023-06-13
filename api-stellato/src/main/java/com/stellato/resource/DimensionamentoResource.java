@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.Dimensionamento;
@@ -39,7 +38,7 @@ public class DimensionamentoResource {
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Dimensionamento> buscarPeloCodigo(@PathVariable Long codigo) {
 		Dimensionamento dimensionamento = dimensionamentoService.buscarPeloCodigo(codigo);
-		return dimensionamento != null ? ResponseEntity.ok(dimensionamento) : ResponseEntity.notFound().build();
+		return ResponseEntity.ok(dimensionamento);
 	}
 
 	@PutMapping("/{codigo}")
@@ -59,9 +58,18 @@ public class DimensionamentoResource {
 	}
 
 	@DeleteMapping("/{codigo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
 		dimensionamentoService.remover(codigo);
+	}
+	
+	@GetMapping("/ativos/paginado")
+	public Page<Dimensionamento> listarTodosAtivos(Pageable pageable) {
+		return dimensionamentoService.listarTodosAtivos(pageable);
+	}
+
+	@GetMapping("/ativos")
+	public List<Dimensionamento> listarTodosAtivos() {
+		return dimensionamentoService.listarTodosAtivos();
 	}
 
 }
