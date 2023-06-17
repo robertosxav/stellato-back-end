@@ -76,4 +76,8 @@ public class MaterialCotadoService {
 		return materialCotadoRepository.listarTodosAtivos();
 	}
 
+	public Page<MaterialCotado> listarPorMaterial(Long idMaterial, Pageable pageable) {
+		return materialCotadoRepository.listarPorMaterial(idMaterial,pageable);
+	}
+
 }

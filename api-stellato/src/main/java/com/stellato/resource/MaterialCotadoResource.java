@@ -72,5 +72,10 @@ public class MaterialCotadoResource {
 	public List<MaterialCotado> listarTodosAtivos() {
 		return materialcotadoService.listarTodosAtivos();
 	}
+	
+	@GetMapping("/listarpormaterial/{idMaterial}")
+	public Page<MaterialCotado> listarPorMaterial(@PathVariable Long idMaterial, Pageable pageable) {
+		return materialcotadoService.listarPorMaterial(idMaterial,pageable);
+	}
 
 }

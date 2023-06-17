@@ -19,5 +19,9 @@ public interface MaterialCotadoRepository extends JpaRepository<MaterialCotado, 
 	Page<MaterialCotado> listarTodosAtivos(Pageable pageable);
 	
 	@Query("SELECT mc FROM MaterialCotado mc WHERE mc.status =1")
-	Page<MaterialCotado> buscaGenerica(String pesquisa, Pageable pageable); 
+	Page<MaterialCotado> buscaGenerica(String pesquisa, Pageable pageable);
+
+	@Query("SELECT mc FROM MaterialCotado mc WHERE mc.status =1 and mc.material.id = :idMaterial")
+	Page<MaterialCotado> listarPorMaterial(Long idMaterial, Pageable pageable);
+
 } 
