@@ -52,7 +52,11 @@ public class PessoaService {
 	public Pessoa atualizar(Long codigo, Pessoa pessoa) {
 		Pessoa pessoaSave = buscarPeloCodigo(codigo);
 		BeanUtils.copyProperties(pessoa, pessoaSave, "id","status");
-		return pessoaRepository.save(pessoaSave);
+		Pessoa pessoaAtualizada = pessoaRepository.save(pessoaSave);
+		
+		pessoaAtualizada.setId(pessoaSave.getId());
+		gerarRegistroFornecedor(pessoaAtualizada);
+		return pessoaAtualizada;
 	}
 
 	public Page<Pessoa> pesquisar(Pageable pageable){
