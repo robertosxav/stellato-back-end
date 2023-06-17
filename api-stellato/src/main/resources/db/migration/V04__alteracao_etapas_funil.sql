@@ -1,0 +1,1 @@
+ALTER TABLE public.etapas_funil ADD etapas_funil_ordem smallint NULL;

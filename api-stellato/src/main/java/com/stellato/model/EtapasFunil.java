@@ -34,6 +34,9 @@ public class EtapasFunil implements Serializable{
 
 	@Column(name = "etapas_funil_etapa")
 	private String etapa;
+	
+	@Column(name = "etapas_funil_ordem")
+	private Integer ordem;
 
 	@Column(name = "etapas_funil_status")
 	private StatusEnum status;
@@ -67,6 +70,14 @@ public class EtapasFunil implements Serializable{
 
 	public void setEtapa(String etapa) {
 		this.etapa = etapa;
+	}
+
+	public Integer getOrdem() {
+		return ordem;
+	}
+
+	public void setOrdem(Integer ordem) {
+		this.ordem = ordem;
 	}
 
 	public StatusEnum getStatus() {

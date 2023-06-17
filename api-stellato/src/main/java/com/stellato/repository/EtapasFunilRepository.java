@@ -13,15 +13,15 @@ import com.stellato.model.EtapasFunil;
 @Repository
 public interface EtapasFunilRepository extends JpaRepository<EtapasFunil, Long>{
 
-	@Query("SELECT ef FROM EtapasFunil ef where ef.status = 1")
+	@Query("SELECT ef FROM EtapasFunil ef where ef.status = 1 order by ef.ordem asc")
 	List<EtapasFunil> listarTodosAtivos();
 	
-	@Query("SELECT ef FROM EtapasFunil ef where ef.status = 1")
+	@Query("SELECT ef FROM EtapasFunil ef where ef.status = 1 order by ef.ordem asc")
 	Page<EtapasFunil> listarTodosAtivos(Pageable pageable); 
 	
-	@Query("SELECT ef FROM EtapasFunil ef where ef.status = 1 and upper(ef.etapa) LIKE CONCAT ('%',:pesquisa,'%')")
+	@Query("SELECT ef FROM EtapasFunil ef where ef.status = 1 and upper(ef.etapa) LIKE CONCAT ('%',:pesquisa,'%') order by ef.ordem asc")
 	Page<EtapasFunil> buscaGenerica(String pesquisa, Pageable pageable);
 	
-	@Query("SELECT ef FROM EtapasFunil ef where ef.status = 1 and ef.funilVendas.id = :idFunilVendas")
+	@Query("SELECT ef FROM EtapasFunil ef where ef.status = 1 and ef.funilVendas.id = :idFunilVendas order by ef.ordem asc")
 	List<EtapasFunil> buscarPeloFunil(Long idFunilVendas);
 } 
