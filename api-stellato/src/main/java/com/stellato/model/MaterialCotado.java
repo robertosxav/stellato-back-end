@@ -49,7 +49,7 @@ public class MaterialCotado implements Serializable{
 	@JoinColumn(name = "material_id",referencedColumnName = "material_id")
 	private Material material;
 	
-	@Column(name = "material_status")
+	@Column(name = "material_cotado_status")
 	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
