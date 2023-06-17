@@ -24,4 +24,10 @@ public interface EtapasFunilRepository extends JpaRepository<EtapasFunil, Long>{
 	
 	@Query("SELECT ef FROM EtapasFunil ef where ef.status = 1 and ef.funilVendas.id = :idFunilVendas order by ef.ordem asc")
 	List<EtapasFunil> buscarPeloFunil(Long idFunilVendas);
+
+	@Query(nativeQuery = true,value = "SELECT ef.etapas_funil_ordem FROM etapas_funil ef "
+			+ "where ef.etapas_funil_status = 1 "
+			+ "and ef.funil_vendas_id = :idFunilVendas "
+			+ "order by ef.etapas_funil_ordem desc limit 1")
+	Integer buscarOrdemMaxFunil(Long idFunilVendas);
 } 

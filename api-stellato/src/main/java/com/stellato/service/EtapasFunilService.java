@@ -2,6 +2,8 @@ package com.stellato.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,8 +26,21 @@ public class EtapasFunilService {
 	
 	public EtapasFunil salvar(EtapasFunil etapasfunil) {
 		validar(etapasfunil);
+		Integer ordem = verificarOrdem(etapasfunil.getFunilVendas().getId());
+		etapasfunil.setOrdem(ordem);
 		etapasfunil.ativar();
 		return etapasfunilRepository.save(etapasfunil);
+	}
+
+	private Integer verificarOrdem(Long idFunilVendas) {
+	   Integer ordem = etapasfunilRepository.buscarOrdemMaxFunil(idFunilVendas);
+	   if(ordem == null) {
+		   ordem =1;
+	   }else {
+		   ordem +=1;
+	   }
+	   return  ordem;
+		
 	}
 
 	private void validar(EtapasFunil etapasfunil) {
@@ -74,5 +89,16 @@ public class EtapasFunilService {
 	
 	public List<EtapasFunil> buscarPeloFunil(Long idFunilVendas){
 		return etapasfunilRepository.buscarPeloFunil(idFunilVendas);
+	}
+
+	public void ordenarFunil(@Valid List<EtapasFunil> listaEtapasFunil) {
+		Integer ordem =1;
+		for(EtapasFunil etapasFunil: listaEtapasFunil) {
+			etapasFunil.setOrdem(ordem);
+			FunilVendas funilVendas = funilVendasService.buscarPeloCodigo(etapasFunil.getFunilVendas().getId());
+			etapasFunil.setFunilVendas(funilVendas);
+			ordem +=1;
+		}
+		etapasfunilRepository.saveAll(listaEtapasFunil);
 	}
 }

@@ -31,9 +31,15 @@ public class EtapasFunilResource {
 	private EtapasFunilService etapasFunilService;
 
 	@PostMapping
-	public ResponseEntity<EtapasFunil> criar(@Valid @RequestBody EtapasFunil etapasfunil, HttpServletResponse response) {
-		 EtapasFunil etapasfunilSalva = etapasFunilService.salvar(etapasfunil);
-		return ResponseEntity.status(HttpStatus.CREATED).body(etapasfunilSalva);
+	public ResponseEntity<EtapasFunil> criar(@Valid @RequestBody EtapasFunil etapasFunil) {
+		EtapasFunil etapasFunilSalva = etapasFunilService.salvar(etapasFunil);
+		return ResponseEntity.status(HttpStatus.CREATED).body(etapasFunilSalva);
+	}
+	
+	@PutMapping("/ordenarfunil")
+	public ResponseEntity<String> ordenarFunil(@Valid @RequestBody List<EtapasFunil> listaEtapasFunil) {
+		etapasFunilService.ordenarFunil(listaEtapasFunil);
+		return ResponseEntity.ok("Etapas ordenadas com sucesso");
 	}
 
 	@GetMapping("/{codigo}")
