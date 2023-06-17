@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.OrcamentoEletrico;
 import com.stellato.service.OrcamentoEletricoService;
 
 @RestController
-@RequestMapping("/orcamentoeletricos")
+@RequestMapping("/orcamentoeletrico")
 public class OrcamentoEletricoResource {
 
 	@Autowired
@@ -39,7 +38,7 @@ public class OrcamentoEletricoResource {
 	@GetMapping("/{codigo}")
 	public ResponseEntity<OrcamentoEletrico> buscarPeloCodigo(@PathVariable Long codigo) {
 		OrcamentoEletrico orcamentoeletrico = orcamentoeletricoService.buscarPeloCodigo(codigo);
-		return orcamentoeletrico != null ? ResponseEntity.ok(orcamentoeletrico) : ResponseEntity.notFound().build();
+		return ResponseEntity.ok(orcamentoeletrico);
 	}
 
 	@PutMapping("/{codigo}")
@@ -59,7 +58,6 @@ public class OrcamentoEletricoResource {
 	}
 
 	@DeleteMapping("/{codigo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
 		orcamentoeletricoService.remover(codigo);
 	}

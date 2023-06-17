@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.stellato.exceptions.StellatoException;
 import com.stellato.model.OrcamentoEletrico;
 import com.stellato.repository.OrcamentoEletricoRepository;
 
@@ -23,16 +23,15 @@ public class OrcamentoEletricoService {
 	}
 
 	public OrcamentoEletrico buscarPeloCodigo(Long codigo) {
-		OrcamentoEletrico orcamentoeletricoSalva = orcamentoeletricoRepository.findById(codigo).get();
-		if (orcamentoeletricoSalva == null) {
-		throw new EmptyResultDataAccessException(1);
-			}
+		OrcamentoEletrico orcamentoeletricoSalva = orcamentoeletricoRepository
+				.findById(codigo)
+				.orElseThrow(()-> new StellatoException("Id não encontrado"));
 		return orcamentoeletricoSalva;
 	}
 
 	public OrcamentoEletrico atualizar(Long codigo, OrcamentoEletrico orcamentoeletrico) {
 		OrcamentoEletrico orcamentoeletricoSave = buscarPeloCodigo(codigo);
-		BeanUtils.copyProperties(orcamentoeletrico, orcamentoeletricoSave, "orcamentoeletricoid");
+		BeanUtils.copyProperties(orcamentoeletrico, orcamentoeletricoSave, "id","status");
 		return orcamentoeletricoRepository.save(orcamentoeletricoSave);
 	}
 
@@ -45,7 +44,9 @@ public class OrcamentoEletricoService {
 	}
 
 	public void remover(Long codigo) {
-		orcamentoeletricoRepository.deleteById(codigo);
+		OrcamentoEletrico orcamentoEletrico = buscarPeloCodigo(codigo);
+		orcamentoEletrico.inativar();
+		orcamentoeletricoRepository.save(orcamentoEletrico);
 	}
 
 }

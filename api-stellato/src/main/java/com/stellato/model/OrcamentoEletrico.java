@@ -14,6 +14,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.model.enumerated.StatusEnum;
+import com.stellato.model.enumerated.TipoEstruturaEnum;
+import com.stellato.model.enumerated.TipoInstalacaoEnum;
 
 @Entity
 @Table(name = "orcamento_eletrico") 
@@ -53,17 +56,17 @@ public class OrcamentoEletrico implements Serializable{
 	private String detalhesProposta;
 
 	@Column(name = "orcamento_eletrico_tipo_instalaca")
-	private Integer tipoInstalacao;
+	private TipoInstalacaoEnum tipoInstalacao;
 
 	@Column(name = "orcamento_eletrico_tipo_estrutura")
-	private Integer tipoEstrutura;
+	private TipoEstruturaEnum tipoEstrutura;
 
 	@ManyToOne
 	@JoinColumn(name = "etapas_funil_id",referencedColumnName = "etapas_funil_id")
 	private EtapasFunil etapasfunil;
 
 	@Column(name = "etapas_funil_status")
-	private Integer status;
+	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "etapas_funil_criado_em")
@@ -144,19 +147,20 @@ public class OrcamentoEletrico implements Serializable{
 		this.detalhesProposta = detalhesProposta;
 	}
 
-	public Integer getTipoInstalacao() {
+
+	public TipoInstalacaoEnum getTipoInstalacao() {
 		return tipoInstalacao;
 	}
 
-	public void setTipoInstalacao(Integer tipoInstalacao) {
+	public void setTipoInstalacao(TipoInstalacaoEnum tipoInstalacao) {
 		this.tipoInstalacao = tipoInstalacao;
 	}
 
-	public Integer getTipoEstrutura() {
+	public TipoEstruturaEnum getTipoEstrutura() {
 		return tipoEstrutura;
 	}
 
-	public void setTipoEstrutura(Integer tipoEstrutura) {
+	public void setTipoEstrutura(TipoEstruturaEnum tipoEstrutura) {
 		this.tipoEstrutura = tipoEstrutura;
 	}
 
@@ -168,21 +172,15 @@ public class OrcamentoEletrico implements Serializable{
 		this.etapasfunil = etapasfunil;
 	}
 
-	public Integer getStatus() {
+	public StatusEnum getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
+	
 	public LocalDate getCriadoEm() {
 		return criadoEm;
 	}
 
-	public void setCriadoEm(LocalDate criadoEm) {
-		this.criadoEm = criadoEm;
-	}
 
 	public Integer getCriadoPor() {
 		return criadoPor;
@@ -192,4 +190,12 @@ public class OrcamentoEletrico implements Serializable{
 		this.criadoPor = criadoPor;
 	}
 	
+	public void ativar() {
+		this.status = StatusEnum.ATIVO;
+		this.criadoEm = LocalDate.now();
+	}
+
+	public void inativar() {
+		this.status = StatusEnum.INATIVO;
+	}
 } 
