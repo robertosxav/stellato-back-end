@@ -24,7 +24,7 @@ import com.stellato.model.Lead;
 import com.stellato.service.LeadService;
 
 @RestController
-@RequestMapping("/leads")
+@RequestMapping("/lead")
 public class LeadResource {
 
 	@Autowired
