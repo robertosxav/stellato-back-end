@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.stellato.exceptions.StellatoException;
+import com.stellato.model.EtapasFunil;
 import com.stellato.model.OrcamentoEletrico;
 import com.stellato.repository.OrcamentoEletricoRepository;
 
@@ -16,37 +17,47 @@ import com.stellato.repository.OrcamentoEletricoRepository;
 public class OrcamentoEletricoService {
 
 	@Autowired
-	private OrcamentoEletricoRepository orcamentoeletricoRepository;
+	private OrcamentoEletricoRepository orcamentoEletricoRepository;
+	
+	@Autowired
+	private EtapasFunilService etapasFunilService;
 
-	public OrcamentoEletrico salvar(OrcamentoEletrico orcamentoeletrico) {
-		return orcamentoeletricoRepository.save(orcamentoeletrico);
+	public OrcamentoEletrico salvar(OrcamentoEletrico orcamentoEletrico) {
+		validar(orcamentoEletrico);
+		orcamentoEletrico.ativar();
+		return orcamentoEletricoRepository.save(orcamentoEletrico);
+	}
+
+	private void validar(OrcamentoEletrico orcamentoEletrico) {
+		EtapasFunil etapasFunil = etapasFunilService.buscarPeloCodigo(orcamentoEletrico.getEtapasFunil().getId());
+		orcamentoEletrico.setEtapasFunil(etapasFunil);
 	}
 
 	public OrcamentoEletrico buscarPeloCodigo(Long codigo) {
-		OrcamentoEletrico orcamentoeletricoSalva = orcamentoeletricoRepository
+		OrcamentoEletrico orcamentoEletricoSalva = orcamentoEletricoRepository
 				.findById(codigo)
 				.orElseThrow(()-> new StellatoException("Id não encontrado"));
-		return orcamentoeletricoSalva;
+		return orcamentoEletricoSalva;
 	}
 
-	public OrcamentoEletrico atualizar(Long codigo, OrcamentoEletrico orcamentoeletrico) {
-		OrcamentoEletrico orcamentoeletricoSave = buscarPeloCodigo(codigo);
-		BeanUtils.copyProperties(orcamentoeletrico, orcamentoeletricoSave, "id","status");
-		return orcamentoeletricoRepository.save(orcamentoeletricoSave);
+	public OrcamentoEletrico atualizar(Long codigo, OrcamentoEletrico orcamentoEletrico) {
+		OrcamentoEletrico orcamentoEletricoSave = buscarPeloCodigo(codigo);
+		BeanUtils.copyProperties(orcamentoEletrico, orcamentoEletricoSave, "id","status");
+		return orcamentoEletricoRepository.save(orcamentoEletricoSave);
 	}
 
 	public Page<OrcamentoEletrico> pesquisar(Pageable pageable){
-		return orcamentoeletricoRepository.findAll(pageable);
+		return orcamentoEletricoRepository.findAll(pageable);
 	}
 
 	public List<OrcamentoEletrico> listarTodos() {
-		return orcamentoeletricoRepository.findAll();
+		return orcamentoEletricoRepository.findAll();
 	}
 
 	public void remover(Long codigo) {
 		OrcamentoEletrico orcamentoEletrico = buscarPeloCodigo(codigo);
 		orcamentoEletrico.inativar();
-		orcamentoeletricoRepository.save(orcamentoEletrico);
+		orcamentoEletricoRepository.save(orcamentoEletrico);
 	}
 
 }

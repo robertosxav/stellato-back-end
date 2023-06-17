@@ -52,10 +52,10 @@ public class OrcamentoEletrico implements Serializable{
 	@Column(name = "orcamento_eletrico_distancia")
 	private Integer distancia;
 
-	@Column(name = "orcamento_eletrico_detalhespropo")
+	@Column(name = "orcamento_eletrico_detalhes_propo")
 	private String detalhesProposta;
 
-	@Column(name = "orcamento_eletrico_tipo_instalaca")
+	@Column(name = "orcamento_eletrico_tipo_instalacao")
 	private TipoInstalacaoEnum tipoInstalacao;
 
 	@Column(name = "orcamento_eletrico_tipo_estrutura")
@@ -63,16 +63,16 @@ public class OrcamentoEletrico implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name = "etapas_funil_id",referencedColumnName = "etapas_funil_id")
-	private EtapasFunil etapasfunil;
+	private EtapasFunil etapasFunil;
 
-	@Column(name = "etapas_funil_status")
+	@Column(name = "orcamento_eletrico_status")
 	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	@Column(name = "etapas_funil_criado_em")
+	@Column(name = "orcamento_eletrico_criado_em")
 	private LocalDate criadoEm;
 
-	@Column(name = "etapas_funil_criado_por")
+	@Column(name = "orcamento_eletrico_criado_por")
 	private Integer criadoPor;
 
 	public Long getId() {
@@ -164,12 +164,12 @@ public class OrcamentoEletrico implements Serializable{
 		this.tipoEstrutura = tipoEstrutura;
 	}
 
-	public EtapasFunil getEtapasfunil() {
-		return etapasfunil;
+	public EtapasFunil getEtapasFunil() {
+		return etapasFunil;
 	}
 
-	public void setEtapasfunil(EtapasFunil etapasfunil) {
-		this.etapasfunil = etapasfunil;
+	public void setEtapasFunil(EtapasFunil etapasFunil) {
+		this.etapasFunil = etapasFunil;
 	}
 
 	public StatusEnum getStatus() {

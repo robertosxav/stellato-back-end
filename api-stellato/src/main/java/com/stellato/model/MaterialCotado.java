@@ -53,10 +53,10 @@ public class MaterialCotado implements Serializable{
 	private StatusEnum status;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	@Column(name = "material_criado_em")
+	@Column(name = "material_cotado_criado_em")
 	private LocalDate criadoEm;
 
-	@Column(name = "material_criado_por")
+	@Column(name = "material_cotado_criado_por")
 	private Integer criadoPor;
 
 	public Long getId() {
