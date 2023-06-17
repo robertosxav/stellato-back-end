@@ -68,4 +68,12 @@ public class MaterialCotadoService {
 		materialCotadoRepository.save(materialCotadoSalvo);
 	}
 
+	public Page<MaterialCotado> listarTodosAtivos(Pageable pageable) {
+		return materialCotadoRepository.listarTodosAtivos(pageable);
+	}
+
+	public List<MaterialCotado> listarTodosAtivos() {
+		return materialCotadoRepository.listarTodosAtivos();
+	}
+
 }

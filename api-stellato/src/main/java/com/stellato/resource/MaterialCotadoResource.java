@@ -61,5 +61,16 @@ public class MaterialCotadoResource {
 	public void remover(@PathVariable Long codigo) {
 		materialcotadoService.remover(codigo);
 	}
+	
+
+	@GetMapping("/ativos/paginado")
+	public Page<MaterialCotado> listarTodosAtivos(Pageable pageable) {
+		return materialcotadoService.listarTodosAtivos(pageable);
+	}
+
+	@GetMapping("/ativos")
+	public List<MaterialCotado> listarTodosAtivos() {
+		return materialcotadoService.listarTodosAtivos();
+	}
 
 }
