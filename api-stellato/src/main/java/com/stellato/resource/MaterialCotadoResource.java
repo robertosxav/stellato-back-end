@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stellato.model.MaterialCotado;
@@ -39,7 +38,7 @@ public class MaterialCotadoResource {
 	@GetMapping("/{codigo}")
 	public ResponseEntity<MaterialCotado> buscarPeloCodigo(@PathVariable Long codigo) {
 		MaterialCotado materialcotado = materialcotadoService.buscarPeloCodigo(codigo);
-		return materialcotado != null ? ResponseEntity.ok(materialcotado) : ResponseEntity.notFound().build();
+		return ResponseEntity.ok(materialcotado);
 	}
 
 	@PutMapping("/{codigo}")
@@ -59,7 +58,6 @@ public class MaterialCotadoResource {
 	}
 
 	@DeleteMapping("/{codigo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
 		materialcotadoService.remover(codigo);
 	}

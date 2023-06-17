@@ -36,7 +36,10 @@ public class MaterialCotado implements Serializable{
 	private String observacao;
 
 	@Column(name = "material_cotado_valor")
-	private BigDecimal valor;
+	private BigDecimal valorVenda;
+	
+	@Column(name = "material_cotado_valor_compra")
+	private BigDecimal valorCompra;
 
 	@ManyToOne()
 	@JoinColumn(name = "fornecedor_id",referencedColumnName = "fornecedor_id")
@@ -79,13 +82,22 @@ public class MaterialCotado implements Serializable{
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
+	
 
-	public BigDecimal getValor() {
-		return valor;
+	public BigDecimal getValorVenda() {
+		return valorVenda;
 	}
 
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setValorVenda(BigDecimal valorVenda) {
+		this.valorVenda = valorVenda;
+	}
+	
+	public BigDecimal getValorCompra() {
+		return valorCompra;
+	}
+
+	public void setValorCompra(BigDecimal valorCompra) {
+		this.valorCompra = valorCompra;
 	}
 
 	public Fornecedor getFornecedor() {

@@ -1,0 +1,1 @@
+ALTER TABLE public.material_cotado ADD material_cotado_valor_compra numeric(8, 2) NULL;
