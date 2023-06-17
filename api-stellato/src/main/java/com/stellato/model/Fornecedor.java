@@ -69,6 +69,16 @@ public class Fornecedor implements Serializable{
 		this.criadoPor = criadoPor;
 	}
 	
+	public Fornecedor() {
+		super();
+	}
+
+	public Fornecedor(Long id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+
 	public void ativar() {
 		this.status = StatusEnum.ATIVO;
 		this.criadoEm = LocalDate.now();

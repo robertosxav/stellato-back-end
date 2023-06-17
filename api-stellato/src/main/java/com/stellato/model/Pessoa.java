@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.stellato.model.enumerated.StatusEnum;
@@ -60,6 +61,9 @@ public class Pessoa implements Serializable{
 
 	@Column(name = "pessoa_criado_por")
 	private Integer criadoPor;
+	
+	@Transient
+	private Boolean isFornecedor = false;
 
 	public Long getId() {
 		return id;
@@ -149,6 +153,14 @@ public class Pessoa implements Serializable{
 		this.criadoPor = criadoPor;
 	}
 	
+	public Boolean getIsFornecedor() {
+		return isFornecedor;
+	}
+
+	public void setIsFornecedor(Boolean isFornecedor) {
+		this.isFornecedor = isFornecedor;
+	}
+
 	public void ativar() {
 		this.status = StatusEnum.ATIVO;
 		this.criadoEm = LocalDate.now();

@@ -2,6 +2,8 @@ package com.stellato.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.stellato.exceptions.StellatoException;
+import com.stellato.model.Fornecedor;
 import com.stellato.model.Pessoa;
 import com.stellato.repository.PessoaRepository;
 
@@ -17,12 +20,27 @@ public class PessoaService {
 
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	
+	@Autowired
+	private FornecedorService fornecedorService;
 
+	@Transactional
 	public Pessoa salvar(Pessoa pessoa) {
 		pessoa.ativar();
-		return pessoaRepository.save(pessoa);
+		Pessoa pessoaSalva = pessoaRepository.save(pessoa);
+		gerarRegistroFornecedor(pessoaSalva);
+		return pessoaSalva;
 	}
-
+	
+	@Transactional
+	private void gerarRegistroFornecedor(Pessoa pessoa) {
+		if (pessoa.getIsFornecedor()) {
+			Fornecedor fornecedor 	=	new Fornecedor(pessoa.getId(),pessoa.getNomeFantasia());
+			fornecedorService.salvar(fornecedor);
+		}
+		
+	}
+	
 	public Pessoa buscarPeloCodigo(Long codigo) {
 		Pessoa pessoaSalva = pessoaRepository
 				.findById(codigo)
