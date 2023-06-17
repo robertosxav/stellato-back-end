@@ -28,7 +28,8 @@ public class PessoaService {
 	public Pessoa salvar(Pessoa pessoa) {
 		pessoa.ativar();
 		Pessoa pessoaSalva = pessoaRepository.save(pessoa);
-		gerarRegistroFornecedor(pessoaSalva);
+		pessoa.setId(pessoaSalva.getId());
+		gerarRegistroFornecedor(pessoa);
 		return pessoaSalva;
 	}
 	
