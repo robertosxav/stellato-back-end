@@ -29,8 +29,10 @@ public class LeadService {
 	}
 
 	private void validar(Lead lead) {
-		Pessoa pessoa = pessoaService.buscarPeloCodigo(lead.getPessoa().getId());
-		lead.setPessoa(pessoa);
+		if (lead.getPessoa() != null) {
+			Pessoa pessoa = pessoaService.buscarPeloCodigo(lead.getPessoa().getId());
+			lead.setPessoa(pessoa);			
+		}
 	}
 
 	public Lead buscarPeloCodigo(Long codigo) {
@@ -42,7 +44,7 @@ public class LeadService {
 
 	public Lead atualizar(Long codigo, Lead lead) {
 		Lead leadSave = buscarPeloCodigo(codigo);
-		BeanUtils.copyProperties(lead, leadSave, "id","status");
+		BeanUtils.copyProperties(lead, leadSave, "id","status","criadoEm");
 		return leadRepository.save(leadSave);
 	}
 
