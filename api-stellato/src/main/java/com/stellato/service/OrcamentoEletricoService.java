@@ -60,4 +60,8 @@ public class OrcamentoEletricoService {
 		orcamentoEletricoRepository.save(orcamentoEletrico);
 	}
 
+	public Page<OrcamentoEletrico> buscarPeloLead(Long idLead, Pageable pageable) {
+		return orcamentoEletricoRepository.findByLeadId(idLead,pageable);
+	}
+
 }

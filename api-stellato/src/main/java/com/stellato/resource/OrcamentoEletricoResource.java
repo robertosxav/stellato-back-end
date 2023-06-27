@@ -61,5 +61,10 @@ public class OrcamentoEletricoResource {
 	public void remover(@PathVariable Long codigo) {
 		orcamentoeletricoService.remover(codigo);
 	}
+	
+	@GetMapping("/lead/{idLead}")
+	public Page<OrcamentoEletrico> buscarPeloLead(@PathVariable Long idLead,Pageable pageable) {
+		return orcamentoeletricoService.buscarPeloLead(idLead,pageable);
+	}
 
 }
