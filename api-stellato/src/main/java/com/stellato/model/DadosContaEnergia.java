@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.model.enumerated.ModalidadeTariariaEnum;
 import com.stellato.model.enumerated.StatusEnum;
 import com.stellato.model.enumerated.TipoPadraoEnum;
 
@@ -44,9 +45,12 @@ public class DadosContaEnergia implements Serializable {
 	@Column(name = "dados_conta_energia_tipo_padrao")
 	private TipoPadraoEnum tipoPadrao;
 
+	@Column(name = "modalidade_tarifaria")
+	private ModalidadeTariariaEnum modalidadeTarifa;
+	
 	@ManyToOne()
-	@JoinColumn(name = "modalidade_tarifaria_id",referencedColumnName = "modalidade_tarifaria_id")
-	private ModalidadeTarifaria modalidadeTarifa;
+	@JoinColumn(name = "distribuidora_id",referencedColumnName  = "distribuidora_id")
+	private Distribuidora distribuidora;
 
 	@Column(name = "dados_conta_energia_preco_kwh")
 	private BigDecimal precoKwh;
@@ -103,14 +107,21 @@ public class DadosContaEnergia implements Serializable {
 	public void setTipoPadrao(TipoPadraoEnum tipoPadrao) {
 		this.tipoPadrao = tipoPadrao;
 	}
-
-
-	public ModalidadeTarifaria getModalidadeTarifa() {
+	
+	public ModalidadeTariariaEnum getModalidadeTarifa() {
 		return modalidadeTarifa;
 	}
 
-	public void setModalidadeTarifa(ModalidadeTarifaria modalidadeTarifa) {
+	public void setModalidadeTarifa(ModalidadeTariariaEnum modalidadeTarifa) {
 		this.modalidadeTarifa = modalidadeTarifa;
+	}
+	
+	public Distribuidora getDistribuidora() {
+		return distribuidora;
+	}
+
+	public void setDistribuidora(Distribuidora distribuidora) {
+		this.distribuidora = distribuidora;
 	}
 
 	public BigDecimal getPrecoKwh() {

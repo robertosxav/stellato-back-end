@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.stellato.exceptions.StellatoException;
 import com.stellato.model.DadosContaEnergia;
-import com.stellato.model.ModalidadeTarifaria;
 import com.stellato.model.OrcamentoEletrico;
 import com.stellato.repository.DadosContaEnergiaRepository;
 
@@ -24,7 +23,7 @@ public class DadosContaEnergiaService {
 	private OrcamentoEletricoService orcamentoEletricoService;
 	
 	@Autowired
-	private ModalidadeTarifariaService modalidadeTarifariaService;
+	private ParamModTarifariaService modalidadeTarifariaService;
 	
 	public DadosContaEnergia salvar(DadosContaEnergia dadosContaEnergia) {
 		validar(dadosContaEnergia);
@@ -37,9 +36,9 @@ public class DadosContaEnergiaService {
 												.buscarPeloCodigo(dadosContaEnergia.getOrcamentoEletrico().getId());
 		dadosContaEnergia.setOrcamentoEletrico(orcamentoEletrico);
 		
-		ModalidadeTarifaria modalidadeTarifaria = modalidadeTarifariaService
+		/*ParamModTarifaria modalidadeTarifaria = modalidadeTarifariaService
 													.buscarPeloCodigo(dadosContaEnergia.getModalidadeTarifa().getId());
-		dadosContaEnergia.setModalidadeTarifa(modalidadeTarifaria);
+		dadosContaEnergia.setModalidadeTarifa(modalidadeTarifaria);*/
 	}
 
 	public DadosContaEnergia buscarPeloCodigo(Long codigo) {

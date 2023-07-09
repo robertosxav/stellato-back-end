@@ -15,35 +15,39 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stellato.model.enumerated.ModalidadeTariariaEnum;
 import com.stellato.model.enumerated.StatusEnum;
 
 @Entity
-@Table(name = "modalidade_tarifaria") 
-public class ModalidadeTarifaria implements Serializable{ 
+@Table(name = "param_mod_tarifaria") 
+public class ParamModTarifaria implements Serializable{ 
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_MODALIDADE_TARIFARIA")
-	@SequenceGenerator(name = "SEQUENCE_MODALIDADE_TARIFARIA",sequenceName = "seq_modalidade_tarifaria",allocationSize = 1)
-	@Column(name = "modalidade_tarifaria_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_PARAM_MODALIDADE_TARIFARIA")
+	@SequenceGenerator(name = "SEQUENCE_PARAM_MODALIDADE_TARIFARIA",sequenceName = "seq_param_modalidade_tarifaria",allocationSize = 1)
+	@Column(name = "param_mod_tarifaria_id")
 	private Long id;
 
 	@ManyToOne()
-	@JoinColumn(name = "distribuidora_id",referencedColumnName = "distribuidora_id")
+	@JoinColumn(name = "distribuidora_id",referencedColumnName  = "distribuidora_id")
 	private Distribuidora distribuidora;
-
-	@Column(name = "modalidade_tarifaria_valor")
+	
+	@Column(name= "modalidade_tarifaria")
+	private ModalidadeTariariaEnum modalidadeTariaria;
+	
+	@Column(name = "param_mod_tarifaria_valor")
 	private BigDecimal valor;
 
-	@Column(name = "modalidade_tarifaria_status")
+	@Column(name = "param_mod_tarifaria_status")
 	private StatusEnum status;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	@Column(name = "modalidade_tarifaria_criado_em")
+	@Column(name = "param_mod_tarifaria_criado_em")
 	private LocalDate criadoEm;
 
-	@Column(name = "modalidade_tarifaria_criado_por")
+	@Column(name = "param_mod_tarifaria_criado_por")
 	private Integer criadoPor;
 
 	public Long getId() {
@@ -53,7 +57,7 @@ public class ModalidadeTarifaria implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public Distribuidora getDistribuidora() {
 		return distribuidora;
 	}
@@ -62,7 +66,14 @@ public class ModalidadeTarifaria implements Serializable{
 		this.distribuidora = distribuidora;
 	}
 
-	
+	public ModalidadeTariariaEnum getModalidadeTariaria() {
+		return modalidadeTariaria;
+	}
+
+	public void setModalidadeTariaria(ModalidadeTariariaEnum modalidadeTariaria) {
+		this.modalidadeTariaria = modalidadeTariaria;
+	}
+
 	public BigDecimal getValor() {
 		return valor;
 	}
