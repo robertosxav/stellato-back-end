@@ -1,0 +1,3 @@
+ALTER TABLE public.dados_conta_energia DROP COLUMN dados_conta_energia_mod_tarifa;
+ALTER TABLE public.dados_conta_energia DROP COLUMN dados_conta_energia_status;
+ALTER TABLE public.dados_conta_energia DROP COLUMN dados_conta_energia_criado_em;

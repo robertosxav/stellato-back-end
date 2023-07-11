@@ -23,6 +23,7 @@ public class DadosContaEnergiaService {
 	@Autowired
 	private OrcamentoEletricoService orcamentoEletricoService;
 	
+	@Autowired
 	private DistribuidoraService distribuidoraService;
 	
 	public DadosContaEnergia salvar(DadosContaEnergia dadosContaEnergia) {
@@ -32,12 +33,10 @@ public class DadosContaEnergiaService {
 	}
 
 	private void validar(DadosContaEnergia dadosContaEnergia) {
-		OrcamentoEletrico orcamentoEletrico = orcamentoEletricoService
-												.buscarPeloCodigo(dadosContaEnergia.getOrcamentoEletrico().getId());
+		OrcamentoEletrico orcamentoEletrico = orcamentoEletricoService.buscarPeloCodigo(dadosContaEnergia.getOrcamentoEletrico().getId());
 		dadosContaEnergia.setOrcamentoEletrico(orcamentoEletrico);
 		
-		Distribuidora distribuidora = distribuidoraService
-													.buscarPeloCodigo(dadosContaEnergia.getDistribuidora().getId());
+		Distribuidora distribuidora = distribuidoraService.buscarPeloCodigo(dadosContaEnergia.getDistribuidora().getId());
 		dadosContaEnergia.setDistribuidora(distribuidora);
 	}
 
